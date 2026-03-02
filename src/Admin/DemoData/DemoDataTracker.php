@@ -201,6 +201,9 @@ final class DemoDataTracker {
 	public function count_demo_data( ?string $module = null ): array {
 		global $wpdb;
 
+		// These aggregate counts rely on optimized direct SQL joins for admin-only demo data tooling.
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
 		// Count demo users (always filtered by 'users' module).
 		if ( $module === null || $module === self::USERS_MODULE ) {
 			$users = (int) $wpdb->get_var(
@@ -341,6 +344,8 @@ final class DemoDataTracker {
 				)
 			);
 		}
+
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 
 		return [
 			'users'      => $users,
@@ -664,6 +669,7 @@ final class DemoDataTracker {
 
 		$cleared = 0;
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$users_with_favorites = $wpdb->get_col(
 			"SELECT DISTINCT user_id FROM {$wpdb->usermeta} WHERE meta_key = '_apd_favorites'"
 		);
