@@ -108,7 +108,9 @@ jobs:
 
       - name: Run PHPCS
         if: steps.phpcs-check.outputs.configured == 'true'
-        run: vendor/bin/phpcs --report=checkstyle | cs2pr
+        run: |
+          vendor/bin/phpcs --report=checkstyle --report-file=phpcs-report.xml
+          cs2pr < phpcs-report.xml
 
   compatibility:
     name: PHP Compatibility Check
