@@ -109,7 +109,6 @@ jobs:
       - name: Run PHPCS
         if: steps.phpcs-check.outputs.configured == 'true'
         run: vendor/bin/phpcs --report=checkstyle | cs2pr
-        continue-on-error: true
 
   compatibility:
     name: PHP Compatibility Check
