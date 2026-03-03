@@ -1,17 +1,38 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Sync a WordPress.org-style plugin payload into the wordpress-deploy test env
+# Sync a WordPress.org-style plugin payload into a local wordpress-deploy test env.
+#
 # Usage:
 #   bin/sync-to-wordpress-deploy.sh
-#   bin/sync-to-wordpress-deploy.sh /custom/wp-deploy/path
+#   bin/sync-to-wordpress-deploy.sh /custom/wp-deploy/root
+#
+# Optional env vars:
+#   APD_PLUGIN_SLUG    Plugin directory name (default: all-purpose-directory)
+#   APD_DEPLOY_ROOT    Deploy root (default: $HOME/Documents/www/test/wordpress-deploy)
+#   APD_DEPLOY_DEST    Explicit destination plugin directory
+#
+# If APD_DEPLOY_DEST is set, it takes precedence over APD_DEPLOY_ROOT.
 
 SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DEPLOY_ROOT="${1:-/home/mike/Documents/www/test/wordpress-deploy}"
-DEST_DIR="$DEPLOY_ROOT/html/web/app/plugins/all-purpose-directory"
+PLUGIN_SLUG="${APD_PLUGIN_SLUG:-all-purpose-directory}"
+DEPLOY_ROOT="${1:-${APD_DEPLOY_ROOT:-$HOME/Documents/www/test/wordpress-deploy}}"
 
-if [[ ! -d "$DEPLOY_ROOT/html/web/app/plugins" ]]; then
-  echo "Error: deploy plugins directory not found: $DEPLOY_ROOT/html/web/app/plugins" >&2
+if [[ -n "${APD_DEPLOY_DEST:-}" ]]; then
+  DEST_DIR="$APD_DEPLOY_DEST"
+else
+  DEST_DIR="$DEPLOY_ROOT/html/web/app/plugins/$PLUGIN_SLUG"
+fi
+
+DEST_PARENT="$(dirname "$DEST_DIR")"
+if [[ ! -d "$DEST_PARENT" ]]; then
+  echo "Error: deploy plugins directory not found: $DEST_PARENT" >&2
+  echo "Pass a valid deploy root as arg 1 or set APD_DEPLOY_DEST." >&2
+  exit 1
+fi
+
+if [[ ! -f "$SRC_DIR/.distignore" ]]; then
+  echo "Error: .distignore not found in source directory: $SRC_DIR" >&2
   exit 1
 fi
 
@@ -32,6 +53,10 @@ RSYNC_EXCLUDES=(
   --exclude="phpunit*.xml*"
   --exclude="playwright.config.ts"
 )
+
+echo "Syncing wp.org-style payload..."
+echo "Source:      $SRC_DIR"
+echo "Destination: $DEST_DIR"
 
 rsync -a --delete --delete-excluded "${RSYNC_EXCLUDES[@]}" "$SRC_DIR/" "$DEST_DIR/"
 

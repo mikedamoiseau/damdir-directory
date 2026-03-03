@@ -207,6 +207,8 @@ Useful shortcuts:
 KEEP_STACK=1 ./bin/plugin-check-local.sh
 ```
 
+Local sync/deploy helper scripts are documented in `bin/README.md`.
+
 ## Frequently Asked Questions
 
 ### How do I customize the listing display?

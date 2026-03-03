@@ -166,6 +166,12 @@ If critical issue is found post-release:
 
 ## 10) Operational notes for this repo
 
-- `bin/sync-to-test.sh` is host-specific and should stay local-only.
+- `bin/sync-to-test.sh` and `bin/sync-to-wordpress-deploy.sh` are kept in-repo and are now portable:
+  - no hardcoded machine-specific source paths
+  - support path overrides via args/env vars
+  - fail fast with clear error messages
+- Quick usage:
+  - `bin/sync-to-test.sh` (auto-detect local test WP) or pass explicit plugin dir
+  - `bin/sync-to-wordpress-deploy.sh` (default deploy root) or pass custom root
 - `docs/WPORG-PREFLIGHT.md` and this runbook can remain as internal docs.
 - Do not create git tag until quality/security/package gates are green.
