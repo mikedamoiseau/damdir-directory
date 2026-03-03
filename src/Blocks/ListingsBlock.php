@@ -233,17 +233,19 @@ final class ListingsBlock extends AbstractBlock {
 	private function build_query_args( array $attributes ): array {
 		$builder = new ListingQueryBuilder();
 
-		return $builder->build( [
-			'count'    => $attributes['count'],
-			'paged'    => $this->get_paged(),
-			'ids'      => $attributes['ids'],
-			'exclude'  => $attributes['exclude'],
-			'category' => $attributes['category'],
-			'tag'      => $attributes['tag'],
-			'type'     => $attributes['type'],
-			'orderby'  => $attributes['orderby'],
-			'order'    => $attributes['order'],
-		] );
+		return $builder->build(
+			[
+				'count'    => $attributes['count'],
+				'paged'    => $this->get_paged(),
+				'ids'      => $attributes['ids'],
+				'exclude'  => $attributes['exclude'],
+				'category' => $attributes['category'],
+				'tag'      => $attributes['tag'],
+				'type'     => $attributes['type'],
+				'orderby'  => $attributes['orderby'],
+				'order'    => $attributes['order'],
+			]
+		);
 	}
 
 	/**

@@ -416,9 +416,9 @@ class ReviewHandler {
 	 * @since 1.0.0
 	 *
 	 * @param array<string, mixed> $data Review data.
-	 * @return true|WP_Error True if valid, WP_Error on failure.
+	 * @return bool|WP_Error True if valid, WP_Error on failure.
 	 */
-	public function validate( array $data ): true|WP_Error {
+	public function validate( array $data ): bool|WP_Error {
 		$this->errors = new WP_Error();
 		$manager      = ReviewManager::get_instance();
 

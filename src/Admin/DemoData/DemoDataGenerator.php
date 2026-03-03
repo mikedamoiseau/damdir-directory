@@ -665,6 +665,7 @@ final class DemoDataGenerator {
 	private function update_listing_rating( int $listing_id ): void {
 		global $wpdb;
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$ratings = $wpdb->get_col(
 			$wpdb->prepare(
 				"SELECT cm.meta_value FROM {$wpdb->commentmeta} cm

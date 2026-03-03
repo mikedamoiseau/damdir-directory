@@ -651,9 +651,9 @@ class ListingsEndpoint {
 	 * @since 1.0.0
 	 *
 	 * @param int $attachment_id The attachment ID to validate.
-	 * @return true|WP_Error True if valid, WP_Error on failure.
+	 * @return bool|WP_Error True if valid, WP_Error on failure.
 	 */
-	private function validate_featured_image( int $attachment_id ): true|WP_Error {
+	private function validate_featured_image( int $attachment_id ): bool|WP_Error {
 		$attachment = get_post( $attachment_id );
 
 		if ( ! $attachment || $attachment->post_type !== 'attachment' ) {

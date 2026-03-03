@@ -81,7 +81,7 @@ final class SearchQuery {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param FilterRegistry|null     $registry       Optional. Filter registry instance.
+	 * @param FilterRegistry|null       $registry       Optional. Filter registry instance.
 	 * @param array<string, mixed>|null $request_params Optional. Request/query params.
 	 */
 	public function __construct( ?FilterRegistry $registry = null, ?array $request_params = null ) {
@@ -154,7 +154,8 @@ final class SearchQuery {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param WP_Query $query The query to modify.
+	 * @param WP_Query                 $query          The query to modify.
+	 * @param array<string,mixed>|null $request_params Request params override (defaults to current request).
 	 * @return void
 	 */
 	public function apply_filters( WP_Query $query, ?array $request_params = null ): void {
@@ -183,7 +184,8 @@ final class SearchQuery {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param WP_Query $query The query to modify.
+	 * @param WP_Query                 $query          The query to modify.
+	 * @param array<string,mixed>|null $request_params Request params override (defaults to current request).
 	 * @return void
 	 */
 	public function apply_orderby( WP_Query $query, ?array $request_params = null ): void {
@@ -219,7 +221,8 @@ final class SearchQuery {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param WP_Query $query The query to modify.
+	 * @param WP_Query                 $query          The query to modify.
+	 * @param array<string,mixed>|null $request_params Request params override (defaults to current request).
 	 * @return void
 	 */
 	public function apply_keyword_search( WP_Query $query, ?array $request_params = null ): void {
@@ -300,8 +303,9 @@ final class SearchQuery {
 		// Build EXISTS subquery: avoids LEFT JOIN row multiplication.
 		// $meta_key_placeholders is a string of %s placeholders generated above.
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $meta_key_placeholders contains safe %s placeholders.
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $wpdb table names are trusted core globals and $meta_key_placeholders contains only generated %s placeholders.
 		$meta_condition = $wpdb->prepare(
-			"EXISTS (SELECT 1 FROM {$wpdb->postmeta} AS apd_pm WHERE apd_pm.post_id = {$wpdb->posts}.ID AND apd_pm.meta_key IN ($meta_key_placeholders) AND apd_pm.meta_value LIKE %s)",
+			"EXISTS (SELECT 1 FROM {$wpdb->postmeta} AS apd_pm WHERE apd_pm.post_id = {$wpdb->posts}.ID AND apd_pm.meta_key IN ($meta_key_placeholders) AND apd_pm.meta_value LIKE %s)", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Dynamic placeholders string is generated from safe `%s` tokens only.
 			array_merge( $this->searchable_meta_keys, [ $like_keyword ] )
 		);
 
@@ -403,7 +407,8 @@ final class SearchQuery {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array<string, mixed> $args Additional query args.
+	 * @param array<string, mixed>     $args           Additional query args.
+	 * @param array<string,mixed>|null $request_params Request params override (defaults to current request).
 	 * @return WP_Query The query result.
 	 */
 	public function get_filtered_listings( array $args = [], ?array $request_params = null ): WP_Query {
@@ -423,7 +428,7 @@ final class SearchQuery {
 		 * @param array<string, mixed>      $query_args     Query arguments.
 		 * @param array<string, mixed>|null $request_params Submitted request/query params.
 		 */
-		$query_args = apply_filters( 'apd_search_query_args', $query_args, $request_params );
+		$query_args       = apply_filters( 'apd_search_query_args', $query_args, $request_params );
 		$final_query_args = $this->build_filtered_query_args( $query_args, $request_params );
 
 		return new WP_Query( $final_query_args );
@@ -439,7 +444,7 @@ final class SearchQuery {
 	 * @return array<string, mixed> Final query arguments.
 	 */
 	private function build_filtered_query_args( array $query_args, ?array $request_params = null ): array {
-		$query = $this->create_query_arg_collector( $query_args );
+		$query   = $this->create_query_arg_collector( $query_args );
 		$request = $this->resolve_request_params( $request_params );
 
 		$this->apply_keyword_search( $query, $request );

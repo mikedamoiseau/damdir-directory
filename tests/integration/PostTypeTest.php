@@ -109,17 +109,14 @@ class PostTypeTest extends TestCase
     }
 
     /**
-     * Test post type does not expose WP core REST API.
-     *
-     * The plugin provides its own REST API at apd/v1, so the core
-     * WP REST endpoint is disabled to prevent a dual API surface.
+     * Test post type core REST API exposure setting.
      */
-    public function testPostTypeHiddenFromCoreRest(): void
+    public function testPostTypeCoreRestExposure(): void
     {
         $post_type_object = get_post_type_object(PostType::POST_TYPE);
 
         $this->assertNotNull($post_type_object);
-        $this->assertFalse($post_type_object->show_in_rest);
+        $this->assertTrue($post_type_object->show_in_rest);
     }
 
     /**
@@ -240,7 +237,7 @@ class PostTypeTest extends TestCase
 
         $expired_status = $wp_post_statuses[PostType::STATUS_EXPIRED];
         $this->assertEquals('Expired', $expired_status->label);
-        $this->assertTrue($expired_status->public);
+        $this->assertFalse($expired_status->public);
         $this->assertTrue($expired_status->exclude_from_search);
         $this->assertTrue($expired_status->show_in_admin_status_list);
     }

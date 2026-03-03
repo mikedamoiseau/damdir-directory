@@ -106,14 +106,8 @@ interface DemoDataProviderInterface {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array{
-	 *     user_ids: int[],
-	 *     listing_ids: int[],
-	 *     category_ids: int[],
-	 *     tag_ids: int[],
-	 *     options: array<string, mixed>
-	 * }                $context Generation context from core.
-	 * @param DemoDataTracker $tracker Tracker instance for marking data as demo.
+	 * @param array<string, mixed> $context Generation context from core.
+	 * @param DemoDataTracker      $tracker Tracker instance for marking data as demo.
 	 * @return array<string, int> Map of data type labels to counts created.
 	 */
 	public function generate( array $context, DemoDataTracker $tracker ): array;

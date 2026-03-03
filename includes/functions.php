@@ -316,10 +316,12 @@ function apd_listing_is_type( int $listing_id, string $type ): bool {
  * @return \WP_Term[] Array of term objects.
  */
 function apd_get_listing_types( bool $hide_empty = false ): array {
-	$terms = get_terms( [
-		'taxonomy'   => \APD\Taxonomy\ListingTypeTaxonomy::TAXONOMY,
-		'hide_empty' => $hide_empty,
-	] );
+	$terms = get_terms(
+		[
+			'taxonomy'   => \APD\Taxonomy\ListingTypeTaxonomy::TAXONOMY,
+			'hide_empty' => $hide_empty,
+		]
+	);
 
 	return is_wp_error( $terms ) ? [] : $terms;
 }
@@ -3163,11 +3165,11 @@ function apd_get_favorite_listings( ?int $user_id = null, array $args = [] ): ar
 	$posts      = [];
 
 	foreach ( array_chunk( $favorite_ids, $batch_size ) as $favorite_id_batch ) {
-		$batch_defaults = $defaults;
+		$batch_defaults                   = $defaults;
 		$batch_defaults['post__in']       = $favorite_id_batch;
 		$batch_defaults['posts_per_page'] = count( $favorite_id_batch );
 
-		$query_args = wp_parse_args( $args, $batch_defaults );
+		$query_args                   = wp_parse_args( $args, $batch_defaults );
 		$query_args['post__in']       = $favorite_id_batch;
 		$query_args['posts_per_page'] = count( $favorite_id_batch );
 
@@ -3181,8 +3183,8 @@ function apd_get_favorite_listings( ?int $user_id = null, array $args = [] ): ar
 		 */
 		$query_args = apply_filters( 'apd_favorite_listings_query_args', $query_args, $favorite_ids );
 
-		$query  = new \WP_Query( $query_args );
-		$posts  = array_merge( $posts, $query->posts );
+		$query = new \WP_Query( $query_args );
+		$posts = array_merge( $posts, $query->posts );
 	}
 
 	return $posts;
@@ -3788,7 +3790,7 @@ function apd_contact_form( array $config = [] ): \APD\Contact\ContactForm {
  *
  * @since 1.0.0
  *
- * @param array                  $config         Optional configuration.
+ * @param array                 $config         Optional configuration.
  * @param \APD\Core\Config|null $config_service Optional configuration service.
  * @return \APD\Contact\ContactHandler ContactHandler instance.
  */
@@ -4071,7 +4073,7 @@ function apd_recalculate_listing_inquiry_count( int $listing_id ): int {
  *
  * @since 1.0.0
  *
- * @param array                  $config         Optional configuration.
+ * @param array                 $config         Optional configuration.
  * @param \APD\Core\Config|null $config_service Optional configuration service.
  * @return \APD\Email\EmailManager
  */

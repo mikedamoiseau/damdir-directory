@@ -222,7 +222,7 @@ final class AdminColumns {
 			esc_url(
 				add_query_arg(
 					[
-						'post_type'        => PostType::POST_TYPE,
+						'post_type' => PostType::POST_TYPE,
 						\APD\Taxonomy\ListingTypeTaxonomy::TAXONOMY => $term->slug,
 					],
 					admin_url( 'edit.php' )

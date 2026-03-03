@@ -328,9 +328,6 @@ final class ListingTypeMetaBox {
 						$mapping[ $field_name ] = [ 'hidden_by' => [ $slug ] ];
 					} elseif ( is_array( $mapping[ $field_name ] ) && isset( $mapping[ $field_name ]['hidden_by'] ) ) {
 						$mapping[ $field_name ]['hidden_by'][] = $slug;
-					} else {
-						// Field already has a type restriction; module hidden_fields
-						// doesn't apply (type-specific takes precedence).
 					}
 				}
 			}

@@ -160,7 +160,7 @@ class Favorites {
 
 		$result = $this->mutate_user_favorites(
 			$user_id,
-			static function( array $favorites ) use ( $listing_id ): array {
+			static function ( array $favorites ) use ( $listing_id ): array {
 				if ( in_array( $listing_id, $favorites, true ) ) {
 					return $favorites;
 				}
@@ -216,7 +216,7 @@ class Favorites {
 
 		$result = $this->mutate_user_favorites(
 			$user_id,
-			static function( array $favorites ) use ( $listing_id ): array {
+			static function ( array $favorites ) use ( $listing_id ): array {
 				if ( ! in_array( $listing_id, $favorites, true ) ) {
 					return $favorites;
 				}
@@ -864,7 +864,7 @@ class Favorites {
 					'path'     => COOKIEPATH,
 					'domain'   => COOKIE_DOMAIN,
 					'secure'   => is_ssl(),
-					'httponly'  => true,
+					'httponly' => true,
 					'samesite' => 'Lax',
 				]
 			);
@@ -893,7 +893,7 @@ class Favorites {
 					'path'     => COOKIEPATH,
 					'domain'   => COOKIE_DOMAIN,
 					'secure'   => is_ssl(),
-					'httponly'  => true,
+					'httponly' => true,
 					'samesite' => 'Lax',
 				]
 			);

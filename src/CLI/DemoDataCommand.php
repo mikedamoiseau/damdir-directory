@@ -252,9 +252,9 @@ final class DemoDataCommand {
 					}
 				}
 
-				$category_ids          = $generator->generate_categories( $module, $category_data );
+				$category_ids                       = $generator->generate_categories( $module, $category_data );
 				$results[ $module . '_categories' ] = count( $category_ids );
-				WP_CLI::log( "  Created " . count( $category_ids ) . ' categories.' );
+				WP_CLI::log( '  Created ' . count( $category_ids ) . ' categories.' );
 			}
 
 			// Generate tags.
@@ -292,8 +292,8 @@ final class DemoDataCommand {
 			// Generate favorites.
 			if ( ( $all_types || in_array( 'favorites', $types, true ) ) && ! empty( $listing_ids ) && ! empty( $user_ids ) ) {
 				WP_CLI::log( 'Creating favorites...' );
-				$fav_count                          = $generator->generate_favorites( $listing_ids, $user_ids );
-				$results[ $module . '_favorites' ]  = $fav_count;
+				$fav_count                         = $generator->generate_favorites( $listing_ids, $user_ids );
+				$results[ $module . '_favorites' ] = $fav_count;
 				WP_CLI::log( "  Created {$fav_count} favorites." );
 			}
 
@@ -597,7 +597,7 @@ final class DemoDataCommand {
 				'type'  => ucfirst( str_replace( '_', ' ', $type ) ),
 				'count' => $count,
 			];
-			$total += $count;
+			$total  += $count;
 		}
 
 		$items[] = [

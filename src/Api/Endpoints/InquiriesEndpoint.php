@@ -419,11 +419,11 @@ class InquiriesEndpoint {
 		$order    = $request->get_param( 'order' ) ?? 'DESC';
 
 		$args = [
-			'number'   => $per_page,
-			'offset'   => ( $page - 1 ) * $per_page,
-			'status'   => $status,
-			'orderby'  => $orderby,
-			'order'    => $order,
+			'number'  => $per_page,
+			'offset'  => ( $page - 1 ) * $per_page,
+			'status'  => $status,
+			'orderby' => $orderby,
+			'order'   => $order,
 		];
 
 		$inquiries = apd_get_user_inquiries( $user_id, $args );
@@ -468,9 +468,9 @@ class InquiriesEndpoint {
 		}
 
 		$args = [
-			'number'   => $per_page,
-			'offset'   => ( $page - 1 ) * $per_page,
-			'status'   => $status,
+			'number' => $per_page,
+			'offset' => ( $page - 1 ) * $per_page,
+			'status' => $status,
 		];
 
 		$inquiries = apd_get_listing_inquiries( $listing_id, $args );

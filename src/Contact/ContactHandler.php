@@ -73,7 +73,7 @@ class ContactHandler {
 	 */
 	private function __construct( array $config = [], ?Config $config_service = null ) {
 		$this->config_service = $config_service ?? new Config();
-		$this->config = array_merge( $this->config, $config );
+		$this->config         = array_merge( $this->config, $config );
 	}
 
 	/**
@@ -662,7 +662,7 @@ class ContactHandler {
 		}
 
 		[ $timestamp_str, $signature ] = explode( '|', $decoded, 2 );
-		$expected_signature = hash_hmac( 'sha256', $timestamp_str, wp_salt( 'nonce' ) );
+		$expected_signature            = hash_hmac( 'sha256', $timestamp_str, wp_salt( 'nonce' ) );
 
 		if ( ! hash_equals( $expected_signature, $signature ) ) {
 			return true;

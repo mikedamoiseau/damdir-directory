@@ -64,6 +64,7 @@ final class Plugin {
 	/**
 	 * Get the singleton instance.
 	 *
+	 * @param Config|null $config_service Optional config service override.
 	 * @return self
 	 */
 	public static function get_instance( ?Config $config_service = null ): self {
@@ -76,6 +77,8 @@ final class Plugin {
 
 	/**
 	 * Constructor.
+	 *
+	 * @param Config|null $config_service Optional config service override.
 	 */
 	private function __construct( ?Config $config_service = null ) {
 		$this->config_service = $config_service ?? new Config();

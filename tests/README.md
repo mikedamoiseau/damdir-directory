@@ -70,33 +70,34 @@ tests/
 
 ### Prerequisites
 
-1. Docker test environment running:
+1. Docker installed and running.
+
+2. Build the local test image:
    ```bash
-   cd /Users/mike/Documents/www/test/wp-all-purpose-directory
-   docker-compose up -d
+   ./bin/docker-test.sh build-image
    ```
 
-2. Plugin synced to test environment:
+3. Install Composer dependencies in the container:
    ```bash
-   ./bin/sync-to-test.sh
+   ./bin/docker-test.sh composer-install
    ```
 
-3. Composer dependencies installed:
+4. For WordPress Plugin Check, use the bundled isolated stack runner:
    ```bash
-   composer install
+   ./bin/plugin-check-local.sh
    ```
 
 ### Unit Tests (Fast, No WordPress)
 
 ```bash
-# Run all unit tests
-composer test:unit
+# Run all unit tests (recommended)
+./bin/docker-test.sh test-unit
 
 # Run specific test file
-./vendor/bin/phpunit -c phpunit-unit.xml tests/unit/Fields/FieldRegistryTest.php
+./bin/docker-test.sh run "./vendor/bin/phpunit -c phpunit-unit.xml tests/unit/Fields/FieldRegistryTest.php"
 
 # Run with coverage
-./vendor/bin/phpunit -c phpunit-unit.xml --coverage-html coverage/
+./bin/docker-test.sh run "./vendor/bin/phpunit -c phpunit-unit.xml --coverage-html coverage/"
 ```
 
 Unit tests use [Brain Monkey](https://brain-wp.github.io/BrainMonkey/) to mock WordPress functions.
@@ -105,16 +106,13 @@ Unit tests use [Brain Monkey](https://brain-wp.github.io/BrainMonkey/) to mock W
 
 ```bash
 # Run all integration tests
-composer test:integration
-
-# Or use the alias
-composer test
+./bin/docker-test.sh test-integration
 
 # Run specific test
-./vendor/bin/phpunit tests/integration/PostTypeTest.php
+./bin/docker-test.sh run "./vendor/bin/phpunit tests/integration/PostTypeTest.php"
 ```
 
-Integration tests require the WordPress test suite, which is set up inside the Docker container.
+Integration tests require a WordPress test suite + DB setup. The command above runs inside the portable Docker toolchain, but you still need WP test suite env vars/data configured for integration tests.
 
 ### E2E Tests (Browser Tests)
 
@@ -410,9 +408,9 @@ Make sure Brain Monkey mocks are set up. Check `tests/unit/bootstrap.php` includ
 
 ### Integration tests can't connect to database
 
-1. Ensure Docker is running: `docker-compose ps`
-2. Check WordPress test suite is installed: `docker-compose exec web ls /tmp/wordpress-tests-lib`
-3. Re-run install script if needed
+1. Ensure Docker is running: `docker ps`
+2. Confirm your integration-test DB host/credentials and `WP_TESTS_DIR` are set correctly
+3. Re-run the WordPress test suite install script if needed (`bin/install-wp-tests.sh ...`)
 
 ### E2E tests timeout
 

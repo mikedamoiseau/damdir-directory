@@ -283,6 +283,7 @@ class FieldRenderer {
 	 * @param FieldTypeInterface   $field_type Field type handler.
 	 * @param mixed                $value      Current value.
 	 * @param int                  $listing_id Listing ID for context.
+	 * @param bool                 $hidden     Whether the field should render hidden.
 	 * @return string Rendered HTML.
 	 */
 	private function render_field_input( array $field, FieldTypeInterface $field_type, mixed $value, int $listing_id, bool $hidden = false ): string {

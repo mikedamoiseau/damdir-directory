@@ -1296,7 +1296,7 @@ Review the listing: %4$s',
 		}
 
 		[ $timestamp_str, $signature ] = explode( '|', $decoded, 2 );
-		$expected_signature = hash_hmac( 'sha256', $timestamp_str, wp_salt( 'nonce' ) );
+		$expected_signature            = hash_hmac( 'sha256', $timestamp_str, wp_salt( 'nonce' ) );
 
 		if ( ! hash_equals( $expected_signature, $signature ) ) {
 			return true;

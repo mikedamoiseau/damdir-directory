@@ -93,7 +93,7 @@ class EmailManager {
 	 */
 	private function __construct( array $config = [], ?Config $config_service = null ) {
 		$this->config_service = $config_service ?? new Config();
-		$this->config = array_merge( $this->config, $config );
+		$this->config         = array_merge( $this->config, $config );
 		$this->register_default_placeholders();
 	}
 

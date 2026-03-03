@@ -294,18 +294,20 @@ final class ListingsShortcode extends AbstractShortcode {
 	private function build_query_args( array $atts ): array {
 		$builder = new ListingQueryBuilder();
 
-		return $builder->build( [
-			'count'    => $atts['count'],
-			'paged'    => $this->get_paged(),
-			'ids'      => $atts['ids'],
-			'exclude'  => $atts['exclude'],
-			'category' => $atts['category'],
-			'tag'      => $atts['tag'],
-			'type'     => $atts['type'],
-			'orderby'  => $atts['orderby'],
-			'order'    => $atts['order'],
-			'author'   => $atts['author'],
-		] );
+		return $builder->build(
+			[
+				'count'    => $atts['count'],
+				'paged'    => $this->get_paged(),
+				'ids'      => $atts['ids'],
+				'exclude'  => $atts['exclude'],
+				'category' => $atts['category'],
+				'tag'      => $atts['tag'],
+				'type'     => $atts['type'],
+				'orderby'  => $atts['orderby'],
+				'order'    => $atts['order'],
+				'author'   => $atts['author'],
+			]
+		);
 	}
 
 	/**

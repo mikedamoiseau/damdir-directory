@@ -85,15 +85,15 @@ final class ListingTypeTaxonomy {
 	 */
 	private function get_labels(): array {
 		return [
-			'name'              => _x( 'Listing Types', 'taxonomy general name', 'all-purpose-directory' ),
-			'singular_name'     => _x( 'Listing Type', 'taxonomy singular name', 'all-purpose-directory' ),
-			'all_items'         => __( 'All Listing Types', 'all-purpose-directory' ),
-			'edit_item'         => __( 'Edit Listing Type', 'all-purpose-directory' ),
-			'update_item'       => __( 'Update Listing Type', 'all-purpose-directory' ),
-			'add_new_item'      => __( 'Add New Listing Type', 'all-purpose-directory' ),
-			'new_item_name'     => __( 'New Listing Type Name', 'all-purpose-directory' ),
-			'search_items'      => __( 'Search Listing Types', 'all-purpose-directory' ),
-			'not_found'         => __( 'No listing types found.', 'all-purpose-directory' ),
+			'name'          => _x( 'Listing Types', 'taxonomy general name', 'all-purpose-directory' ),
+			'singular_name' => _x( 'Listing Type', 'taxonomy singular name', 'all-purpose-directory' ),
+			'all_items'     => __( 'All Listing Types', 'all-purpose-directory' ),
+			'edit_item'     => __( 'Edit Listing Type', 'all-purpose-directory' ),
+			'update_item'   => __( 'Update Listing Type', 'all-purpose-directory' ),
+			'add_new_item'  => __( 'Add New Listing Type', 'all-purpose-directory' ),
+			'new_item_name' => __( 'New Listing Type Name', 'all-purpose-directory' ),
+			'search_items'  => __( 'Search Listing Types', 'all-purpose-directory' ),
+			'not_found'     => __( 'No listing types found.', 'all-purpose-directory' ),
 		];
 	}
 

@@ -175,9 +175,12 @@ final class DemoDataPage {
 		}
 
 		// Sort tabs by priority.
-		usort( $this->tabs, function ( TabProviderInterface $a, TabProviderInterface $b ) {
-			return $a->get_priority() <=> $b->get_priority();
-		} );
+		usort(
+			$this->tabs,
+			function ( TabProviderInterface $a, TabProviderInterface $b ) {
+				return $a->get_priority() <=> $b->get_priority();
+			}
+		);
 	}
 
 	/**
@@ -279,14 +282,14 @@ final class DemoDataPage {
 				'deleteNonce'   => wp_create_nonce( self::NONCE_DELETE ),
 				'tabs'          => $tab_slugs,
 				'strings'       => [
-					'generating'        => __( 'Generating demo data...', 'all-purpose-directory' ),
-					'deleting'          => __( 'Deleting demo data...', 'all-purpose-directory' ),
-					'confirmDelete'     => __( 'Are you sure you want to delete this demo data? This cannot be undone.', 'all-purpose-directory' ),
-					'confirmDeleteAll'  => __( 'Are you sure you want to delete ALL demo data including users? This cannot be undone.', 'all-purpose-directory' ),
-					'success'           => __( 'Operation completed successfully!', 'all-purpose-directory' ),
-					'error'             => __( 'An error occurred. Please try again.', 'all-purpose-directory' ),
-					'generatingUsers'   => __( 'Creating users...', 'all-purpose-directory' ),
-					'deletingUsers'     => __( 'Deleting users...', 'all-purpose-directory' ),
+					'generating'       => __( 'Generating demo data...', 'all-purpose-directory' ),
+					'deleting'         => __( 'Deleting demo data...', 'all-purpose-directory' ),
+					'confirmDelete'    => __( 'Are you sure you want to delete this demo data? This cannot be undone.', 'all-purpose-directory' ),
+					'confirmDeleteAll' => __( 'Are you sure you want to delete ALL demo data including users? This cannot be undone.', 'all-purpose-directory' ),
+					'success'          => __( 'Operation completed successfully!', 'all-purpose-directory' ),
+					'error'            => __( 'An error occurred. Please try again.', 'all-purpose-directory' ),
+					'generatingUsers'  => __( 'Creating users...', 'all-purpose-directory' ),
+					'deletingUsers'    => __( 'Deleting users...', 'all-purpose-directory' ),
 				],
 			]
 		);
@@ -625,17 +628,17 @@ final class DemoDataPage {
 		do_action( 'apd_after_generate_demo_data', $result['created'] );
 
 		// Include user count for the Users section update.
-		$tracker                     = DemoDataTracker::get_instance();
-		$user_counts                 = $tracker->count_demo_data( DemoDataTracker::USERS_MODULE );
-		$result['counts']['users']   = $user_counts['users'] ?? 0;
-		$result['has_module_data']   = $tracker->has_module_demo_data();
+		$tracker                   = DemoDataTracker::get_instance();
+		$user_counts               = $tracker->count_demo_data( DemoDataTracker::USERS_MODULE );
+		$result['counts']['users'] = $user_counts['users'] ?? 0;
+		$result['has_module_data'] = $tracker->has_module_demo_data();
 
 		wp_send_json_success(
 			[
-				'message'        => __( 'Demo data generated successfully!', 'all-purpose-directory' ),
-				'created'        => $result['created'],
-				'counts'         => $result['counts'],
-				'module'         => $module,
+				'message'         => __( 'Demo data generated successfully!', 'all-purpose-directory' ),
+				'created'         => $result['created'],
+				'counts'          => $result['counts'],
+				'module'          => $module,
 				'has_module_data' => $result['has_module_data'],
 			]
 		);
@@ -758,9 +761,12 @@ final class DemoDataPage {
 
 		// Don't allow deleting users while module data exists.
 		if ( $tracker->has_module_demo_data() ) {
-			wp_send_json_error( [
-				'message' => __( 'Cannot delete demo users while demo data exists in other tabs. Delete all tab data first.', 'all-purpose-directory' ),
-			], 400 );
+			wp_send_json_error(
+				[
+					'message' => __( 'Cannot delete demo users while demo data exists in other tabs. Delete all tab data first.', 'all-purpose-directory' ),
+				],
+				400
+			);
 		}
 
 		$deleted = $tracker->delete_demo_users();

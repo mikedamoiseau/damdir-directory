@@ -128,7 +128,7 @@ final class ListView extends AbstractView {
 	 */
 	public function renderListing( int $listing_id, array $args = [] ): string {
 		// Build shared args from config, then add list-specific values.
-		$args = array_merge( $this->buildRenderArgs(), $args );
+		$args              = array_merge( $this->buildRenderArgs(), $args );
 		$args['show_tags'] = $this->getConfigValue( 'show_tags', true );
 		$args['max_tags']  = $this->getConfigValue( 'max_tags', 5 );
 		$args['show_date'] = $this->getConfigValue( 'show_date', true );

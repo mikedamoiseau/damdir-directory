@@ -177,6 +177,36 @@ All Purpose Directory is a powerful and flexible plugin for creating any type of
 - WordPress 6.0 or higher
 - PHP 8.0 or higher
 
+## Developer Quality Checks (Docker-first)
+
+You only need Docker installed locally. No machine-specific docker-compose stack is required.
+
+```bash
+# 1) Build test image (first run or after Dockerfile changes)
+./bin/docker-test.sh build-image
+
+# 2) Install/update Composer dependencies inside the container
+./bin/docker-test.sh composer-install
+
+# 3) Run standard quality gates
+./bin/docker-test.sh lint
+./bin/docker-test.sh phpcs
+./bin/docker-test.sh test-unit
+
+# 4) Run WordPress Plugin Check in an isolated ephemeral WP+MySQL stack
+./bin/plugin-check-local.sh
+```
+
+Useful shortcuts:
+
+```bash
+# Run any custom command in the test container
+./bin/docker-test.sh run "php -v"
+
+# Keep plugin-check containers/resources around for debugging
+KEEP_STACK=1 ./bin/plugin-check-local.sh
+```
+
 ## Frequently Asked Questions
 
 ### How do I customize the listing display?

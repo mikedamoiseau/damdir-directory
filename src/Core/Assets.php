@@ -250,18 +250,18 @@ class Assets {
 			'filterNonce' => wp_create_nonce( 'apd_filter_listings' ),
 			'archiveUrl'  => get_post_type_archive_link( 'apd_listing' ) ?: '',
 			'i18n'        => [
-				'loading'            => __( 'Loading...', 'all-purpose-directory' ),
-				'error'              => __( 'An error occurred. Please try again.', 'all-purpose-directory' ),
-				'noResults'          => __( 'No listings found.', 'all-purpose-directory' ),
-				'addToFavorites'     => __( 'Add to favorites', 'all-purpose-directory' ),
+				'loading'             => __( 'Loading...', 'all-purpose-directory' ),
+				'error'               => __( 'An error occurred. Please try again.', 'all-purpose-directory' ),
+				'noResults'           => __( 'No listings found.', 'all-purpose-directory' ),
+				'addToFavorites'      => __( 'Add to favorites', 'all-purpose-directory' ),
 				'removeFromFavorites' => __( 'Remove from favorites', 'all-purpose-directory' ),
-				'favoriteAdded'      => __( 'Added to favorites', 'all-purpose-directory' ),
-				'favoriteRemoved'    => __( 'Removed from favorites', 'all-purpose-directory' ),
-				'favoriteError'      => __( 'Could not update favorites. Please try again.', 'all-purpose-directory' ),
-				'filtering'          => __( 'Filtering listings...', 'all-purpose-directory' ),
+				'favoriteAdded'       => __( 'Added to favorites', 'all-purpose-directory' ),
+				'favoriteRemoved'     => __( 'Removed from favorites', 'all-purpose-directory' ),
+				'favoriteError'       => __( 'Could not update favorites. Please try again.', 'all-purpose-directory' ),
+				'filtering'           => __( 'Filtering listings...', 'all-purpose-directory' ),
 				/* translators: %d: Number of listings found */
-				'resultsFound'       => __( '%d listings found', 'all-purpose-directory' ),
-				'oneResultFound'     => __( '1 listing found', 'all-purpose-directory' ),
+				'resultsFound'        => __( '%d listings found', 'all-purpose-directory' ),
+				'oneResultFound'      => __( '1 listing found', 'all-purpose-directory' ),
 			],
 		];
 

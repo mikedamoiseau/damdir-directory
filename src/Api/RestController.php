@@ -492,7 +492,8 @@ final class RestController {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param \WP_REST_Request $request The REST request.
+	 * @param \WP_REST_Request $request               The REST request.
+	 * @param string|null      $not_logged_in_message Optional custom not-logged-in message.
 	 * @return bool|\WP_Error True if authenticated and nonce is valid, WP_Error otherwise.
 	 */
 	public function permission_authenticated_with_nonce( \WP_REST_Request $request, ?string $not_logged_in_message = null ): bool|\WP_Error {
