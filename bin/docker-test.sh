@@ -18,6 +18,7 @@ Commands:
   phpcs              Run composer phpcs
   test-unit          Run composer test:unit
   test-integration   Run composer test:integration
+  all                Run full quality gate (build, install, lint, phpcs, unit)
   run <cmd...>       Run arbitrary command inside the container
 
 Environment:
@@ -72,6 +73,13 @@ case "$cmd" in
   test-integration)
     ensure_image
     run_in_image "composer test:integration -- --cache-result-file=/tmp/phpunit.result.cache"
+    ;;
+  all)
+    docker build -t "$IMAGE_TAG" -f "$DOCKERFILE_PATH" "$REPO_ROOT"
+    run_in_image "composer install"
+    run_in_image "composer lint"
+    run_in_image "composer phpcs"
+    run_in_image "composer test:unit -- --cache-result-file=/tmp/phpunit.result.cache"
     ;;
   run)
     ensure_image
