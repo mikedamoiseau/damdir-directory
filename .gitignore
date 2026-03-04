@@ -12,8 +12,6 @@ composer.lock
 # Claude Code
 .claude/
 .claude-bw/
-PLAN.md
-TASKS.md
 
 # IDE
 .idea/
