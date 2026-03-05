@@ -229,6 +229,41 @@ No `listing_type` column in admin list table. Per CLAUDE.md, this is conditional
 
 ---
 
+## Advanced Behavioral Tests — Phase 2: Submission Access Control & Validation
+
+**Date:** 2026-03-05
+**Execution:** Sequential, main agent only. Settings via WP-CLI, frontend via agent-browser CLI.
+
+### Summary
+
+| Test | Status | Notes |
+|------|--------|-------|
+| 2.1: Submission requires login | PASS | Guest sees "Please log in to submit a listing." Logged-in user sees full form. |
+| 2.2: Guest submission disabled | PASS | `who_can_submit=anyone` + `guest_submission=false` → guest still sees login message |
+| 2.3: Guest submission enabled | PASS | `who_can_submit=anyone` + `guest_submission=true` → guest sees full form |
+| 2.4: Default status=publish | PASS (was FAIL, fixed) | Setting now correctly respected after Plugin.php fix |
+| 2.5: Default status=pending | PASS | Listing created with `pending` status, not visible on frontend directory |
+| 2.6: Missing required title | PASS | HTML5 `required` attribute on title input prevents submission |
+| 2.7: Missing required content | PASS | HTML5 `required` attribute on description textarea prevents submission |
+| 2.8: Honeypot spam protection | PASS | Filling hidden `website_url` field silently rejects submission, no listing created |
+
+**Result: 8/8 passed (1 bug found and fixed)**
+
+### BUG-3: `default_status` Setting Not Respected by SubmissionHandler (MEDIUM) — FIXED
+
+**Location:** `src/Core/Plugin.php:177`
+**Symptom:** Admin setting `default_status=publish` was ignored — all frontend submissions created with `pending` status.
+**Root cause:** `Plugin.php:177` instantiated `SubmissionHandler` with no config: `new SubmissionHandler()`. The handler's `DEFAULTS` constant hardcodes `'default_status' => 'pending'`, so `get_default_status()` always returned `'pending'`.
+**Fix applied:** Pass the admin setting when constructing the handler: `new SubmissionHandler(['default_status' => apd_get_setting('default_status', 'pending')])`.
+**Verified:** Listing created with `publish` status when setting is `publish`, visible on `/directory/` immediately.
+
+### Notes
+
+- Tests 2.6 and 2.7 rely on HTML5 `required` attribute for client-side validation. Server-side validation also exists (`require_title` and `require_content` in `SubmissionHandler::DEFAULTS`) but was not directly tested since browser-native validation fires first.
+- Test 2.8 confirms the honeypot field (`website_url`, hidden via CSS class `apd-field--hp`) silently rejects spam. The form redirects to `/` with no listing created and no error message shown (correct behavior for bot submissions).
+
+---
+
 ## Screenshots
 
 All screenshots saved to `/tmp/apd-test-*`:
