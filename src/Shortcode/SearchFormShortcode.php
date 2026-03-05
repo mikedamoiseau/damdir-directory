@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace APD\Shortcode;
 
-use APD\Search\FilterRenderer;
-
 // Prevent direct file access.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -176,10 +174,10 @@ final class SearchFormShortcode extends AbstractShortcode {
 			echo \apd_render_search_form( $render_args );
 
 			// Show active filters if requested.
+			// Uses the shared singleton so $current_action_url set by render_search_form() above is available.
 			if ( $atts['show_active'] ) {
-				$renderer = new FilterRenderer();
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.NonceVerification.Recommended
-				echo $renderer->render_active_filters( $_GET );
+				echo \apd_render_active_filters( $_GET );
 			}
 
 			/**
@@ -210,11 +208,10 @@ final class SearchFormShortcode extends AbstractShortcode {
 			'layout' => $this->validate_layout( $atts['layout'] ),
 		];
 
-		// Form action.
+		// Form action — when not specified, FilterRenderer auto-detects the current page URL
+		// so the form and "Clear Filters" link stay on the same page (e.g. /directory/).
 		if ( ! empty( $atts['action'] ) ) {
 			$args['action'] = esc_url( $atts['action'] );
-		} else {
-			$args['action'] = get_post_type_archive_link( 'apd_listing' );
 		}
 
 		// Submit button.

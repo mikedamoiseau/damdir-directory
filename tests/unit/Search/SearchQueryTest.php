@@ -239,68 +239,6 @@ class SearchQueryTest extends UnitTestCase {
 	}
 
 	// =========================================================================
-	// add_meta_join Tests
-	// =========================================================================
-
-	/**
-	 * Test add_meta_join returns unchanged when not a meta search.
-	 */
-	public function test_add_meta_join_returns_unchanged_without_flag(): void {
-		$query = $this->create_query_mock( [ 'apd_meta_search' => false ] );
-
-		$result = $this->search_query->add_meta_join( '', $query );
-
-		$this->assertSame( '', $result );
-	}
-
-	/**
-	 * Test add_meta_join returns unchanged (EXISTS replaces LEFT JOIN).
-	 */
-	public function test_add_meta_join_returns_unchanged(): void {
-		$ref = new \ReflectionProperty( $this->search_query, 'searchable_meta_keys' );
-		// Property is accessible since PHP 8.1.
-		$ref->setValue( $this->search_query, [ '_apd_address' ] );
-
-		$query = $this->create_query_mock( [ 'apd_meta_search' => true ] );
-
-		$result = $this->search_query->add_meta_join( '', $query );
-
-		// EXISTS subquery eliminates need for LEFT JOIN.
-		$this->assertSame( '', $result );
-	}
-
-	// =========================================================================
-	// add_distinct Tests
-	// =========================================================================
-
-	/**
-	 * Test add_distinct returns unchanged (EXISTS eliminates duplicates).
-	 */
-	public function test_add_distinct_returns_unchanged_for_meta_search(): void {
-		$ref = new \ReflectionProperty( $this->search_query, 'searchable_meta_keys' );
-		// Property is accessible since PHP 8.1.
-		$ref->setValue( $this->search_query, [ '_apd_address' ] );
-
-		$query = $this->create_query_mock( [ 'apd_meta_search' => true ] );
-
-		$result = $this->search_query->add_distinct( '', $query );
-
-		// EXISTS subquery eliminates need for DISTINCT.
-		$this->assertSame( '', $result );
-	}
-
-	/**
-	 * Test add_distinct returns unchanged when not a meta search.
-	 */
-	public function test_add_distinct_returns_unchanged_without_flag(): void {
-		$query = $this->create_query_mock( [ 'apd_meta_search' => false ] );
-
-		$result = $this->search_query->add_distinct( '', $query );
-
-		$this->assertSame( '', $result );
-	}
-
-	// =========================================================================
 	// Orderby Tests
 	// =========================================================================
 
@@ -430,6 +368,122 @@ class SearchQueryTest extends UnitTestCase {
 		$this->assertSame( 'post_title', $result['orderby'] ?? '' );
 		$this->assertSame( 'ASC', $result['order'] ?? '' );
 		$this->assertTrue( (bool) ( $result['custom_filter_applied'] ?? false ) );
+	}
+
+	// =========================================================================
+	// Orderby Default Order Tests
+	// =========================================================================
+
+	/**
+	 * Test title orderby defaults to ASC when no explicit order provided.
+	 *
+	 * @covers \APD\Search\SearchQuery::apply_orderby
+	 */
+	public function test_apply_orderby_title_defaults_to_asc(): void {
+		$search_query = new SearchQuery( null, [ 'apd_orderby' => 'title' ] );
+
+		$query = $this->create_query_mock();
+		$set_values = [];
+		$query->shouldReceive( 'set' )->andReturnUsing(
+			function ( $key, $value ) use ( &$set_values ) {
+				$set_values[ $key ] = $value;
+			}
+		);
+
+		Functions\when( 'sanitize_key' )->returnArg();
+
+		$search_query->apply_orderby( $query );
+
+		$this->assertSame( 'ASC', $set_values['order'] ?? null, 'Title A-Z should default to ASC order' );
+	}
+
+	/**
+	 * Test date orderby defaults to DESC when no explicit order provided.
+	 *
+	 * @covers \APD\Search\SearchQuery::apply_orderby
+	 */
+	public function test_apply_orderby_date_defaults_to_desc(): void {
+		$search_query = new SearchQuery( null, [ 'apd_orderby' => 'date' ] );
+
+		$query = $this->create_query_mock();
+		$set_values = [];
+		$query->shouldReceive( 'set' )->andReturnUsing(
+			function ( $key, $value ) use ( &$set_values ) {
+				$set_values[ $key ] = $value;
+			}
+		);
+
+		Functions\when( 'sanitize_key' )->returnArg();
+
+		$search_query->apply_orderby( $query );
+
+		$this->assertSame( 'DESC', $set_values['order'] ?? null, 'Date should default to DESC order' );
+	}
+
+	/**
+	 * Test views orderby defaults to DESC when no explicit order provided.
+	 *
+	 * @covers \APD\Search\SearchQuery::apply_orderby
+	 */
+	public function test_apply_orderby_views_defaults_to_desc(): void {
+		$search_query = new SearchQuery( null, [ 'apd_orderby' => 'views' ] );
+
+		$query = $this->create_query_mock();
+		$set_values = [];
+		$query->shouldReceive( 'set' )->andReturnUsing(
+			function ( $key, $value ) use ( &$set_values ) {
+				$set_values[ $key ] = $value;
+			}
+		);
+
+		Functions\when( 'sanitize_key' )->returnArg();
+
+		$search_query->apply_orderby( $query );
+
+		$this->assertSame( 'DESC', $set_values['order'] ?? null, 'Most Viewed should default to DESC order' );
+	}
+
+	/**
+	 * Test explicit order parameter overrides the default.
+	 *
+	 * @covers \APD\Search\SearchQuery::apply_orderby
+	 */
+	public function test_apply_orderby_explicit_order_overrides_default(): void {
+		$search_query = new SearchQuery( null, [ 'apd_orderby' => 'title', 'apd_order' => 'DESC' ] );
+
+		$query = $this->create_query_mock();
+		$set_values = [];
+		$query->shouldReceive( 'set' )->andReturnUsing(
+			function ( $key, $value ) use ( &$set_values ) {
+				$set_values[ $key ] = $value;
+			}
+		);
+
+		Functions\when( 'sanitize_key' )->returnArg();
+
+		$search_query->apply_orderby( $query );
+
+		$this->assertSame( 'DESC', $set_values['order'] ?? null, 'Explicit order should override default' );
+	}
+
+	/**
+	 * Test get_current_order returns correct default per orderby option.
+	 *
+	 * @covers \APD\Search\SearchQuery::get_current_order
+	 */
+	public function test_get_current_order_defaults_by_orderby(): void {
+		// Title should default to ASC.
+		$sq = new SearchQuery( null, [ 'apd_orderby' => 'title' ] );
+		Functions\when( 'sanitize_key' )->returnArg();
+		$this->assertSame( 'ASC', $sq->get_current_order(), 'Title should default to ASC' );
+
+		// Date should default to DESC.
+		$sq2 = new SearchQuery( null, [ 'apd_orderby' => 'date' ] );
+		$this->assertSame( 'DESC', $sq2->get_current_order(), 'Date should default to DESC' );
+
+		// No orderby should default to DESC.
+		$sq3 = new SearchQuery( null, [] );
+		$this->assertSame( 'DESC', $sq3->get_current_order(), 'No orderby should default to DESC' );
 	}
 
 	/**

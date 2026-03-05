@@ -260,6 +260,9 @@ final class Plugin {
 			$this->template_loader = new TemplateLoader();
 			$this->template_loader->init();
 
+			$block_template_controller = new BlockTemplateController();
+			$block_template_controller->init();
+
 			$review_display = \APD\Review\ReviewDisplay::get_instance();
 			$review_display->init();
 

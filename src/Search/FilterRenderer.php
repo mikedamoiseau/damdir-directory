@@ -46,6 +46,13 @@ final class FilterRenderer {
 	private SearchQuery $search_query;
 
 	/**
+	 * Resolved form action URL for the current render cycle.
+	 *
+	 * @var string
+	 */
+	private string $current_action_url = '';
+
+	/**
 	 * Constructor.
 	 *
 	 * @since 1.0.0
@@ -80,13 +87,24 @@ final class FilterRenderer {
 			'exclude'      => [],
 			'show_orderby' => true,
 			'show_submit'  => true,
+			'submit_text'  => '',
 			'action'       => '',
 			'method'       => 'get',
 			'ajax'         => true,
 			'class'        => '',
+			'layout'       => 'horizontal',
 		];
 
 		$args = wp_parse_args( $args, $defaults );
+
+		// Default form action to the current page URL (without query string) so the
+		// form and "Clear Filters" link stay on the same page (e.g. /directory/).
+		if ( empty( $args['action'] ) ) {
+			$args['action'] = home_url( wp_parse_url( add_query_arg( [] ), PHP_URL_PATH ) ?: '/' );
+		}
+
+		// Store the resolved action URL for use by helper methods (active filters, no-results, etc.).
+		$this->current_action_url = $args['action'];
 
 		/**
 		 * Fires before the search form is rendered.
@@ -121,6 +139,9 @@ final class FilterRenderer {
 		if ( $args['ajax'] ) {
 			$classes[] = 'apd-search-form--ajax';
 		}
+		$valid_layouts = [ 'horizontal', 'vertical', 'inline' ];
+		$layout        = in_array( $args['layout'], $valid_layouts, true ) ? $args['layout'] : 'horizontal';
+		$classes[]     = 'apd-search-form--' . $layout;
 		if ( ! empty( $args['class'] ) ) {
 			$classes[] = $args['class'];
 		}
@@ -174,7 +195,7 @@ final class FilterRenderer {
 	 * @return string The form HTML.
 	 */
 	private function build_search_form( array $args, array $filters, array $classes, array $request ): string {
-		$action = $args['action'] ?: get_post_type_archive_link( 'apd_listing' );
+		$action = $args['action'] ?: $this->get_base_url();
 
 		$output = sprintf(
 			'<form class="%s" action="%s" method="%s" data-ajax="%s">',
@@ -213,10 +234,14 @@ final class FilterRenderer {
 
 		// Submit button.
 		if ( $args['show_submit'] ) {
+			$submit_label = ! empty( $args['submit_text'] )
+				? sanitize_text_field( $args['submit_text'] )
+				: __( 'Search', 'all-purpose-directory' );
+
 			$output .= '<div class="apd-search-form__actions">';
 			$output .= sprintf(
 				'<button type="submit" class="apd-search-form__submit">%s</button>',
-				esc_html__( 'Search', 'all-purpose-directory' )
+				esc_html( $submit_label )
 			);
 			$output .= sprintf(
 				'<a href="%s" class="apd-search-form__clear">%s</a>',
@@ -315,7 +340,6 @@ final class FilterRenderer {
 	public function render_orderby( array $request ): string {
 		$options = $this->search_query->get_orderby_options();
 		$current = $request['apd_orderby'] ?? 'date';
-		$order   = $request['apd_order'] ?? 'DESC';
 
 		$output  = '<div class="apd-search-form__orderby">';
 		$output .= sprintf(
@@ -335,12 +359,6 @@ final class FilterRenderer {
 		}
 
 		$output .= '</select>';
-
-		// Hidden order input (could be expanded to a toggle).
-		$output .= sprintf(
-			'<input type="hidden" name="apd_order" value="%s">',
-			esc_attr( $order )
-		);
 
 		$output .= '</div>';
 
@@ -363,7 +381,7 @@ final class FilterRenderer {
 
 		$active_filters = [];
 
-		// Collect active filters.
+		// Collect active filters (keyword is included via the registry loop).
 		foreach ( $this->registry->get_filters() as $filter ) {
 			$value = $this->get_filter_value( $filter, $request );
 
@@ -371,18 +389,6 @@ final class FilterRenderer {
 				$active_filters[] = [
 					'filter' => $filter,
 					'value'  => $value,
-				];
-			}
-		}
-
-		// Check keyword.
-		$keyword = $request['apd_keyword'] ?? '';
-		if ( ! empty( $keyword ) ) {
-			$keyword_filter = $this->registry->get_filter( 'keyword' );
-			if ( $keyword_filter ) {
-				$active_filters[] = [
-					'filter' => $keyword_filter,
-					'value'  => $keyword,
 				];
 			}
 		}
@@ -438,7 +444,7 @@ final class FilterRenderer {
 				esc_html( $filter->getDisplayValue( $value ) )
 			);
 			$output .= sprintf(
-				'<a href="%s" class="apd-active-filters__remove" aria-label="%s">&times;</a>',
+				'<a href="%s" class="apd-active-filters__remove" aria-label="%s"><span aria-hidden="true">&times;</span></a>',
 				esc_url( $remove_url ),
 				/* translators: %s: filter label */
 				esc_attr( sprintf( __( 'Remove %s filter', 'all-purpose-directory' ), $filter->getLabel() ) )
@@ -449,7 +455,7 @@ final class FilterRenderer {
 		$output .= '</ul>';
 
 		// Clear all link.
-		$clear_url = get_post_type_archive_link( 'apd_listing' );
+		$clear_url = $this->get_base_url();
 		$output   .= sprintf(
 			'<a href="%s" class="apd-active-filters__clear">%s</a>',
 			esc_url( $clear_url ),
@@ -487,7 +493,7 @@ final class FilterRenderer {
 			unset( $params[ $filter->getUrlParamEnd() ] );
 		}
 
-		$base_url = get_post_type_archive_link( 'apd_listing' );
+		$base_url = $this->get_base_url();
 
 		if ( empty( $params ) ) {
 			return $base_url;
@@ -520,12 +526,30 @@ final class FilterRenderer {
 		);
 		$output .= sprintf(
 			'<a href="%s" class="apd-no-results__clear">%s</a>',
-			esc_url( get_post_type_archive_link( 'apd_listing' ) ),
+			esc_url( $this->get_base_url() ),
 			esc_html__( 'Clear all filters', 'all-purpose-directory' )
 		);
 		$output .= '</div>';
 
 		return $output;
+	}
+
+	/**
+	 * Get the base action URL for the current render cycle.
+	 *
+	 * Returns the resolved action URL set during render_search_form(),
+	 * falling back to the post type archive link if called outside a render cycle.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string The base URL.
+	 */
+	private function get_base_url(): string {
+		if ( ! empty( $this->current_action_url ) ) {
+			return $this->current_action_url;
+		}
+
+		return get_post_type_archive_link( 'apd_listing' );
 	}
 
 	/**

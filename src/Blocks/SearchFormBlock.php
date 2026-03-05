@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace APD\Blocks;
 
-use APD\Search\FilterRenderer;
-
 // Prevent direct file access.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -161,10 +159,10 @@ final class SearchFormBlock extends AbstractBlock {
 			echo \apd_render_search_form( $render_args );
 
 			// Show active filters if requested.
+			// Uses the shared singleton so $current_action_url set by render_search_form() above is available.
 			if ( $attributes['showActive'] ) {
-				$renderer = new FilterRenderer();
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.Security.NonceVerification.Recommended
-				echo $renderer->render_active_filters( $_GET );
+				echo \apd_render_active_filters( $_GET );
 			}
 			?>
 		</div>
@@ -186,11 +184,10 @@ final class SearchFormBlock extends AbstractBlock {
 			'layout' => $this->validate_layout( $attributes['layout'] ),
 		];
 
-		// Form action.
+		// Form action — when not specified, FilterRenderer auto-detects the current page URL
+		// so the form and "Clear Filters" link stay on the same page (e.g. /directory/).
 		if ( ! empty( $attributes['action'] ) ) {
 			$args['action'] = esc_url( $attributes['action'] );
-		} else {
-			$args['action'] = get_post_type_archive_link( 'apd_listing' );
 		}
 
 		// Submit button.

@@ -196,6 +196,90 @@ final class ShortcodeManagerTest extends UnitTestCase {
 	}
 
 	/**
+	 * Test render_archive_content_shortcode returns empty on non-archive pages.
+	 */
+	public function test_render_archive_content_shortcode_returns_empty_on_non_archive(): void {
+		Functions\when( 'is_post_type_archive' )->justReturn( false );
+		Functions\when( 'is_tax' )->justReturn( false );
+
+		$manager = ShortcodeManager::get_instance();
+
+		$this->assertSame( '', $manager->render_archive_content_shortcode() );
+	}
+
+	/**
+	 * Test render_archive_content_shortcode returns content on post type archive.
+	 */
+	public function test_render_archive_content_shortcode_returns_content_on_archive(): void {
+		Functions\when( 'is_post_type_archive' )->alias( function ( $type ) {
+			return $type === 'apd_listing';
+		} );
+		Functions\when( 'is_tax' )->justReturn( false );
+		Functions\when( 'apd_get_option' )->justReturn( 'grid' );
+		Functions\when( 'wp_kses_post' )->returnArg();
+		Functions\when( 'apd_render_search_form' )->justReturn( '<form></form>' );
+		Functions\when( 'apd_render_active_filters' )->justReturn( '' );
+		Functions\when( 'apd_render_no_results' )->justReturn( '<p>No results</p>' );
+		Functions\when( 'have_posts' )->justReturn( false );
+		Functions\when( 'paginate_links' )->justReturn( '' );
+		Functions\when( 'get_post_type_object' )->justReturn( (object) [
+			'labels'      => (object) [ 'name' => 'Listings' ],
+			'description' => '',
+		] );
+		Functions\when( 'post_type_archive_title' )->justReturn( 'Listings' );
+		Functions\when( 'get_post_type_archive_link' )->justReturn( 'https://example.com/listings/' );
+		Functions\when( 'home_url' )->justReturn( 'https://example.com' );
+		Functions\when( 'add_query_arg' )->justReturn( 'https://example.com/listings/' );
+
+		// Set up global wp_query (WP_Query defined in bootstrap.php).
+		$GLOBALS['wp_query'] = new class extends \WP_Query {
+			public int $found_posts  = 0;
+			public int $max_num_pages = 0;
+		};
+
+		$manager = ShortcodeManager::get_instance();
+		$output  = $manager->render_archive_content_shortcode();
+
+		$this->assertStringContainsString( 'apd-archive-wrapper', $output );
+
+		unset( $GLOBALS['wp_query'] );
+	}
+
+	/**
+	 * Test render_archive_content_shortcode returns content on category archive.
+	 */
+	public function test_render_archive_content_shortcode_returns_content_on_category_archive(): void {
+		Functions\when( 'is_post_type_archive' )->justReturn( false );
+		Functions\when( 'is_tax' )->alias( function ( $taxonomy = '' ) {
+			return $taxonomy === 'apd_category';
+		} );
+		Functions\when( 'apd_get_option' )->justReturn( 'grid' );
+		Functions\when( 'wp_kses_post' )->returnArg();
+		Functions\when( 'apd_render_search_form' )->justReturn( '<form></form>' );
+		Functions\when( 'apd_render_active_filters' )->justReturn( '' );
+		Functions\when( 'apd_render_no_results' )->justReturn( '<p>No results</p>' );
+		Functions\when( 'have_posts' )->justReturn( false );
+		Functions\when( 'paginate_links' )->justReturn( '' );
+		Functions\when( 'single_term_title' )->justReturn( 'Entertainment' );
+		Functions\when( 'term_description' )->justReturn( '' );
+		Functions\when( 'home_url' )->justReturn( 'https://example.com' );
+		Functions\when( 'add_query_arg' )->justReturn( 'https://example.com/listing-category/entertainment/' );
+
+		// Set up global wp_query (WP_Query defined in bootstrap.php).
+		$GLOBALS['wp_query'] = new class extends \WP_Query {
+			public int $found_posts  = 0;
+			public int $max_num_pages = 0;
+		};
+
+		$manager = ShortcodeManager::get_instance();
+		$output  = $manager->render_archive_content_shortcode();
+
+		$this->assertStringContainsString( 'apd-archive-wrapper', $output );
+
+		unset( $GLOBALS['wp_query'] );
+	}
+
+	/**
 	 * Create a mock shortcode for testing.
 	 *
 	 * @param string $tag         Shortcode tag.

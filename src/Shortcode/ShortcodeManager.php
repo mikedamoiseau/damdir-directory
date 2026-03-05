@@ -109,6 +109,11 @@ final class ShortcodeManager {
 		$this->register( new DashboardShortcode() );
 		$this->register( new FavoritesShortcode() );
 
+		// Internal shortcode — used only by BlockTemplateController's block templates.
+		// Not exposed via get_all() or get_documentation() because it is only meaningful
+		// inside the registered block templates for listing/taxonomy archives.
+		add_shortcode( 'apd_archive_content', [ $this, 'render_archive_content_shortcode' ] );
+
 		$this->initialized = true;
 
 		/**
@@ -221,6 +226,30 @@ final class ShortcodeManager {
 	 */
 	public function has( string $tag ): bool {
 		return isset( $this->shortcodes[ $tag ] );
+	}
+
+	/**
+	 * Render the archive content shortcode.
+	 *
+	 * Internal shortcode used by block templates to render listing archive content.
+	 * Only produces output on listing archive and taxonomy archive pages.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string Archive content HTML, or empty string on non-archive pages.
+	 */
+	public function render_archive_content_shortcode(): string {
+		if (
+			! is_post_type_archive( 'apd_listing' )
+			&& ! is_tax( 'apd_category' )
+			&& ! is_tax( 'apd_tag' )
+		) {
+			return '';
+		}
+
+		$template_loader = new \APD\Core\TemplateLoader();
+
+		return $template_loader->render_archive_content();
 	}
 
 	/**

@@ -77,6 +77,20 @@ final class SearchQuery {
 	];
 
 	/**
+	 * Default sort direction per orderby option.
+	 *
+	 * Used when no explicit apd_order is provided in the request.
+	 *
+	 * @var array<string, string>
+	 */
+	private const ORDERBY_DEFAULT_ORDER = [
+		'date'   => 'DESC',
+		'title'  => 'ASC',
+		'views'  => 'DESC',
+		'random' => 'DESC',
+	];
+
+	/**
 	 * Constructor.
 	 *
 	 * @since 1.0.0
@@ -116,9 +130,7 @@ final class SearchQuery {
 		}
 
 		add_action( 'pre_get_posts', [ $this, 'modify_main_query' ], 10 );
-		add_filter( 'posts_join', [ $this, 'add_meta_join' ], 10, 2 );
 		add_filter( 'posts_search', [ $this, 'add_meta_search' ], 10, 2 );
-		add_filter( 'posts_distinct', [ $this, 'add_distinct' ], 10, 2 );
 
 		$this->initialized = true;
 	}
@@ -191,14 +203,17 @@ final class SearchQuery {
 	public function apply_orderby( WP_Query $query, ?array $request_params = null ): void {
 		$request = $this->resolve_request_params( $request_params );
 		$orderby = isset( $request['apd_orderby'] ) ? sanitize_key( (string) $request['apd_orderby'] ) : '';
-		$order   = isset( $request['apd_order'] ) ? strtoupper( sanitize_key( (string) $request['apd_order'] ) ) : 'DESC';
-
-		if ( ! in_array( $order, [ 'ASC', 'DESC' ], true ) ) {
-			$order = 'DESC';
-		}
 
 		if ( empty( $orderby ) || ! isset( self::ORDERBY_OPTIONS[ $orderby ] ) ) {
 			return;
+		}
+
+		// Use explicit order if provided, otherwise use the natural default for this orderby option.
+		$default_order = self::ORDERBY_DEFAULT_ORDER[ $orderby ] ?? 'DESC';
+		$order         = isset( $request['apd_order'] ) ? strtoupper( sanitize_key( (string) $request['apd_order'] ) ) : $default_order;
+
+		if ( ! in_array( $order, [ 'ASC', 'DESC' ], true ) ) {
+			$order = $default_order;
 		}
 
 		$orderby_value = self::ORDERBY_OPTIONS[ $orderby ];
@@ -243,22 +258,6 @@ final class SearchQuery {
 		// Set a flag for the join/where hooks.
 		$query->set( 'apd_meta_search', true );
 		$query->set( 'apd_keyword', $keyword );
-	}
-
-	/**
-	 * Add JOIN clause for meta search.
-	 *
-	 * No longer adds a LEFT JOIN since we now use an EXISTS subquery.
-	 * Kept for backward compatibility with the posts_join filter hook.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param string   $join  The JOIN clause.
-	 * @param WP_Query $query The query.
-	 * @return string Unmodified JOIN clause.
-	 */
-	public function add_meta_join( string $join, WP_Query $query ): string {
-		return $join;
 	}
 
 	/**
@@ -317,25 +316,13 @@ final class SearchQuery {
 			$search = substr( $search, 0, $last_parens_pos )
 				. " OR $meta_condition)"
 				. substr( $search, $last_parens_pos + 1 );
+		} else {
+			// Fallback: if a third-party plugin altered the clause structure,
+			// append as standalone AND so meta search still works.
+			$search .= " AND $meta_condition";
 		}
 
 		return $search;
-	}
-
-	/**
-	 * Add DISTINCT to prevent duplicate results.
-	 *
-	 * No longer needed since EXISTS subquery doesn't produce duplicates.
-	 * Kept for backward compatibility with the posts_distinct filter hook.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param string   $distinct The DISTINCT clause.
-	 * @param WP_Query $query    The query.
-	 * @return string Unmodified DISTINCT clause.
-	 */
-	public function add_distinct( string $distinct, WP_Query $query ): string {
-		return $distinct;
 	}
 
 	/**
@@ -569,9 +556,16 @@ final class SearchQuery {
 	 * @return string Current order direction (ASC or DESC).
 	 */
 	public function get_current_order(): string {
-		$order = isset( $this->request_params['apd_order'] ) ? strtoupper( sanitize_key( (string) $this->request_params['apd_order'] ) ) : 'DESC';
+		$orderby       = $this->get_current_orderby();
+		$default_order = self::ORDERBY_DEFAULT_ORDER[ $orderby ] ?? 'DESC';
 
-		return in_array( $order, [ 'ASC', 'DESC' ], true ) ? $order : 'DESC';
+		if ( ! isset( $this->request_params['apd_order'] ) ) {
+			return $default_order;
+		}
+
+		$order = strtoupper( sanitize_key( (string) $this->request_params['apd_order'] ) );
+
+		return in_array( $order, [ 'ASC', 'DESC' ], true ) ? $order : $default_order;
 	}
 
 	/**

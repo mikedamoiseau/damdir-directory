@@ -328,10 +328,10 @@ final class TemplateLoader {
 			$grid_class .= ' apd-view-switcher__btn--active';
 		}
 		$output .= sprintf(
-			'<a href="%s" class="%s" aria-pressed="%s" aria-label="%s"><span class="dashicons dashicons-grid-view" aria-hidden="true"></span></a>',
+			'<a href="%s" class="%s" %s aria-label="%s"><span class="dashicons dashicons-grid-view" aria-hidden="true"></span></a>',
 			esc_url( $grid_url ),
 			esc_attr( $grid_class ),
-			$current_view === 'grid' ? 'true' : 'false',
+			$current_view === 'grid' ? 'aria-current="true"' : '',
 			esc_attr__( 'Grid view', 'all-purpose-directory' )
 		);
 
@@ -341,10 +341,10 @@ final class TemplateLoader {
 			$list_class .= ' apd-view-switcher__btn--active';
 		}
 		$output .= sprintf(
-			'<a href="%s" class="%s" aria-pressed="%s" aria-label="%s"><span class="dashicons dashicons-list-view" aria-hidden="true"></span></a>',
+			'<a href="%s" class="%s" %s aria-label="%s"><span class="dashicons dashicons-list-view" aria-hidden="true"></span></a>',
 			esc_url( $list_url ),
 			esc_attr( $list_class ),
-			$current_view === 'list' ? 'true' : 'false',
+			$current_view === 'list' ? 'aria-current="true"' : '',
 			esc_attr__( 'List view', 'all-purpose-directory' )
 		);
 
@@ -467,6 +467,192 @@ final class TemplateLoader {
 		$output .= '</nav>';
 
 		return $output;
+	}
+
+	/**
+	 * Render archive content HTML.
+	 *
+	 * Returns the full listing archive content (header, search form, active filters,
+	 * toolbar, listing grid, and pagination) as an HTML string. Used by both the
+	 * classic theme template (archive-listing.php) and the block theme shortcode
+	 * ([apd_archive_content]).
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string The archive content HTML.
+	 */
+	public function render_archive_content(): string {
+		global $wp_query;
+
+		$current_view = $this->get_current_view();
+		$grid_columns = $this->get_grid_columns();
+
+		ob_start();
+
+		/**
+		 * Fires before the listing archive content.
+		 *
+		 * @since 1.0.0
+		 */
+		do_action( 'apd_before_archive' );
+		?>
+
+		<div class="apd-archive-wrapper">
+
+			<?php
+			/**
+			 * Fires at the start of the archive wrapper.
+			 *
+			 * @since 1.0.0
+			 */
+			do_action( 'apd_archive_wrapper_start' );
+			?>
+
+			<header class="apd-archive-header">
+				<h1 class="apd-archive-title"><?php echo esc_html( $this->get_archive_title() ); ?></h1>
+
+				<?php
+				$description = $this->get_archive_description();
+				if ( ! empty( $description ) ) :
+					?>
+					<div class="apd-archive-description">
+						<?php echo wp_kses_post( $description ); ?>
+					</div>
+				<?php endif; ?>
+			</header>
+
+			<?php
+			/**
+			 * Fires before the search form.
+			 *
+			 * @since 1.0.0
+			 */
+			do_action( 'apd_before_archive_search_form' );
+			?>
+
+			<div class="apd-archive-search">
+				<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo apd_render_search_form();
+				?>
+			</div>
+
+			<?php
+			/**
+			 * Fires after the search form.
+			 *
+			 * @since 1.0.0
+			 */
+			do_action( 'apd_after_archive_search_form' );
+			?>
+
+			<?php
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo apd_render_active_filters();
+			?>
+
+			<div class="apd-archive-toolbar">
+				<div class="apd-archive-toolbar__left">
+					<?php
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $this->render_results_count();
+					?>
+				</div>
+				<div class="apd-archive-toolbar__right">
+					<?php
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $this->render_view_switcher();
+					?>
+				</div>
+			</div>
+
+			<?php
+			/**
+			 * Fires before the listings loop.
+			 *
+			 * @since 1.0.0
+			 */
+			do_action( 'apd_before_archive_loop' );
+			?>
+
+			<?php if ( have_posts() ) : ?>
+
+				<div class="apd-listings apd-listings--<?php echo esc_attr( $current_view ); ?> apd-listings--columns-<?php echo esc_attr( (string) $grid_columns ); ?>"
+					data-view="<?php echo esc_attr( $current_view ); ?>"
+					data-columns="<?php echo esc_attr( (string) $grid_columns ); ?>"
+					data-posts-per-page="<?php echo esc_attr( (string) get_option( 'posts_per_page', 10 ) ); ?>">
+
+					<?php
+					while ( have_posts() ) :
+						the_post();
+
+						$template_name = $current_view === 'list' ? 'listing-card-list' : 'listing-card';
+
+						apd_get_template_part(
+							$template_name,
+							null,
+							[
+								'listing_id'   => get_the_ID(),
+								'current_view' => $current_view,
+							]
+						);
+					endwhile;
+					?>
+
+				</div>
+
+				<?php
+				/**
+				 * Fires after the listings loop, before pagination.
+				 *
+				 * @since 1.0.0
+				 */
+				do_action( 'apd_after_archive_loop' );
+				?>
+
+				<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $this->render_pagination();
+				?>
+
+			<?php else : ?>
+
+				<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo apd_render_no_results();
+				?>
+
+			<?php endif; ?>
+
+			<?php
+			/**
+			 * Fires at the end of the archive wrapper.
+			 *
+			 * @since 1.0.0
+			 */
+			do_action( 'apd_archive_wrapper_end' );
+			?>
+
+		</div>
+
+		<?php
+		/**
+		 * Fires after the listing archive content.
+		 *
+		 * @since 1.0.0
+		 */
+		do_action( 'apd_after_archive' );
+
+		$html = ob_get_clean();
+
+		/**
+		 * Filter the complete archive content HTML.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $html The archive content HTML.
+		 */
+		return apply_filters( 'apd_archive_content', $html );
 	}
 
 	/**
