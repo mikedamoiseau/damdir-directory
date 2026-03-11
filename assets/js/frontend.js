@@ -725,6 +725,12 @@
          * @param {Event} e - Submit event.
          */
         handleSubmit: function(e) {
+            // Prevent double submission.
+            if (this.submitting) {
+                e.preventDefault();
+                return;
+            }
+
             // Validate all fields
             const isValid = this.validateForm();
 
@@ -743,6 +749,17 @@
 
                 // Announce error to screen readers
                 this.announceErrors();
+                return;
+            }
+
+            // Mark as submitting and disable the button.
+            this.submitting = true;
+            var btn = this.elements.submitBtn;
+            if (btn) {
+                btn.disabled = true;
+                btn.dataset.originalText = btn.textContent;
+                btn.textContent = btn.dataset.loadingText || this.config.i18n?.submitting || 'Submitting…';
+                btn.classList.add('apd-button--loading');
             }
         },
 
@@ -2395,11 +2412,11 @@
         },
 
         handleSubmit: function(e) {
+            e.preventDefault();
+
             var isValid = this.validateForm();
 
             if (!isValid) {
-                e.preventDefault();
-
                 var firstError = this.elements.form.querySelector('.apd-field--has-error');
                 if (firstError) {
                     firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -2410,7 +2427,64 @@
                 }
 
                 this.announceErrors();
+                return;
             }
+
+            this.submitForm();
+        },
+
+        submitForm: function() {
+            var form = this.elements.form;
+            var submitBtn = form.querySelector('.apd-contact-form__submit');
+
+            // Prevent double-submit.
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.dataset.originalText = submitBtn.textContent;
+                submitBtn.textContent = this.config.i18n?.submitting || 'Sending...';
+            }
+
+            var formData = new FormData(form);
+
+            fetch(this.config.ajaxUrl, {
+                method: 'POST',
+                body: formData,
+                credentials: 'same-origin',
+            })
+            .then(function(response) { return response.json(); })
+            .then(function(data) {
+                if (data.success) {
+                    this.showMessage(data.data.message, 'success');
+                    form.reset();
+                } else {
+                    this.showMessage(data.data.message || (this.config.i18n?.contactError || 'Failed to send message. Please try again.'), 'error');
+                }
+            }.bind(this))
+            .catch(function() {
+                this.showMessage(this.config.i18n?.contactError || 'Failed to send message. Please try again.', 'error');
+            }.bind(this))
+            .finally(function() {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = submitBtn.dataset.originalText || submitBtn.textContent;
+                }
+            });
+        },
+
+        showMessage: function(message, type) {
+            var form = this.elements.form;
+            var messageEl = form.querySelector('.apd-contact-form__message');
+
+            if (!messageEl) {
+                messageEl = document.createElement('div');
+                messageEl.className = 'apd-contact-form__message';
+                messageEl.setAttribute('role', 'status');
+                messageEl.setAttribute('aria-live', 'polite');
+                form.appendChild(messageEl);
+            }
+
+            messageEl.textContent = message;
+            messageEl.className = 'apd-contact-form__message apd-contact-form__message--visible apd-contact-form__message--' + type;
         },
 
         validateForm: function() {

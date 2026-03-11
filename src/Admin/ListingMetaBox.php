@@ -340,6 +340,14 @@ final class ListingMetaBox {
 				continue;
 			}
 
+			// Try apd_field_{name} format (field types render with this prefix).
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce already verified.
+			if ( isset( $_POST[ 'apd_field_' . $field_name ] ) ) {
+				// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Nonce verified, sanitization happens in apd_process_fields.
+				$values[ $field_name ] = wp_unslash( $_POST[ 'apd_field_' . $field_name ] );
+				continue;
+			}
+
 			// Try direct field name (for checkbox fields that might not be set).
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce already verified.
 			if ( isset( $_POST[ $field_name ] ) ) {

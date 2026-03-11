@@ -174,9 +174,11 @@ final class Plugin {
 		$block_manager->init();
 
 		// Initialize submission handler (shared: processes form submissions via init hook).
-		$submission_handler = new \APD\Frontend\Submission\SubmissionHandler( [
-			'default_status' => apd_get_setting( 'default_status', 'pending' ),
-		] );
+		$submission_handler = new \APD\Frontend\Submission\SubmissionHandler(
+			[
+				'default_status' => apd_get_setting( 'default_status', 'pending' ),
+			]
+		);
 		$submission_handler->init();
 
 		// Register AJAX handlers (shared: wp_ajax_* hooks fire in admin context for frontend).
@@ -186,6 +188,10 @@ final class Plugin {
 		// Initialize My Listings action handling (shared: processes actions via init hook).
 		$my_listings = \APD\Frontend\Dashboard\MyListings::get_instance();
 		$my_listings->init();
+
+		// Initialize Profile save handling (shared: processes profile form via init hook).
+		$profile = \APD\Frontend\Dashboard\Profile::get_instance();
+		$profile->init();
 
 		// Initialize Favorites system (shared: utility class for both contexts).
 		$favorites = \APD\User\Favorites::get_instance();

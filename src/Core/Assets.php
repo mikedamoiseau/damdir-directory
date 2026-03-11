@@ -259,6 +259,7 @@ class Assets {
 				'favoriteRemoved'     => __( 'Removed from favorites', 'all-purpose-directory' ),
 				'favoriteError'       => __( 'Could not update favorites. Please try again.', 'all-purpose-directory' ),
 				'filtering'           => __( 'Filtering listings...', 'all-purpose-directory' ),
+				'submitting'          => __( 'Submitting…', 'all-purpose-directory' ),
 				/* translators: %d: Number of listings found */
 				'resultsFound'        => __( '%d listings found', 'all-purpose-directory' ),
 				'oneResultFound'      => __( '1 listing found', 'all-purpose-directory' ),

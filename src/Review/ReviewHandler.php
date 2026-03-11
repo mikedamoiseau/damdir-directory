@@ -128,6 +128,11 @@ class ReviewHandler {
 	 * @return void
 	 */
 	public function handle_submit(): void {
+		// Skip during AJAX requests — let the wp_ajax_ handler process those.
+		if ( wp_doing_ajax() ) {
+			return;
+		}
+
 		// Check if this is our form submission.
 		if ( ! $this->is_submission_request() ) {
 			return;

@@ -132,8 +132,13 @@ class AjaxHandler {
 					$template_name,
 					null,
 					[
-						'listing_id'   => get_the_ID(),
-						'current_view' => $view,
+						'listing_id'    => get_the_ID(),
+						'current_view'  => $view,
+						'show_image'    => (bool) \apd_get_setting( 'show_thumbnail', true ),
+						'show_excerpt'  => (bool) \apd_get_setting( 'show_excerpt', true ),
+						'show_category' => (bool) \apd_get_setting( 'show_category', true ),
+						'show_rating'   => (bool) \apd_get_setting( 'show_rating', true ),
+						'show_favorite' => (bool) \apd_get_setting( 'show_favorite', true ),
 					]
 				);
 			}

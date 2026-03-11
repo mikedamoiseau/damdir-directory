@@ -265,12 +265,35 @@ class MyListings {
 		];
 
 		// Handle orderby.
+		// For meta-based sorting (views, inquiries), use meta_query with EXISTS/NOT EXISTS
+		// so listings without the meta key are included (LEFT JOIN) instead of excluded (INNER JOIN).
 		if ( $args['orderby'] === 'views' ) {
-			$query_args['meta_key'] = '_apd_views_count';
-			$query_args['orderby']  = 'meta_value_num';
+			$query_args['meta_query'] = [
+				'relation' => 'OR',
+				[
+					'key'     => '_apd_views_count',
+					'compare' => 'EXISTS',
+				],
+				[
+					'key'     => '_apd_views_count',
+					'compare' => 'NOT EXISTS',
+				],
+			];
+			$query_args['orderby']    = 'meta_value_num';
 		} elseif ( $args['orderby'] === 'inquiries' ) {
-			$query_args['meta_key'] = \APD\Contact\InquiryTracker::LISTING_INQUIRY_COUNT;
-			$query_args['orderby']  = 'meta_value_num';
+			$meta_key                 = \APD\Contact\InquiryTracker::LISTING_INQUIRY_COUNT;
+			$query_args['meta_query'] = [
+				'relation' => 'OR',
+				[
+					'key'     => $meta_key,
+					'compare' => 'EXISTS',
+				],
+				[
+					'key'     => $meta_key,
+					'compare' => 'NOT EXISTS',
+				],
+			];
+			$query_args['orderby']    = 'meta_value_num';
 		} else {
 			$query_args['orderby'] = $args['orderby'];
 		}

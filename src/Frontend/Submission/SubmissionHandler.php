@@ -478,6 +478,10 @@ class SubmissionHandler {
 		foreach ( $fields as $field_name => $field_config ) {
 			if ( isset( $apd_fields[ $field_name ] ) ) {
 				$values[ $field_name ] = $apd_fields[ $field_name ];
+			} elseif ( isset( $_POST[ 'apd_field_' . $field_name ] ) ) {
+				// Field types render with name="apd_field_{name}" prefix.
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by field validator.
+				$values[ $field_name ] = wp_unslash( $_POST[ 'apd_field_' . $field_name ] );
 			} elseif ( isset( $_POST[ $field_name ] ) ) {
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by field validator.
 				$values[ $field_name ] = wp_unslash( $_POST[ $field_name ] );

@@ -322,9 +322,14 @@ abstract class AbstractView implements ViewInterface {
 		$template_args = wp_parse_args(
 			$args,
 			[
-				'listing_id'   => $listing_id,
-				'current_view' => $this->type,
-				'view_config'  => $this->config,
+				'listing_id'    => $listing_id,
+				'current_view'  => $this->type,
+				'view_config'   => $this->config,
+				'show_image'    => (bool) \apd_get_setting( 'show_thumbnail', true ),
+				'show_excerpt'  => (bool) \apd_get_setting( 'show_excerpt', true ),
+				'show_category' => (bool) \apd_get_setting( 'show_category', true ),
+				'show_rating'   => (bool) \apd_get_setting( 'show_rating', true ),
+				'show_favorite' => (bool) \apd_get_setting( 'show_favorite', true ),
 			]
 		);
 

@@ -68,7 +68,12 @@ $action = $args['action'] ?: get_post_type_archive_link( 'apd_listing' );
 	<?php if ( $args['show_submit'] ) : ?>
 		<div class="apd-search-form__actions">
 			<button type="submit" class="apd-search-form__submit">
-				<?php esc_html_e( 'Search', 'all-purpose-directory' ); ?>
+				<?php
+				$submit_label = ! empty( $args['submit_text'] )
+					? sanitize_text_field( $args['submit_text'] )
+					: __( 'Search', 'all-purpose-directory' );
+				echo esc_html( $submit_label );
+				?>
 			</button>
 			<a href="<?php echo esc_url( $action ); ?>" class="apd-search-form__clear">
 				<?php esc_html_e( 'Clear Filters', 'all-purpose-directory' ); ?>

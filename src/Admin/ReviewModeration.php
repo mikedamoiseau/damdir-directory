@@ -416,7 +416,10 @@ final class ReviewModeration {
 							</tr>
 						<?php else : ?>
 							<?php foreach ( $reviews as $review ) : ?>
-								<?php echo wp_kses_post( $this->render_review_row( $review, $current_status ) ); ?>
+								<?php
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_review_row() escapes all values internally.
+								echo $this->render_review_row( $review, $current_status );
+								?>
 							<?php endforeach; ?>
 						<?php endif; ?>
 					</tbody>

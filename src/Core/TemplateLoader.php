@@ -592,8 +592,13 @@ final class TemplateLoader {
 							$template_name,
 							null,
 							[
-								'listing_id'   => get_the_ID(),
-								'current_view' => $current_view,
+								'listing_id'    => get_the_ID(),
+								'current_view'  => $current_view,
+								'show_image'    => (bool) apd_get_setting( 'show_thumbnail', true ),
+								'show_excerpt'  => (bool) apd_get_setting( 'show_excerpt', true ),
+								'show_category' => (bool) apd_get_setting( 'show_category', true ),
+								'show_rating'   => (bool) apd_get_setting( 'show_rating', true ),
+								'show_favorite' => (bool) apd_get_setting( 'show_favorite', true ),
 							]
 						);
 					endwhile;
@@ -757,6 +762,44 @@ final class TemplateLoader {
 
 		if ( ! empty( $extra ) ) {
 			$content .= '<div class="apd-single-listing-extras">' . $extra . '</div>';
+		}
+
+		// Related listings (mirrors the classic template's related section).
+		$related_listings = apd_get_related_listings( $listing_id );
+
+		if ( ! empty( $related_listings ) ) {
+			$related_html  = '<section class="apd-related-listings">';
+			$related_html .= '<h2 class="apd-related-listings__title">'
+				. esc_html__( 'Related Listings', 'all-purpose-directory' ) . '</h2>';
+
+			/** This action is documented in templates/single-listing.php */
+			ob_start();
+			do_action( 'apd_before_related_listings', $listing_id );
+			$related_html .= ob_get_clean();
+
+			$related_html .= '<div class="apd-related-listings__grid">';
+
+			foreach ( $related_listings as $related_listing ) {
+				$related_html .= apd_get_template_part_html(
+					'listing-card',
+					null,
+					[
+						'listing_id'   => $related_listing->ID,
+						'current_view' => 'grid',
+					]
+				);
+			}
+
+			$related_html .= '</div>';
+
+			/** This action is documented in templates/single-listing.php */
+			ob_start();
+			do_action( 'apd_after_related_listings', $listing_id );
+			$related_html .= ob_get_clean();
+
+			$related_html .= '</section>';
+
+			$content .= $related_html;
 		}
 
 		return $content;
