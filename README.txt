@@ -222,16 +222,14 @@ Go to Listings > Settings > Listings and set "Default Listing Status" to "Pendin
 
 Yes! The plugin includes 25+ field types. To add custom fields, use the `apd_listing_fields` filter in your theme's functions.php:
 
-`
-add_filter( 'apd_listing_fields', function( $fields ) {
-    $fields['business_hours'] = [
-        'type'     => 'textarea',
-        'label'    => 'Business Hours',
-        'required' => false,
-    ];
-    return $fields;
-});
-`
+    add_filter( 'apd_listing_fields', function( $fields ) {
+        $fields['business_hours'] = [
+            'type'     => 'textarea',
+            'label'    => 'Business Hours',
+            'required' => false,
+        ];
+        return $fields;
+    } );
 
 = Is the plugin translation ready? =
 
@@ -283,7 +281,7 @@ No, the plugin uses WordPress native tables (posts, postmeta, terms, comments) f
 == Changelog ==
 
 = 1.0.0 =
-Release date: 2024-XX-XX
+Release date: 2026-03-12
 
 * Initial release with full feature set:
   * Custom post type for listings with 25+ field types

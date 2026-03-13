@@ -7,12 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2026-03-12
 
-### Changed
-- REST mutating endpoint auth policy clarified and hardened:
-  - Cookie-authenticated requests require `X-WP-Nonce` (CSRF protection)
-  - Authorization-based non-cookie clients (e.g. Application Passwords) do not require nonce
-  - Mixed auth signal edge cases (Authorization + WP cookies) are treated as cookie-auth and still require nonce
-
 ### Added
 
 #### Core Plugin Infrastructure (Phase 0-1)
@@ -277,6 +271,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Helper functions: `apd_demo_generator()`, `apd_demo_tracker()`, `apd_delete_demo_data()`
 
 ### Changed
+- REST mutating endpoint auth policy clarified and hardened:
+  - Cookie-authenticated requests require `X-WP-Nonce` (CSRF protection)
+  - Authorization-based non-cookie clients (e.g. Application Passwords) do not require nonce
+  - Mixed auth signal edge cases (Authorization + WP cookies) are treated as cookie-auth and still require nonce
 - Updated "Tested up to" to WordPress 6.9
 - All PHP files have ABSPATH direct access protection
 - Removed deprecated `load_plugin_textdomain()` (handled by WordPress.org since WP 4.6)
@@ -307,20 +305,4 @@ See DEVELOPER.md for complete list of 100+ action and filter hooks.
 
 ## [Unreleased]
 
-### Added
-- Nothing yet
-
-### Changed
-- Nothing yet
-
-### Deprecated
-- Nothing yet
-
-### Removed
-- Nothing yet
-
-### Fixed
-- Nothing yet
-
-### Security
-- Nothing yet
+No changes yet.
