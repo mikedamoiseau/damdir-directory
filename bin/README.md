@@ -59,6 +59,29 @@ bin/sync-to-wordpress-deploy.sh /path/to/wordpress-deploy
 
 ---
 
+## `build-release.sh`
+
+Create a clean distribution folder + zip archive for production delivery.
+
+### Usage
+
+```bash
+# Use version from plugin header
+bin/build-release.sh
+
+# Explicit version label for zip filename
+bin/build-release.sh 1.0.1
+```
+
+### Environment variables
+
+- `APD_PLUGIN_SLUG` (default: `all-purpose-directory`)
+- `APD_OUTPUT_DIR` (default: `<repo>/dist`)
+- `APD_VERSION` (overrides CLI version)
+- `APD_KEEP_STAGE` (`1` keep staged dir, `0` remove it after zip)
+
+---
+
 ## Typical examples
 
 ```bash
@@ -68,7 +91,11 @@ bin/sync-to-test.sh
 # Linux/macOS default wordpress-deploy env
 bin/sync-to-wordpress-deploy.sh
 
+# Build zip from current plugin header version
+bin/build-release.sh
+
 # Custom locations
 APD_TEST_ROOT="$HOME/dev/wp-test" bin/sync-to-test.sh
 APD_DEPLOY_ROOT="$HOME/dev/wordpress-deploy" bin/sync-to-wordpress-deploy.sh
+APD_OUTPUT_DIR="$HOME/dev/apd-dist" bin/build-release.sh 1.0.1
 ```

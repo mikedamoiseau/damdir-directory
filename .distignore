@@ -15,6 +15,7 @@ phpcs.xml
 phpcs.xml.dist
 phpunit.xml
 phpunit.xml.dist
+phpunit-unit.xml
 phpstan.neon
 phpstan.neon.dist
 
@@ -30,6 +31,8 @@ test-results
 test-results-debug
 .playwright-mcp
 node_modules
+docker
+docs
 
 # Build tools
 package.json
