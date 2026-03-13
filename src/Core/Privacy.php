@@ -308,7 +308,7 @@ class Privacy {
 
 		$avatar_id = (int) get_user_meta( $user->ID, '_apd_avatar', true );
 		if ( $avatar_id > 0 ) {
-			$avatar_url = wp_get_attachment_url( $avatar_id );
+			$avatar_url     = wp_get_attachment_url( $avatar_id );
 			$profile_data[] = [
 				'name'  => __( 'Avatar', 'all-purpose-directory' ),
 				'value' => $avatar_url ? $avatar_url : (string) $avatar_id,
@@ -333,7 +333,7 @@ class Privacy {
 		// Favorites.
 		$favorites = get_user_meta( $user->ID, Favorites::META_KEY, true );
 		if ( is_array( $favorites ) && ! empty( $favorites ) ) {
-			$titles = array_map(
+			$titles         = array_map(
 				function ( int $id ): string {
 					$title = get_the_title( $id );
 					return $title ? $title : "#{$id}";
@@ -356,7 +356,10 @@ class Privacy {
 			];
 		}
 
-		return [ 'data' => $data, 'done' => true ];
+		return [
+			'data' => $data,
+			'done' => true,
+		];
 	}
 
 	/**
@@ -382,17 +385,32 @@ class Privacy {
 		$data = [];
 		foreach ( $posts as $post ) {
 			$item_data = [
-				[ 'name' => __( 'Title', 'all-purpose-directory' ), 'value' => $post->post_title ],
-				[ 'name' => __( 'Status', 'all-purpose-directory' ), 'value' => $post->post_status ],
-				[ 'name' => __( 'Date', 'all-purpose-directory' ), 'value' => $post->post_date ],
-				[ 'name' => __( 'Content', 'all-purpose-directory' ), 'value' => $post->post_content ],
+				[
+					'name'  => __( 'Title', 'all-purpose-directory' ),
+					'value' => $post->post_title,
+				],
+				[
+					'name'  => __( 'Status', 'all-purpose-directory' ),
+					'value' => $post->post_status,
+				],
+				[
+					'name'  => __( 'Date', 'all-purpose-directory' ),
+					'value' => $post->post_date,
+				],
+				[
+					'name'  => __( 'Content', 'all-purpose-directory' ),
+					'value' => $post->post_content,
+				],
 			];
 
 			foreach ( self::LISTING_CONTACT_META_KEYS as $meta_key ) {
 				$value = get_post_meta( $post->ID, $meta_key, true );
 				if ( '' !== $value && false !== $value ) {
 					$label       = ucfirst( str_replace( [ '_apd_', '_' ], [ '', ' ' ], $meta_key ) );
-					$item_data[] = [ 'name' => $label, 'value' => (string) $value ];
+					$item_data[] = [
+						'name'  => $label,
+						'value' => (string) $value,
+					];
 				}
 			}
 
@@ -475,13 +493,34 @@ class Privacy {
 				'group_label' => __( 'Directory Reviews', 'all-purpose-directory' ),
 				'item_id'     => "apd-review-{$comment->comment_ID}",
 				'data'        => [
-					[ 'name' => __( 'Listing', 'all-purpose-directory' ), 'value' => $listing_title ],
-					[ 'name' => __( 'Rating', 'all-purpose-directory' ), 'value' => (string) $rating ],
-					[ 'name' => __( 'Title', 'all-purpose-directory' ), 'value' => (string) $title ],
-					[ 'name' => __( 'Review', 'all-purpose-directory' ), 'value' => $comment->comment_content ],
-					[ 'name' => __( 'Date', 'all-purpose-directory' ), 'value' => $comment->comment_date ],
-					[ 'name' => __( 'Author', 'all-purpose-directory' ), 'value' => $comment->comment_author ],
-					[ 'name' => __( 'Email', 'all-purpose-directory' ), 'value' => $comment->comment_author_email ],
+					[
+						'name'  => __( 'Listing', 'all-purpose-directory' ),
+						'value' => $listing_title,
+					],
+					[
+						'name'  => __( 'Rating', 'all-purpose-directory' ),
+						'value' => (string) $rating,
+					],
+					[
+						'name'  => __( 'Title', 'all-purpose-directory' ),
+						'value' => (string) $title,
+					],
+					[
+						'name'  => __( 'Review', 'all-purpose-directory' ),
+						'value' => $comment->comment_content,
+					],
+					[
+						'name'  => __( 'Date', 'all-purpose-directory' ),
+						'value' => $comment->comment_date,
+					],
+					[
+						'name'  => __( 'Author', 'all-purpose-directory' ),
+						'value' => $comment->comment_author,
+					],
+					[
+						'name'  => __( 'Email', 'all-purpose-directory' ),
+						'value' => $comment->comment_author_email,
+					],
 				],
 			];
 		}
@@ -528,13 +567,34 @@ class Privacy {
 				'group_label' => __( 'Directory Inquiries Sent', 'all-purpose-directory' ),
 				'item_id'     => "apd-inquiry-sent-{$post->ID}",
 				'data'        => [
-					[ 'name' => __( 'Listing', 'all-purpose-directory' ), 'value' => $listing_title ],
-					[ 'name' => __( 'Sender Name', 'all-purpose-directory' ), 'value' => (string) get_post_meta( $post->ID, InquiryTracker::META_SENDER_NAME, true ) ],
-					[ 'name' => __( 'Sender Email', 'all-purpose-directory' ), 'value' => (string) get_post_meta( $post->ID, InquiryTracker::META_SENDER_EMAIL, true ) ],
-					[ 'name' => __( 'Sender Phone', 'all-purpose-directory' ), 'value' => (string) get_post_meta( $post->ID, InquiryTracker::META_SENDER_PHONE, true ) ],
-					[ 'name' => __( 'Subject', 'all-purpose-directory' ), 'value' => (string) get_post_meta( $post->ID, InquiryTracker::META_SUBJECT, true ) ],
-					[ 'name' => __( 'Message', 'all-purpose-directory' ), 'value' => $post->post_content ],
-					[ 'name' => __( 'Date', 'all-purpose-directory' ), 'value' => $post->post_date ],
+					[
+						'name'  => __( 'Listing', 'all-purpose-directory' ),
+						'value' => $listing_title,
+					],
+					[
+						'name'  => __( 'Sender Name', 'all-purpose-directory' ),
+						'value' => (string) get_post_meta( $post->ID, InquiryTracker::META_SENDER_NAME, true ),
+					],
+					[
+						'name'  => __( 'Sender Email', 'all-purpose-directory' ),
+						'value' => (string) get_post_meta( $post->ID, InquiryTracker::META_SENDER_EMAIL, true ),
+					],
+					[
+						'name'  => __( 'Sender Phone', 'all-purpose-directory' ),
+						'value' => (string) get_post_meta( $post->ID, InquiryTracker::META_SENDER_PHONE, true ),
+					],
+					[
+						'name'  => __( 'Subject', 'all-purpose-directory' ),
+						'value' => (string) get_post_meta( $post->ID, InquiryTracker::META_SUBJECT, true ),
+					],
+					[
+						'name'  => __( 'Message', 'all-purpose-directory' ),
+						'value' => $post->post_content,
+					],
+					[
+						'name'  => __( 'Date', 'all-purpose-directory' ),
+						'value' => $post->post_date,
+					],
 				],
 			];
 		}
@@ -576,8 +636,14 @@ class Privacy {
 				'group_label' => __( 'Directory Inquiries Received', 'all-purpose-directory' ),
 				'item_id'     => "apd-inquiry-received-{$post->ID}",
 				'data'        => [
-					[ 'name' => __( 'Listing', 'all-purpose-directory' ), 'value' => $listing_title ],
-					[ 'name' => __( 'Date', 'all-purpose-directory' ), 'value' => $post->post_date ],
+					[
+						'name'  => __( 'Listing', 'all-purpose-directory' ),
+						'value' => $listing_title,
+					],
+					[
+						'name'  => __( 'Date', 'all-purpose-directory' ),
+						'value' => $post->post_date,
+					],
 				],
 			];
 		}
