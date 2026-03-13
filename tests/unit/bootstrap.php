@@ -651,6 +651,9 @@ if ( ! class_exists( 'WP_Query' ) ) {
 	 *
 	 * Declares query_vars as a typed property to avoid PHP 8.2+
 	 * dynamic property deprecation when extended by anonymous classes.
+	 *
+	 * Supports a static test override so unit tests can pre-configure
+	 * posts and max_num_pages for the next constructed instance.
 	 */
 	class WP_Query {
 		/** @var array<string, mixed> */
@@ -658,6 +661,61 @@ if ( ! class_exists( 'WP_Query' ) ) {
 
 		/** @var bool */
 		public bool $is_main_query = false;
+
+		/** @var array */
+		public array $posts = [];
+
+		/** @var int */
+		public int $max_num_pages = 0;
+
+		/** @var int */
+		public int $found_posts = 0;
+
+		/** @var int */
+		public int $post_count = 0;
+
+		/** @var array|null Pre-configured results for next instance (test helper). */
+		private static ?array $_test_override = null;
+
+		/**
+		 * Pre-configure results for the next WP_Query instance.
+		 *
+		 * @param array $config Keys: posts (array), max_num_pages (int), found_posts (int).
+		 */
+		public static function _set_test_override( array $config ): void {
+			self::$_test_override = $config;
+		}
+
+		/**
+		 * Reset test override (safety net for tearDown).
+		 */
+		public static function _reset_test_override(): void {
+			self::$_test_override = null;
+		}
+
+		/**
+		 * @param array|string $query Query arguments or empty string.
+		 */
+		public function __construct( $query = '' ) {
+			if ( is_array( $query ) ) {
+				$this->query_vars = $query;
+			}
+
+			// Apply test override if set (consumed on use).
+			if ( self::$_test_override !== null ) {
+				$override            = self::$_test_override;
+				self::$_test_override = null;
+
+				if ( isset( $override['posts'] ) ) {
+					$this->posts       = $override['posts'];
+					$this->post_count  = count( $this->posts );
+					$this->found_posts = $override['found_posts'] ?? $this->post_count;
+				}
+				if ( isset( $override['max_num_pages'] ) ) {
+					$this->max_num_pages = $override['max_num_pages'];
+				}
+			}
+		}
 
 		/**
 		 * @param string $key   Query var key.
@@ -681,7 +739,7 @@ if ( ! class_exists( 'WP_Query' ) ) {
 		}
 
 		public function have_posts(): bool {
-			return false;
+			return ! empty( $this->posts );
 		}
 	}
 }
