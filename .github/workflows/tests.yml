@@ -109,8 +109,19 @@ jobs:
       - name: Run PHPCS
         if: steps.phpcs-check.outputs.configured == 'true'
         run: |
+          set +e
           vendor/bin/phpcs --report=checkstyle --report-file=phpcs-report.xml
-          cs2pr < phpcs-report.xml
+          PHPCS_EXIT=$?
+          set -e
+
+          # Convert checkstyle to PR annotations (even when PHPCS fails).
+          cs2pr < phpcs-report.xml || true
+
+          # Print a readable report in logs for branch pushes (no PR UI annotations).
+          vendor/bin/phpcs --report=full || true
+
+          # Preserve failure status for the job.
+          exit $PHPCS_EXIT
 
   compatibility:
     name: PHP Compatibility Check
