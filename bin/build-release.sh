@@ -48,7 +48,7 @@ if ! command -v zip >/dev/null 2>&1; then
   exit 1
 fi
 
-DEFAULT_VERSION="$(grep -E '^\s*\*\s*Version:' "$MAIN_PLUGIN_FILE" | head -n1 | sed -E 's/^\s*\*\s*Version:\s*//; s/\s+$//')"
+DEFAULT_VERSION="$(grep -E '^\s*\*\s*Version:' "$MAIN_PLUGIN_FILE" | head -n1 | sed -E 's/^[[:space:]]*\*[[:space:]]*Version:[[:space:]]*//' | sed -E 's/[[:space:]]+$//')"
 CLI_VERSION="${1:-}"
 VERSION="${APD_VERSION:-${CLI_VERSION:-$DEFAULT_VERSION}}"
 

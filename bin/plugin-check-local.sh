@@ -135,7 +135,15 @@ run_wp "wp plugin activate $PLUGIN_SLUG --allow-root >/dev/null || true"
 
 echo "> Running wp plugin check (timeout: ${TIMEOUT_SECS}s)"
 set +e
-timeout "$TIMEOUT_SECS" docker run --rm --network "$NETWORK" -u "$(id -u):$(id -g)" \
+# macOS lacks GNU timeout; fall back to running without a wrapper.
+if command -v timeout >/dev/null 2>&1; then
+  TIMEOUT_PREFIX="timeout $TIMEOUT_SECS"
+elif command -v gtimeout >/dev/null 2>&1; then
+  TIMEOUT_PREFIX="gtimeout $TIMEOUT_SECS"
+else
+  TIMEOUT_PREFIX=""
+fi
+$TIMEOUT_PREFIX docker run --rm --network "$NETWORK" -u "$(id -u):$(id -g)" \
   -e HOME=/tmp \
   -v "$WP_DIR:/var/www/html" -w /var/www/html \
   "$IMAGE_TAG" bash -lc "wp plugin check $PLUGIN_SLUG --allow-root --path=/var/www/html --skip-themes --format=table"
