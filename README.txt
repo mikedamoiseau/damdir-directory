@@ -1,5 +1,5 @@
 === All Purpose Directory ===
-Contributors: mdamoiseau
+Contributors: michaeldamoiseau
 Donate link: https://damoiseau.xyz/donate
 Tags: directory, listings, business directory, classifieds, job board
 Requires at least: 6.0
