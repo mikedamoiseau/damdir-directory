@@ -8,6 +8,11 @@
  * @package APD
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Exit if not called by WordPress uninstall.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;

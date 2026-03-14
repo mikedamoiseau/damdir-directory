@@ -68,6 +68,9 @@ echo "> Preparing plugin payload"
 mkdir -p "$BUILD_DIR"
 rsync -a --delete \
   --exclude '.git' \
+  --exclude 'dist' \
+  --exclude '.stage' \
+  --exclude '*.zip' \
   --exclude-from "$REPO_ROOT/.distignore" \
   "$REPO_ROOT/" "$BUILD_DIR/$PLUGIN_SLUG/"
 
