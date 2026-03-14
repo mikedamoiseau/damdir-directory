@@ -104,7 +104,7 @@ final class ListingsBlock extends AbstractBlock {
 			'type'    => 'string',
 			'default' => '',
 		],
-		'exclude'        => [
+		'exclude'        => [ // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Block attribute schema key.
 			'type'    => 'string',
 			'default' => '',
 		],
@@ -238,7 +238,7 @@ final class ListingsBlock extends AbstractBlock {
 				'count'    => $attributes['count'],
 				'paged'    => $this->get_paged(),
 				'ids'      => $attributes['ids'],
-				'exclude'  => $attributes['exclude'],
+				'exclude'  => $attributes['exclude'], // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Passed to ListingQueryBuilder which validates/bounds IDs.
 				'category' => $attributes['category'],
 				'tag'      => $attributes['tag'],
 				'type'     => $attributes['type'],

@@ -184,7 +184,7 @@ class FieldValidator {
 	public function validate_fields( array $values, array $args = [] ): bool|WP_Error {
 		$defaults = [
 			'fields'            => [],
-			'exclude'           => [],
+			'exclude'           => [], // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Validation config key; unrelated to WP_Query exclusion params.
 			'sanitize'          => true,
 			'skip_unregistered' => true,
 		];
@@ -305,7 +305,7 @@ class FieldValidator {
 	public function sanitize_fields( array $values, array $args = [] ): array {
 		$defaults = [
 			'fields'            => [],
-			'exclude'           => [],
+			'exclude'           => [], // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Sanitization config key; unrelated to WP_Query exclusion params.
 			'skip_unregistered' => true,
 		];
 

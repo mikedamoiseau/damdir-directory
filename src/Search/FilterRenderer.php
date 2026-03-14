@@ -84,7 +84,7 @@ final class FilterRenderer {
 	public function render_search_form( array $args = [] ): string {
 		$defaults = [
 			'filters'      => [],
-			'exclude'      => [],
+			'exclude'      => [], // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Render config key; unrelated to WP_Query exclusion params.
 			'show_orderby' => true,
 			'show_submit'  => true,
 			'submit_text'  => '',

@@ -85,7 +85,7 @@ final class CategoriesBlock extends AbstractBlock {
 			'type'    => 'string',
 			'default' => '',
 		],
-		'exclude'         => [
+		'exclude'         => [ // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Block attribute schema key.
 			'type'    => 'string',
 			'default' => '',
 		],
@@ -212,7 +212,7 @@ final class CategoriesBlock extends AbstractBlock {
 
 		// Exclude categories.
 		if ( ! empty( $attributes['exclude'] ) ) {
-			$args['exclude'] = array_map( 'absint', array_filter( explode( ',', $attributes['exclude'] ) ) );
+			$args['exclude'] = array_map( 'absint', array_filter( explode( ',', $attributes['exclude'] ) ) ); // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- get_terms() term exclusion is intentional user filtering.
 		}
 
 		/**

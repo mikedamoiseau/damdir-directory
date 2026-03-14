@@ -569,7 +569,7 @@ class FieldRenderer {
 	public function render_fields( array $values = [], array $args = [], int $listing_id = 0 ): string {
 		$defaults = [
 			'fields'  => [],
-			'exclude' => [],
+			'exclude' => [], // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Render config key; unrelated to WP_Query exclusion params.
 		];
 
 		$args = wp_parse_args( $args, $defaults );
@@ -898,7 +898,7 @@ class FieldRenderer {
 
 		$defaults = [
 			'fields'  => [],
-			'exclude' => [],
+			'exclude' => [], // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Display config key; unrelated to WP_Query exclusion params.
 		];
 
 		$args = wp_parse_args( $args, $defaults );
@@ -906,7 +906,7 @@ class FieldRenderer {
 		// Exclude admin-only fields from display.
 		if ( empty( $args['fields'] ) ) {
 			$admin_only_fields = array_keys( $this->registry->get_admin_fields() );
-			$args['exclude']   = array_merge( $args['exclude'], $admin_only_fields );
+			$args['exclude']   = array_merge( $args['exclude'], $admin_only_fields ); // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Internal field-name exclusions for renderer.
 		}
 
 		// Get current field values.

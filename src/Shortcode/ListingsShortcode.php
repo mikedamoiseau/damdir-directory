@@ -56,7 +56,7 @@ final class ListingsShortcode extends AbstractShortcode {
 		'orderby'         => 'date',
 		'order'           => 'DESC',
 		'ids'             => '',
-		'exclude'         => '',
+		'exclude'         => '', // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Attribute key name for shortcode API; not a query arg here.
 		'author'          => '',
 		'show_image'      => 'true',
 		'show_excerpt'    => 'true',
@@ -134,7 +134,7 @@ final class ListingsShortcode extends AbstractShortcode {
 			'description' => 'Specific listing IDs to display.',
 			'default'     => '',
 		],
-		'exclude'         => [
+		'exclude'         => [ // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Attribute schema key for shortcode docs.
 			'type'        => 'ids',
 			'description' => 'Listing IDs to exclude.',
 			'default'     => '',
@@ -299,7 +299,7 @@ final class ListingsShortcode extends AbstractShortcode {
 				'count'    => $atts['count'],
 				'paged'    => $this->get_paged(),
 				'ids'      => $atts['ids'],
-				'exclude'  => $atts['exclude'],
+				'exclude'  => $atts['exclude'], // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Passed to ListingQueryBuilder which validates/bounds IDs.
 				'category' => $atts['category'],
 				'tag'      => $atts['tag'],
 				'type'     => $atts['type'],

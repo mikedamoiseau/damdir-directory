@@ -95,6 +95,7 @@ function apd_uninstall(): void {
 	}
 
 	// Delete all post meta with plugin prefix.
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Uninstall cleanup intentionally performs one-time direct bulk deletes.
 	$wpdb->query(
 		$wpdb->prepare(
 			"DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE %s",
@@ -103,6 +104,7 @@ function apd_uninstall(): void {
 	);
 
 	// Delete all user meta with plugin prefix.
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Uninstall cleanup intentionally performs one-time direct bulk deletes.
 	$wpdb->query(
 		$wpdb->prepare(
 			"DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE %s",
@@ -111,6 +113,7 @@ function apd_uninstall(): void {
 	);
 
 	// Delete transients.
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Uninstall cleanup intentionally performs one-time direct bulk deletes.
 	$wpdb->query(
 		$wpdb->prepare(
 			"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",

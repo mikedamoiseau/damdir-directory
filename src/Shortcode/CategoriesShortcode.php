@@ -49,7 +49,7 @@ final class CategoriesShortcode extends AbstractShortcode {
 		'count'            => 0,
 		'parent'           => '',
 		'include'          => '',
-		'exclude'          => '',
+		'exclude'          => '', // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Attribute key name for shortcode API; not a query arg here.
 		'hide_empty'       => 'true',
 		'orderby'          => 'name',
 		'order'            => 'ASC',
@@ -91,7 +91,7 @@ final class CategoriesShortcode extends AbstractShortcode {
 			'description' => 'Category IDs to include (comma-separated).',
 			'default'     => '',
 		],
-		'exclude'          => [
+		'exclude'          => [ // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- Attribute schema key for shortcode docs.
 			'type'        => 'ids',
 			'description' => 'Category IDs to exclude (comma-separated).',
 			'default'     => '',
@@ -240,7 +240,7 @@ final class CategoriesShortcode extends AbstractShortcode {
 
 		// Exclude categories.
 		if ( ! empty( $atts['exclude'] ) ) {
-			$args['exclude'] = $atts['exclude'];
+			$args['exclude'] = $atts['exclude']; // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- get_terms() term exclusion is intentional user-controlled filtering.
 		}
 
 		/**

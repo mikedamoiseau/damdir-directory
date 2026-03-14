@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace APD\Admin\DemoData;
 
-// phpcs:disable WordPress.DB.DirectDatabaseQuery -- Admin-only demo data tracking requires direct SQL for bulk counting and identification queries.
+// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Admin-only demo data tracking requires direct SQL for bulk counting and identification queries.
 
 // Prevent direct file access.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -451,6 +451,7 @@ final class DemoDataTracker {
 	public function get_demo_user_ids(): array {
 		global $wpdb;
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Admin-only demo user lookup query.
 		$ids = $wpdb->get_col(
 			$wpdb->prepare(
 				"SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = %s AND meta_value = %s",
@@ -793,6 +794,7 @@ final class DemoDataTracker {
 	public function has_module_demo_data(): bool {
 		global $wpdb;
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Admin-only existence check across demo postmeta.
 		$count = (int) $wpdb->get_var(
 			$wpdb->prepare(
 				"SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key = %s AND meta_value != %s LIMIT 1",
@@ -805,6 +807,7 @@ final class DemoDataTracker {
 			return true;
 		}
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Admin-only existence check across demo termmeta.
 		$count = (int) $wpdb->get_var(
 			$wpdb->prepare(
 				"SELECT COUNT(*) FROM {$wpdb->termmeta} WHERE meta_key = %s AND meta_value != %s LIMIT 1",
@@ -817,6 +820,7 @@ final class DemoDataTracker {
 			return true;
 		}
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Admin-only existence check across demo commentmeta.
 		$count = (int) $wpdb->get_var(
 			$wpdb->prepare(
 				"SELECT COUNT(*) FROM {$wpdb->commentmeta} WHERE meta_key = %s AND meta_value != %s LIMIT 1",

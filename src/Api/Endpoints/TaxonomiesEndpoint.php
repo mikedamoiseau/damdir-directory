@@ -227,7 +227,7 @@ class TaxonomiesEndpoint {
 
 		$exclude = $request->get_param( 'exclude' );
 		if ( ! empty( $exclude ) && is_array( $exclude ) ) {
-			$args['exclude'] = array_map( 'absint', $exclude );
+			$args['exclude'] = array_map( 'absint', $exclude ); // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- REST get_terms() supports explicit term exclusion filters.
 		}
 
 		/**
@@ -384,7 +384,7 @@ class TaxonomiesEndpoint {
 				'type'        => 'array',
 				'items'       => [ 'type' => 'integer' ],
 			],
-			'exclude'    => [
+			'exclude'    => [ // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- REST schema parameter name, not a query arg.
 				'description' => __( 'Exclude specific term IDs.', 'all-purpose-directory' ),
 				'type'        => 'array',
 				'items'       => [ 'type' => 'integer' ],
