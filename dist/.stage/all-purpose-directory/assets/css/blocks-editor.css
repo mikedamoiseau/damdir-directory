@@ -1,0 +1,293 @@
+/**
+ * APD Blocks - Editor Styles
+ *
+ * Styles specific to the block editor.
+ *
+ * @package APD
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   Block Wrapper
+   ========================================================================== */
+
+.apd-block {
+	margin-bottom: 1.5em;
+}
+
+/* Wide and full alignment support */
+.apd-block.alignwide {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	max-width: var(--wp--style--global--wide-size, 1200px);
+}
+
+.apd-block.alignfull {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	max-width: none;
+}
+
+/* ==========================================================================
+   Block Error States
+   ========================================================================== */
+
+.apd-block-error {
+	background-color: #fef2f2;
+	border: 1px solid #fecaca;
+	border-radius: 4px;
+	padding: 20px;
+	text-align: center;
+}
+
+.apd-block-error p {
+	color: #dc2626;
+	margin: 0;
+}
+
+/* ==========================================================================
+   No Results State
+   ========================================================================== */
+
+.apd-block .apd-no-results {
+	background-color: #f9fafb;
+	border: 1px dashed #d1d5db;
+	border-radius: 4px;
+	padding: 40px 20px;
+	text-align: center;
+}
+
+.apd-block .apd-no-results p {
+	color: #6b7280;
+	margin: 0;
+}
+
+/* ==========================================================================
+   Listings Block
+   ========================================================================== */
+
+.apd-listings-block {
+	position: relative;
+}
+
+/* Editor placeholder when no listings */
+.apd-listings-block .apd-no-results {
+	min-height: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* ==========================================================================
+   Search Form Block
+   ========================================================================== */
+
+.apd-search-form-block {
+	position: relative;
+}
+
+/* Ensure form is visible in editor */
+.apd-search-form-block .apd-search-form {
+	pointer-events: none;
+}
+
+.apd-search-form-block .apd-search-form input,
+.apd-search-form-block .apd-search-form select,
+.apd-search-form-block .apd-search-form button {
+	pointer-events: auto;
+}
+
+/* ==========================================================================
+   Categories Block
+   ========================================================================== */
+
+.apd-categories-block {
+	position: relative;
+}
+
+/* Editor placeholder when no categories */
+.apd-categories-block .apd-no-results {
+	min-height: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* ==========================================================================
+   Block Preview Loading State
+   ========================================================================== */
+
+.wp-block[data-type="apd/listings"] .components-spinner,
+.wp-block[data-type="apd/search-form"] .components-spinner,
+.wp-block[data-type="apd/categories"] .components-spinner {
+	display: block;
+	margin: 20px auto;
+}
+
+/* ==========================================================================
+   Server Side Render Wrapper
+   ========================================================================== */
+
+.wp-block-apd-listings,
+.wp-block-apd-search-form,
+.wp-block-apd-categories {
+	position: relative;
+}
+
+/* Loading indicator for server-side render */
+.wp-block-apd-listings .components-placeholder,
+.wp-block-apd-search-form .components-placeholder,
+.wp-block-apd-categories .components-placeholder {
+	min-height: 100px;
+}
+
+/* ==========================================================================
+   Grid View in Editor
+   ========================================================================== */
+
+.editor-styles-wrapper .apd-listings-grid {
+	display: grid;
+	gap: 24px;
+}
+
+.editor-styles-wrapper .apd-listings-grid.apd-grid-cols-2 {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.editor-styles-wrapper .apd-listings-grid.apd-grid-cols-3 {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.editor-styles-wrapper .apd-listings-grid.apd-grid-cols-4 {
+	grid-template-columns: repeat(4, 1fr);
+}
+
+/* ==========================================================================
+   Category Grid in Editor
+   ========================================================================== */
+
+.editor-styles-wrapper .apd-categories__grid {
+	display: grid;
+	gap: 16px;
+}
+
+.editor-styles-wrapper .apd-categories--columns-2 .apd-categories__grid {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.editor-styles-wrapper .apd-categories--columns-3 .apd-categories__grid {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.editor-styles-wrapper .apd-categories--columns-4 .apd-categories__grid {
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.editor-styles-wrapper .apd-categories--columns-5 .apd-categories__grid {
+	grid-template-columns: repeat(5, 1fr);
+}
+
+.editor-styles-wrapper .apd-categories--columns-6 .apd-categories__grid {
+	grid-template-columns: repeat(6, 1fr);
+}
+
+/* ==========================================================================
+   Card Styles in Editor
+   ========================================================================== */
+
+.editor-styles-wrapper .apd-listing-card {
+	background-color: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	overflow: hidden;
+	transition: box-shadow 0.2s ease;
+}
+
+.editor-styles-wrapper .apd-listing-card:hover {
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.editor-styles-wrapper .apd-category-card {
+	background-color: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	padding: 20px;
+	text-align: center;
+	transition: box-shadow 0.2s ease;
+}
+
+.editor-styles-wrapper .apd-category-card:hover {
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   Search Form in Editor
+   ========================================================================== */
+
+.editor-styles-wrapper .apd-search-form {
+	background-color: #f9fafb;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	padding: 20px;
+}
+
+.editor-styles-wrapper .apd-search-form__fields {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+}
+
+.editor-styles-wrapper .apd-search-form--horizontal .apd-search-form__fields {
+	flex-direction: row;
+	align-items: flex-end;
+}
+
+.editor-styles-wrapper .apd-search-form--vertical .apd-search-form__fields {
+	flex-direction: column;
+}
+
+.editor-styles-wrapper .apd-search-form--inline .apd-search-form__fields {
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+/* ==========================================================================
+   Responsive Adjustments for Editor
+   ========================================================================== */
+
+@media (max-width: 782px) {
+	.editor-styles-wrapper .apd-listings-grid {
+		grid-template-columns: 1fr !important;
+	}
+
+	.editor-styles-wrapper .apd-categories__grid {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+}
+
+/* ==========================================================================
+   Inspector Controls Enhancements
+   ========================================================================== */
+
+.apd-inspector-help-text {
+	color: #757575;
+	font-size: 12px;
+	font-style: italic;
+	margin-top: 4px;
+}
+
+/* ==========================================================================
+   Block Selection Highlight
+   ========================================================================== */
+
+.wp-block[data-type^="apd/"].is-selected {
+	outline: 2px solid var(--wp-admin-theme-color, #007cba);
+	outline-offset: 2px;
+}
+
+.wp-block[data-type^="apd/"].has-child-selected {
+	outline: 1px dashed var(--wp-admin-theme-color, #007cba);
+	outline-offset: 2px;
+}

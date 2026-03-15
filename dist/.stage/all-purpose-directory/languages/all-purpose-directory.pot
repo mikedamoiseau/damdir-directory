@@ -1,0 +1,3945 @@
+# Copyright (C) 2026 All Purpose Directory
+# This file is distributed under the same license as the All Purpose Directory package.
+msgid ""
+msgstr ""
+"Project-Id-Version: All Purpose Directory\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: All Purpose Directory <team@damoiseau.xyz>\n"
+"Last-Translator: Michaël Damoiseau <michael@damoiseau.xyz>\n"
+"POT-Creation-Date: 2026-02-05 06:50+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/damoiseau/all-purpose-directory/issues\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. translators: 1: Required PHP version, 2: Current PHP version
+#: ../all-purpose-directory.php:90
+msgid "All Purpose Directory requires PHP %1$s or higher. You are running PHP %2$s."
+msgstr ""
+
+#. translators: 1: Required WordPress version, 2: Current WordPress version
+#: ../all-purpose-directory.php:106
+msgid "All Purpose Directory requires WordPress %1$s or higher. You are running WordPress %2$s."
+msgstr ""
+
+#: ../includes/functions.php:1816, ../src/Frontend/Submission/SubmissionHandler.php:534
+msgid "Listing title is required."
+msgstr ""
+
+#: ../includes/functions.php:1820
+msgid "Listing description is required."
+msgstr ""
+
+#: ../includes/functions.php:2326, ../includes/functions.php:2345, ../src/Frontend/Submission/SubmissionHandler.php:1337
+msgid "Submission failed. Please try again."
+msgstr ""
+
+#: ../includes/functions.php:2357, ../src/Frontend/Submission/SubmissionHandler.php:1257
+msgid "You have submitted too many listings. Please try again later."
+msgstr ""
+
+#: ../includes/functions.php:2770
+msgid "Invalid user ID."
+msgstr ""
+
+#: ../src/Admin/ListingMetaBox.php:82
+msgid "Listing Fields"
+msgstr ""
+
+#: ../src/Admin/ListingMetaBox.php:107
+msgid "No custom fields have been registered for listings."
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:142, ../src/Admin/ReviewModeration.php:164, ../src/Admin/ReviewModeration.php:310, ../templates/review/reviews-section.php:54, ../templates/review/reviews-section.php:123
+msgid "Reviews"
+msgstr ""
+
+#. translators: %s: Number of pending reviews
+#: ../src/Admin/ReviewModeration.php:151
+msgid "%s review awaiting moderation"
+msgid_plural "%s reviews awaiting moderation"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/Admin/ReviewModeration.php:233
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:328, ../src/Admin/ReviewModeration.php:331
+msgid "Search Reviews"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:342, ../src/Admin/ReviewModeration.php:424
+msgid "Select bulk action"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:345, ../src/Admin/ReviewModeration.php:427
+msgid "Bulk Actions"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:347, ../src/Admin/ReviewModeration.php:429, ../src/Admin/ReviewModeration.php:641
+msgid "Approve"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:350, ../src/Admin/ReviewModeration.php:432
+msgid "Mark as Spam"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:353, ../src/Admin/ReviewModeration.php:435
+msgid "Move to Trash"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:356, ../src/Admin/ReviewModeration.php:438, ../src/Admin/ReviewModeration.php:729
+msgid "Restore"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:357, ../src/Admin/ReviewModeration.php:439, ../src/Admin/ReviewModeration.php:749
+msgid "Delete Permanently"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:360, ../src/Admin/ReviewModeration.php:442
+msgid "Apply"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:366
+msgid "Filter"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:379, ../src/Admin/ReviewModeration.php:408
+msgid "Select All"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:382, ../src/Admin/ReviewModeration.php:411, ../src/Admin/ReviewModeration.php:524, ../templates/dashboard/my-listings.php:124, ../templates/emails/new-inquiry.php:43, ../templates/emails/new-review.php:61
+msgid "Listing"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:383, ../src/Admin/ReviewModeration.php:412, ../src/Admin/ReviewModeration.php:531, ../templates/emails/listing-submitted.php:38
+msgid "Author"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:384, ../src/Admin/ReviewModeration.php:413, ../src/Admin/ReviewModeration.php:537, ../templates/emails/new-review.php:69
+msgid "Rating"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:385, ../src/Admin/ReviewModeration.php:414, ../src/Admin/ReviewModeration.php:540
+msgid "Review"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:386, ../src/Admin/ReviewModeration.php:415, ../src/Admin/ReviewModeration.php:549, ../src/Listing/AdminColumns.php:78, ../templates/dashboard/my-listings.php:125, ../templates/emails/listing-approved.php:43, ../templates/emails/listing-expired.php:42, ../templates/emails/listing-rejected.php:45, ../templates/emails/listing-submitted.php:42
+msgid "Status"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:387, ../src/Admin/ReviewModeration.php:416, ../src/Admin/ReviewModeration.php:552, ../src/Blocks/BlockManager.php:296, ../src/Frontend/Dashboard/MyListings.php:378, ../templates/dashboard/my-listings.php:133, ../templates/emails/new-inquiry.php:61, ../templates/emails/new-review.php:73
+msgid "Date"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:394
+msgid "No reviews found."
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:466, ../src/Frontend/Dashboard/MyListings.php:347
+msgid "All"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:467, ../src/Admin/ReviewModeration.php:596, ../src/Listing/AdminColumns.php:203, ../src/Listing/AdminColumns.php:333, ../src/Frontend/Dashboard/MyListings.php:355, ../src/Frontend/Dashboard/MyListings.php:792
+msgid "Pending"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:468, ../src/Admin/ReviewModeration.php:595
+msgid "Approved"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:469, ../src/Admin/ReviewModeration.php:597, ../src/Admin/ReviewModeration.php:685
+msgid "Spam"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:470, ../src/Admin/ReviewModeration.php:598, ../src/Admin/ReviewModeration.php:707
+msgid "Trash"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:510
+msgid "(Deleted)"
+msgstr ""
+
+#. translators: %d: Rating number
+#: ../src/Admin/ReviewModeration.php:571
+msgid "%d out of 5 stars"
+msgstr ""
+
+#. translators: %s: Review ID
+#: ../src/Admin/ReviewModeration.php:640
+msgid "Approve review %s"
+msgstr ""
+
+#. translators: %s: Review ID
+#: ../src/Admin/ReviewModeration.php:662
+msgid "Unapprove review %s"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:663
+msgid "Unapprove"
+msgstr ""
+
+#. translators: %s: Review ID
+#: ../src/Admin/ReviewModeration.php:684
+msgid "Mark review %s as spam"
+msgstr ""
+
+#. translators: %s: Review ID
+#: ../src/Admin/ReviewModeration.php:706
+msgid "Move review %s to trash"
+msgstr ""
+
+#. translators: %s: Review ID
+#: ../src/Admin/ReviewModeration.php:728
+msgid "Restore review %s"
+msgstr ""
+
+#. translators: %s: Review ID
+#: ../src/Admin/ReviewModeration.php:748
+msgid "Delete review %s permanently"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:761
+msgid "View listing in new tab"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:762, ../src/Admin/Settings.php:512, ../src/Listing/PostType.php:87, ../templates/emails/listing-submitted.php:53
+msgid "View Listing"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:792
+msgid "Filter by listing"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:794, ../src/Listing/PostType.php:88
+msgid "All Listings"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:820
+msgid "Filter by rating"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:822
+msgid "All Ratings"
+msgstr ""
+
+#. translators: %d: Star rating number
+#: ../src/Admin/ReviewModeration.php:827
+msgid "%d Star"
+msgid_plural "%d Stars"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: Number of items
+#: ../src/Admin/ReviewModeration.php:859, ../src/Admin/ReviewModeration.php:867
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/Admin/ReviewModeration.php:878
+msgid "First page"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:884, ../src/Core/TemplateLoader.php:412, ../templates/dashboard/favorites.php:99, ../templates/dashboard/my-listings.php:164
+msgid "Previous page"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:894
+msgid "Current Page"
+msgstr ""
+
+#. translators: 1: Current page, 2: Total pages
+#: ../src/Admin/ReviewModeration.php:898
+msgid "%1$s of %2$s"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:909, ../src/Core/TemplateLoader.php:416, ../templates/dashboard/favorites.php:103, ../templates/dashboard/my-listings.php:168
+msgid "Next page"
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:915
+msgid "Last page"
+msgstr ""
+
+#. translators: %d: Number of reviews
+#: ../src/Admin/ReviewModeration.php:944
+msgid "%d review approved."
+msgid_plural "%d reviews approved."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: Number of reviews
+#: ../src/Admin/ReviewModeration.php:949
+msgid "%d review unapproved."
+msgid_plural "%d reviews unapproved."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: Number of reviews
+#: ../src/Admin/ReviewModeration.php:954
+msgid "%d review marked as spam."
+msgid_plural "%d reviews marked as spam."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: Number of reviews
+#: ../src/Admin/ReviewModeration.php:959
+msgid "%d review moved to trash."
+msgid_plural "%d reviews moved to trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: Number of reviews
+#: ../src/Admin/ReviewModeration.php:964
+msgid "%d review restored."
+msgid_plural "%d reviews restored."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: Number of reviews
+#: ../src/Admin/ReviewModeration.php:969
+msgid "%d review permanently deleted."
+msgid_plural "%d reviews permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/Admin/ReviewModeration.php:1024, ../src/Admin/ReviewModeration.php:1060
+msgid "Security check failed."
+msgstr ""
+
+#: ../src/Admin/ReviewModeration.php:1029, ../src/Admin/ReviewModeration.php:1065
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: ../src/Admin/Settings.php:152
+msgid "General"
+msgstr ""
+
+#: ../src/Admin/Settings.php:156, ../src/Blocks/ListingsBlock.php:141, ../src/Core/TemplateLoader.php:253, ../src/Core/TemplateLoader.php:248
+msgid "Listings"
+msgstr ""
+
+#: ../src/Admin/Settings.php:160
+msgid "Submission"
+msgstr ""
+
+#: ../src/Admin/Settings.php:164
+msgid "Display"
+msgstr ""
+
+#: ../src/Admin/Settings.php:168, ../src/Taxonomy/CategoryTaxonomy.php:470, ../templates/emails/new-inquiry.php:51
+msgid "Email"
+msgstr ""
+
+#: ../src/Admin/Settings.php:172
+msgid "Advanced"
+msgstr ""
+
+#: ../src/Admin/Settings.php:197, ../src/Admin/Settings.php:198
+msgid "Settings"
+msgstr ""
+
+#: ../src/Admin/Settings.php:256
+msgid "General Settings"
+msgstr ""
+
+#: ../src/Admin/Settings.php:258
+msgid "Configure general plugin settings."
+msgstr ""
+
+#: ../src/Admin/Settings.php:265
+msgid "Currency Symbol"
+msgstr ""
+
+#: ../src/Admin/Settings.php:271
+msgid "Currency symbol to display with prices (e.g., $, €, £)."
+msgstr ""
+
+#: ../src/Admin/Settings.php:278
+msgid "Currency Position"
+msgstr ""
+
+#: ../src/Admin/Settings.php:285
+msgid "Before amount ($99)"
+msgstr ""
+
+#: ../src/Admin/Settings.php:286
+msgid "After amount (99$)"
+msgstr ""
+
+#: ../src/Admin/Settings.php:288
+msgid "Where to display the currency symbol."
+msgstr ""
+
+#: ../src/Admin/Settings.php:294
+msgid "Date Format"
+msgstr ""
+
+#: ../src/Admin/Settings.php:301
+msgid "WordPress Default"
+msgstr ""
+
+#: ../src/Admin/Settings.php:308
+msgid "Date format for listing dates."
+msgstr ""
+
+#: ../src/Admin/Settings.php:314
+msgid "Distance Unit"
+msgstr ""
+
+#: ../src/Admin/Settings.php:321
+msgid "Kilometers (km)"
+msgstr ""
+
+#: ../src/Admin/Settings.php:322
+msgid "Miles"
+msgstr ""
+
+#: ../src/Admin/Settings.php:324
+msgid "Unit for distance measurements."
+msgstr ""
+
+#: ../src/Admin/Settings.php:342
+msgid "Listing Settings"
+msgstr ""
+
+#: ../src/Admin/Settings.php:344
+msgid "Configure listing display and behavior."
+msgstr ""
+
+#: ../src/Admin/Settings.php:351
+msgid "Listings Per Page"
+msgstr ""
+
+#: ../src/Admin/Settings.php:359
+msgid "Number of listings to display per page (1-100)."
+msgstr ""
+
+#: ../src/Admin/Settings.php:365
+msgid "Default Listing Status"
+msgstr ""
+
+#: ../src/Admin/Settings.php:372, ../src/Listing/AdminColumns.php:202, ../src/Listing/AdminColumns.php:332, ../src/Frontend/Dashboard/MyListings.php:351, ../src/Frontend/Dashboard/MyListings.php:788, ../templates/dashboard/stats.php:38, ../templates/emails/listing-approved.php:44
+msgid "Published"
+msgstr ""
+
+#: ../src/Admin/Settings.php:373, ../templates/dashboard/stats.php:44
+msgid "Pending Review"
+msgstr ""
+
+#: ../src/Admin/Settings.php:374, ../src/Listing/AdminColumns.php:204, ../src/Listing/AdminColumns.php:334, ../src/Frontend/Dashboard/MyListings.php:359, ../src/Frontend/Dashboard/MyListings.php:796
+msgid "Draft"
+msgstr ""
+
+#: ../src/Admin/Settings.php:376
+msgid "Default status for new listing submissions."
+msgstr ""
+
+#: ../src/Admin/Settings.php:382
+msgid "Listing Expiration"
+msgstr ""
+
+#: ../src/Admin/Settings.php:390
+msgid "Days until listings expire (0 = never expire)."
+msgstr ""
+
+#: ../src/Admin/Settings.php:398
+msgid "Features"
+msgstr ""
+
+#: ../src/Admin/Settings.php:400
+msgid "Enable or disable listing features."
+msgstr ""
+
+#: ../src/Admin/Settings.php:407
+msgid "Enable Reviews"
+msgstr ""
+
+#: ../src/Admin/Settings.php:413
+msgid "Allow users to leave reviews on listings."
+msgstr ""
+
+#: ../src/Admin/Settings.php:419
+msgid "Enable Favorites"
+msgstr ""
+
+#: ../src/Admin/Settings.php:425
+msgid "Allow users to save listings to favorites."
+msgstr ""
+
+#: ../src/Admin/Settings.php:431
+msgid "Enable Contact Form"
+msgstr ""
+
+#: ../src/Admin/Settings.php:437
+msgid "Show contact form on listing pages."
+msgstr ""
+
+#: ../src/Admin/Settings.php:455
+msgid "Submission Settings"
+msgstr ""
+
+#: ../src/Admin/Settings.php:457
+msgid "Configure frontend listing submission settings."
+msgstr ""
+
+#: ../src/Admin/Settings.php:464
+msgid "Who Can Submit"
+msgstr ""
+
+#: ../src/Admin/Settings.php:471
+msgid "Anyone (including guests)"
+msgstr ""
+
+#: ../src/Admin/Settings.php:472
+msgid "Logged-in Users Only"
+msgstr ""
+
+#: ../src/Admin/Settings.php:473
+msgid "Specific User Roles"
+msgstr ""
+
+#: ../src/Admin/Settings.php:475
+msgid "Who can submit new listings from the frontend."
+msgstr ""
+
+#: ../src/Admin/Settings.php:481
+msgid "Guest Submission"
+msgstr ""
+
+#: ../src/Admin/Settings.php:487
+msgid "Allow guests to submit listings with email address."
+msgstr ""
+
+#: ../src/Admin/Settings.php:493
+msgid "Terms & Conditions Page"
+msgstr ""
+
+#: ../src/Admin/Settings.php:499
+msgid "Page containing terms and conditions (optional)."
+msgstr ""
+
+#: ../src/Admin/Settings.php:505
+msgid "After Submission Redirect"
+msgstr ""
+
+#: ../src/Admin/Settings.php:513
+msgid "User Dashboard"
+msgstr ""
+
+#: ../src/Admin/Settings.php:514
+msgid "Custom URL"
+msgstr ""
+
+#: ../src/Admin/Settings.php:516
+msgid "Where to redirect users after successful submission."
+msgstr ""
+
+#: ../src/Admin/Settings.php:534
+msgid "Display Settings"
+msgstr ""
+
+#: ../src/Admin/Settings.php:536
+msgid "Configure how listings are displayed."
+msgstr ""
+
+#: ../src/Admin/Settings.php:543
+msgid "Default View"
+msgstr ""
+
+#: ../src/Admin/Settings.php:550
+msgid "Grid View"
+msgstr ""
+
+#: ../src/Admin/Settings.php:551
+msgid "List View"
+msgstr ""
+
+#: ../src/Admin/Settings.php:553
+msgid "Default listing view on archive pages."
+msgstr ""
+
+#: ../src/Admin/Settings.php:559
+msgid "Grid Columns"
+msgstr ""
+
+#: ../src/Admin/Settings.php:566
+msgid "2 Columns"
+msgstr ""
+
+#: ../src/Admin/Settings.php:567
+msgid "3 Columns"
+msgstr ""
+
+#: ../src/Admin/Settings.php:568
+msgid "4 Columns"
+msgstr ""
+
+#: ../src/Admin/Settings.php:570
+msgid "Number of columns in grid view."
+msgstr ""
+
+#: ../src/Admin/Settings.php:578
+msgid "Card Elements"
+msgstr ""
+
+#: ../src/Admin/Settings.php:580
+msgid "Choose which elements to show on listing cards."
+msgstr ""
+
+#: ../src/Admin/Settings.php:587
+msgid "Show Thumbnail"
+msgstr ""
+
+#: ../src/Admin/Settings.php:593
+msgid "Display featured image on listing cards."
+msgstr ""
+
+#: ../src/Admin/Settings.php:599
+msgid "Show Excerpt"
+msgstr ""
+
+#: ../src/Admin/Settings.php:605
+msgid "Display excerpt/short description on cards."
+msgstr ""
+
+#: ../src/Admin/Settings.php:611
+msgid "Show Category"
+msgstr ""
+
+#: ../src/Admin/Settings.php:617
+msgid "Display category badge on cards."
+msgstr ""
+
+#: ../src/Admin/Settings.php:623
+msgid "Show Rating"
+msgstr ""
+
+#: ../src/Admin/Settings.php:629
+msgid "Display star rating on cards."
+msgstr ""
+
+#: ../src/Admin/Settings.php:635
+msgid "Show Favorite Button"
+msgstr ""
+
+#: ../src/Admin/Settings.php:641
+msgid "Display favorite/heart button on cards."
+msgstr ""
+
+#: ../src/Admin/Settings.php:649
+msgid "Layout"
+msgstr ""
+
+#: ../src/Admin/Settings.php:651
+msgid "Configure page layouts."
+msgstr ""
+
+#: ../src/Admin/Settings.php:658
+msgid "Archive Page Title"
+msgstr ""
+
+#: ../src/Admin/Settings.php:664
+msgid "Custom title for the listings archive page (leave empty for default)."
+msgstr ""
+
+#: ../src/Admin/Settings.php:670
+msgid "Single Listing Layout"
+msgstr ""
+
+#: ../src/Admin/Settings.php:677
+msgid "Full Width"
+msgstr ""
+
+#: ../src/Admin/Settings.php:678
+msgid "With Sidebar"
+msgstr ""
+
+#: ../src/Admin/Settings.php:680
+msgid "Layout for single listing pages."
+msgstr ""
+
+#: ../src/Admin/Settings.php:698
+msgid "Email Settings"
+msgstr ""
+
+#: ../src/Admin/Settings.php:700
+msgid "Configure email sender information."
+msgstr ""
+
+#: ../src/Admin/Settings.php:707
+msgid "From Name"
+msgstr ""
+
+#: ../src/Admin/Settings.php:713
+msgid "Name shown as the email sender (leave empty for site name)."
+msgstr ""
+
+#: ../src/Admin/Settings.php:719
+msgid "From Email"
+msgstr ""
+
+#: ../src/Admin/Settings.php:725
+msgid "Email address shown as sender (leave empty for admin email)."
+msgstr ""
+
+#: ../src/Admin/Settings.php:731
+msgid "Admin Notification Email"
+msgstr ""
+
+#: ../src/Admin/Settings.php:737
+msgid "Email for admin notifications (leave empty for default admin email)."
+msgstr ""
+
+#: ../src/Admin/Settings.php:745
+msgid "Email Notifications"
+msgstr ""
+
+#: ../src/Admin/Settings.php:747
+msgid "Enable or disable email notifications."
+msgstr ""
+
+#: ../src/Admin/Settings.php:754
+msgid "New Submission"
+msgstr ""
+
+#: ../src/Admin/Settings.php:760
+msgid "Notify admin when a new listing is submitted."
+msgstr ""
+
+#: ../src/Admin/Settings.php:766
+msgid "Listing Approved"
+msgstr ""
+
+#: ../src/Admin/Settings.php:772
+msgid "Notify author when their listing is approved."
+msgstr ""
+
+#: ../src/Admin/Settings.php:778
+msgid "Listing Rejected"
+msgstr ""
+
+#: ../src/Admin/Settings.php:784
+msgid "Notify author when their listing is rejected."
+msgstr ""
+
+#: ../src/Admin/Settings.php:790
+msgid "Listing Expiring"
+msgstr ""
+
+#: ../src/Admin/Settings.php:796
+msgid "Notify author when their listing is about to expire."
+msgstr ""
+
+#: ../src/Admin/Settings.php:802
+msgid "New Review"
+msgstr ""
+
+#: ../src/Admin/Settings.php:808
+msgid "Notify listing author when they receive a new review."
+msgstr ""
+
+#: ../src/Admin/Settings.php:814
+msgid "New Inquiry"
+msgstr ""
+
+#: ../src/Admin/Settings.php:820
+msgid "Notify listing author when they receive a contact inquiry."
+msgstr ""
+
+#: ../src/Admin/Settings.php:838
+msgid "Advanced Settings"
+msgstr ""
+
+#: ../src/Admin/Settings.php:840
+msgid "Advanced configuration options."
+msgstr ""
+
+#: ../src/Admin/Settings.php:847
+msgid "Delete Data on Uninstall"
+msgstr ""
+
+#: ../src/Admin/Settings.php:853
+msgid "Remove all plugin data when uninstalling."
+msgstr ""
+
+#: ../src/Admin/Settings.php:854
+msgid "Warning: This will permanently delete all listings, reviews, and settings."
+msgstr ""
+
+#: ../src/Admin/Settings.php:860
+msgid "Custom CSS"
+msgstr ""
+
+#: ../src/Admin/Settings.php:867
+msgid "Add custom CSS styles for the plugin."
+msgstr ""
+
+#: ../src/Admin/Settings.php:873
+msgid "Debug Mode"
+msgstr ""
+
+#: ../src/Admin/Settings.php:879
+msgid "Enable debug logging for troubleshooting."
+msgstr ""
+
+#: ../src/Admin/Settings.php:880
+msgid "Logs will be written to the WordPress debug log."
+msgstr ""
+
+#: ../src/Admin/Settings.php:1046
+msgid "— Select Page —"
+msgstr ""
+
+#: ../src/Admin/Settings.php:1168
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: ../src/Admin/Settings.php:1195
+msgid "Settings saved."
+msgstr ""
+
+#: ../src/Admin/Settings.php:1237
+msgid "Settings tabs"
+msgstr ""
+
+#: ../src/Api/RestController.php:373, ../src/Api/RestController.php:522
+msgid "You must be logged in to access this endpoint."
+msgstr ""
+
+#: ../src/Api/RestController.php:393
+msgid "You must be logged in to create listings."
+msgstr ""
+
+#: ../src/Api/RestController.php:401
+msgid "You do not have permission to create listings."
+msgstr ""
+
+#: ../src/Api/RestController.php:424
+msgid "You must be logged in to edit listings."
+msgstr ""
+
+#: ../src/Api/RestController.php:434, ../src/Api/RestController.php:483, ../src/Core/Plugin.php:503, ../src/Core/Plugin.php:552, ../src/Review/ReviewManager.php:199, ../src/User/FavoriteToggle.php:131
+msgid "Invalid listing ID."
+msgstr ""
+
+#: ../src/Api/RestController.php:444, ../src/Api/RestController.php:493, ../src/Api/Endpoints/FavoritesEndpoint.php:325, ../src/Api/Endpoints/FavoritesEndpoint.php:422, ../src/Api/Endpoints/InquiriesEndpoint.php:435, ../src/Api/Endpoints/ListingsEndpoint.php:229, ../src/Api/Endpoints/ListingsEndpoint.php:238, ../src/Api/Endpoints/ListingsEndpoint.php:366, ../src/Api/Endpoints/ListingsEndpoint.php:485, ../src/Api/Endpoints/ReviewsEndpoint.php:507, ../src/Api/Endpoints/ReviewsEndpoint.php:584
+msgid "Listing not found."
+msgstr ""
+
+#: ../src/Api/RestController.php:453, ../src/Frontend/Submission/SubmissionHandler.php:248
+msgid "You do not have permission to edit this listing."
+msgstr ""
+
+#: ../src/Api/RestController.php:473
+msgid "You must be logged in to delete listings."
+msgstr ""
+
+#: ../src/Api/RestController.php:502
+msgid "You do not have permission to delete this listing."
+msgstr ""
+
+#: ../src/Api/RestController.php:530
+msgid "You do not have permission to access this endpoint."
+msgstr ""
+
+#: ../src/Api/RestController.php:550
+msgid "You must be logged in to manage listings."
+msgstr ""
+
+#: ../src/Api/RestController.php:558
+msgid "You do not have permission to manage listings."
+msgstr ""
+
+#: ../src/Blocks/BlockManager.php:287, ../src/Frontend/Display/GridView.php:103
+msgid "Grid"
+msgstr ""
+
+#: ../src/Blocks/BlockManager.php:288, ../src/Frontend/Display/ListView.php:97
+msgid "List"
+msgstr ""
+
+#: ../src/Blocks/BlockManager.php:291
+msgid "Horizontal"
+msgstr ""
+
+#: ../src/Blocks/BlockManager.php:292
+msgid "Vertical"
+msgstr ""
+
+#: ../src/Blocks/BlockManager.php:293
+msgid "Inline"
+msgstr ""
+
+#: ../src/Blocks/BlockManager.php:297, ../src/Frontend/Dashboard/MyListings.php:379, ../templates/emails/listing-submitted.php:34
+msgid "Title"
+msgstr ""
+
+#: ../src/Blocks/BlockManager.php:298
+msgid "Modified"
+msgstr ""
+
+#: ../src/Blocks/BlockManager.php:299, ../src/Search/SearchQuery.php:433
+msgid "Random"
+msgstr ""
+
+#: ../src/Blocks/BlockManager.php:300, ../src/Listing/AdminColumns.php:81, ../src/Frontend/Dashboard/MyListings.php:380, ../templates/dashboard/my-listings.php:127
+msgid "Views"
+msgstr ""
+
+#: ../src/Blocks/BlockManager.php:303
+msgid "Descending"
+msgstr ""
+
+#: ../src/Blocks/BlockManager.php:304
+msgid "Ascending"
+msgstr ""
+
+#: ../src/Blocks/CategoriesBlock.php:131
+msgid "Listing Categories"
+msgstr ""
+
+#: ../src/Blocks/CategoriesBlock.php:132
+msgid "Display listing categories in a grid or list."
+msgstr ""
+
+#: ../src/Blocks/CategoriesBlock.php:134
+msgid "categories"
+msgstr ""
+
+#: ../src/Blocks/CategoriesBlock.php:135
+msgid "taxonomy"
+msgstr ""
+
+#: ../src/Blocks/CategoriesBlock.php:136, ../src/Blocks/ListingsBlock.php:145
+msgid "directory"
+msgstr ""
+
+#: ../src/Blocks/CategoriesBlock.php:137, ../src/Blocks/ListingsBlock.php:146
+msgid "grid"
+msgstr ""
+
+#. translators: %d: Number of listings
+#. translators: %d: number of listings
+#: ../src/Blocks/CategoriesBlock.php:317, ../src/Shortcode/CategoriesShortcode.php:338, ../templates/single-listing.php:288
+msgid "%d listing"
+msgid_plural "%d listings"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/Blocks/CategoriesBlock.php:387, ../src/Shortcode/CategoriesShortcode.php:442, ../src/Taxonomy/CategoryTaxonomy.php:108
+msgid "No categories found."
+msgstr ""
+
+#: ../src/Blocks/ListingsBlock.php:142
+msgid "Display listings in grid or list view."
+msgstr ""
+
+#: ../src/Blocks/ListingsBlock.php:144, ../src/Blocks/SearchFormBlock.php:127
+msgid "listings"
+msgstr ""
+
+#: ../src/Blocks/ListingsBlock.php:147
+msgid "list"
+msgstr ""
+
+#. translators: %s: View type
+#: ../src/Blocks/ListingsBlock.php:189, ../src/Shortcode/ListingsShortcode.php:202
+msgid "Invalid view type: %s"
+msgstr ""
+
+#: ../src/Blocks/ListingsBlock.php:392, ../src/Shortcode/ListingsShortcode.php:439, ../templates/review/reviews-pagination.php:63, ../templates/review/reviews-pagination.php:58
+msgid "Previous"
+msgstr ""
+
+#: ../src/Blocks/ListingsBlock.php:393, ../src/Shortcode/ListingsShortcode.php:440, ../templates/review/reviews-pagination.php:135, ../templates/review/reviews-pagination.php:130
+msgid "Next"
+msgstr ""
+
+#: ../src/Blocks/ListingsBlock.php:412, ../src/Core/TemplateLoader.php:440, ../src/Shortcode/ListingsShortcode.php:459, ../templates/dashboard/my-listings.php:155
+msgid "Listings pagination"
+msgstr ""
+
+#: ../src/Blocks/ListingsBlock.php:437, ../src/Core/Assets.php:194, ../src/Listing/PostType.php:91, ../src/Shortcode/ListingsShortcode.php:485
+msgid "No listings found."
+msgstr ""
+
+#: ../src/Blocks/SearchFormBlock.php:121
+msgid "Listing Search Form"
+msgstr ""
+
+#: ../src/Blocks/SearchFormBlock.php:122
+msgid "Display a search form for filtering listings."
+msgstr ""
+
+#: ../src/Blocks/SearchFormBlock.php:124
+msgid "search"
+msgstr ""
+
+#: ../src/Blocks/SearchFormBlock.php:125
+msgid "filter"
+msgstr ""
+
+#: ../src/Blocks/SearchFormBlock.php:126
+msgid "form"
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:93
+msgid "Security check failed. Please refresh and try again."
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:111, ../templates/contact/contact-form.php:167
+msgid "Your message has been sent successfully!"
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:150
+msgid "This listing cannot receive messages at this time."
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:174
+msgid "Failed to send message. Please try again later."
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:218, ../src/Review/ReviewHandler.php:398, ../src/Review/ReviewHandler.php:394
+msgid "Invalid listing."
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:223
+msgid "Please enter your name."
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:230, ../src/Shortcode/RegisterFormShortcode.php:286, ../src/Frontend/Dashboard/Profile.php:406
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:228
+msgid "Please enter your email address."
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:235
+msgid "Please enter your phone number."
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:240
+msgid "Please enter a subject."
+msgstr ""
+
+#. translators: %d: minimum number of characters
+#: ../src/Contact/ContactHandler.php:251
+msgid "Message must be at least %d characters."
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:245
+msgid "Please enter your message."
+msgstr ""
+
+#. translators: %s: listing title
+#: ../src/Contact/ContactHandler.php:299, ../src/Contact/ContactHandler.php:368
+msgid "New inquiry about: %s"
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:375
+msgid "From:"
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:380
+msgid "Email:"
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:387
+msgid "Phone:"
+msgstr ""
+
+#: ../src/Contact/ContactHandler.php:394, ../templates/emails/new-inquiry.php:66
+msgid "Message:"
+msgstr ""
+
+#. translators: %s: listing URL
+#: ../src/Contact/ContactHandler.php:402
+msgid "This message was sent via the contact form on: %s"
+msgstr ""
+
+#: ../src/Contact/InquiryTracker.php:96
+msgctxt "post type general name"
+msgid "Inquiries"
+msgstr ""
+
+#: ../src/Contact/InquiryTracker.php:97
+msgctxt "post type singular name"
+msgid "Inquiry"
+msgstr ""
+
+#: ../src/Contact/InquiryTracker.php:98
+msgctxt "admin menu"
+msgid "Inquiries"
+msgstr ""
+
+#: ../src/Contact/InquiryTracker.php:99
+msgid "All Inquiries"
+msgstr ""
+
+#: ../src/Contact/InquiryTracker.php:100
+msgid "View Inquiry"
+msgstr ""
+
+#: ../src/Contact/InquiryTracker.php:101
+msgid "Search Inquiries"
+msgstr ""
+
+#: ../src/Contact/InquiryTracker.php:102
+msgid "No inquiries found."
+msgstr ""
+
+#: ../src/Contact/InquiryTracker.php:103
+msgid "No inquiries found in Trash."
+msgstr ""
+
+#. translators: 1: sender name, 2: listing title
+#: ../src/Contact/InquiryTracker.php:209
+msgid "Inquiry from %1$s about %2$s"
+msgstr ""
+
+#. translators: %s: Required PHP version
+#: ../src/Core/Activator.php:61
+msgid "All Purpose Directory requires PHP %s or higher."
+msgstr ""
+
+#. translators: %s: Required WordPress version
+#: ../src/Core/Activator.php:74
+msgid "All Purpose Directory requires WordPress %s or higher."
+msgstr ""
+
+#: ../src/Core/Assets.php:192
+msgid "Loading..."
+msgstr ""
+
+#: ../src/Core/Assets.php:193, ../src/Core/Assets.php:227
+msgid "An error occurred. Please try again."
+msgstr ""
+
+#: ../src/Core/Assets.php:195, ../src/User/FavoriteToggle.php:357, ../src/User/FavoriteToggle.php:437
+msgid "Add to favorites"
+msgstr ""
+
+#: ../src/Core/Assets.php:196, ../src/User/FavoriteToggle.php:356, ../src/User/FavoriteToggle.php:438
+msgid "Remove from favorites"
+msgstr ""
+
+#: ../src/Core/Assets.php:197
+msgid "Filtering listings..."
+msgstr ""
+
+#. translators: %d: Number of listings found
+#: ../src/Core/Assets.php:199
+msgid "%d listings found"
+msgstr ""
+
+#: ../src/Core/Assets.php:200
+msgid "1 listing found"
+msgstr ""
+
+#: ../src/Core/Assets.php:224
+msgid "Are you sure you want to delete this item?"
+msgstr ""
+
+#: ../src/Core/Assets.php:225
+msgid "Saving..."
+msgstr ""
+
+#: ../src/Core/Assets.php:226
+msgid "Saved!"
+msgstr ""
+
+#: ../src/Core/Plugin.php:388, ../src/Core/Plugin.php:492, ../src/Core/Plugin.php:541
+msgid "Invalid security token."
+msgstr ""
+
+#: ../src/Core/Plugin.php:497, ../src/Core/Plugin.php:546
+msgid "You must be logged in."
+msgstr ""
+
+#: ../src/Core/Plugin.php:526, ../src/Frontend/Dashboard/MyListings.php:748
+msgid "Failed to delete listing. You may not have permission."
+msgstr ""
+
+#: ../src/Core/Plugin.php:520, ../src/Frontend/Dashboard/MyListings.php:728
+msgid "Listing permanently deleted."
+msgstr ""
+
+#: ../src/Core/Plugin.php:521, ../src/Frontend/Dashboard/MyListings.php:729
+msgid "Listing moved to trash."
+msgstr ""
+
+#: ../src/Core/Plugin.php:559
+msgid "Invalid status."
+msgstr ""
+
+#: ../src/Core/Plugin.php:576
+msgid "Failed to update listing status. You may not have permission."
+msgstr ""
+
+#: ../src/Core/Plugin.php:569
+msgid "Listing status updated."
+msgstr ""
+
+#: ../src/Core/TemplateLoader.php:305, ../templates/dashboard/favorites.php:52
+msgid "View mode"
+msgstr ""
+
+#: ../src/Core/TemplateLoader.php:317, ../templates/dashboard/favorites.php:55
+msgid "Grid view"
+msgstr ""
+
+#: ../src/Core/TemplateLoader.php:330, ../templates/dashboard/favorites.php:61
+msgid "List view"
+msgstr ""
+
+#. translators: 1: start, 2: end, 3: total
+#: ../src/Core/TemplateLoader.php:372
+msgid "Showing %1$d-%2$d of %3$d listings"
+msgstr ""
+
+#: ../src/Core/TemplateLoader.php:369
+msgid "Showing all %d listings"
+msgstr ""
+
+#: ../src/Core/TemplateLoader.php:366
+msgid "Showing 1 listing"
+msgstr ""
+
+#: ../src/Core/TemplateLoader.php:364, ../templates/search/no-results.php:29
+msgid "No listings found"
+msgstr ""
+
+#: ../src/Core/TemplateLoader.php:421
+msgid "Page"
+msgstr ""
+
+#: ../src/Email/EmailManager.php:601
+msgid "[{site_name}] New listing submitted: {listing_title}"
+msgstr ""
+
+#: ../src/Email/EmailManager.php:621
+msgid "[{site_name}] Your listing has been approved: {listing_title}"
+msgstr ""
+
+#: ../src/Email/EmailManager.php:644
+msgid "[{site_name}] Your listing was not approved: {listing_title}"
+msgstr ""
+
+#: ../src/Email/EmailManager.php:667
+msgid "[{site_name}] Your listing expires soon: {listing_title}"
+msgstr ""
+
+#: ../src/Email/EmailManager.php:687
+msgid "[{site_name}] Your listing has expired: {listing_title}"
+msgstr ""
+
+#: ../src/Email/EmailManager.php:717
+msgid "[{site_name}] New review on your listing: {listing_title}"
+msgstr ""
+
+#: ../src/Email/EmailManager.php:746
+msgid "[{site_name}] New inquiry about your listing: {listing_title}"
+msgstr ""
+
+#: ../src/Email/EmailManager.php:842, ../templates/emails/email-wrapper.php:259
+msgid "This is an automated message. Please do not reply directly to this email."
+msgstr ""
+
+#: ../src/Email/EmailManager.php:856
+msgid ""
+"A new listing has been submitted on {site_name}.\n"
+"\n"
+"Title: {listing_title}\n"
+"Author: {author_name}\n"
+"Status: {listing_status}\n"
+"\n"
+"View listing: {listing_url}\n"
+"Edit listing: {listing_edit_url}\n"
+"\n"
+"Manage listings: {admin_url}"
+msgstr ""
+
+#: ../src/Email/EmailManager.php:860
+msgid ""
+"Great news! Your listing has been approved on {site_name}.\n"
+"\n"
+"Title: {listing_title}\n"
+"\n"
+"Your listing is now live and can be viewed at:\n"
+"{listing_url}\n"
+"\n"
+"Thank you for your submission!"
+msgstr ""
+
+#: ../src/Email/EmailManager.php:864
+msgid ""
+"We're sorry, but your listing was not approved on {site_name}.\n"
+"\n"
+"Title: {listing_title}\n"
+"\n"
+"If you have any questions, please contact us.\n"
+"\n"
+"Thank you for your understanding."
+msgstr ""
+
+#: ../src/Email/EmailManager.php:868
+msgid ""
+"Your listing on {site_name} will expire soon.\n"
+"\n"
+"Title: {listing_title}\n"
+"Days remaining: {days_left}\n"
+"\n"
+"To keep your listing active, please renew it.\n"
+"\n"
+"View listing: {listing_url}"
+msgstr ""
+
+#: ../src/Email/EmailManager.php:872
+msgid ""
+"Your listing on {site_name} has expired.\n"
+"\n"
+"Title: {listing_title}\n"
+"\n"
+"Your listing is no longer visible to the public.\n"
+"To reactivate your listing, please contact us or submit a new listing."
+msgstr ""
+
+#: ../src/Email/EmailManager.php:876
+msgid ""
+"Your listing has received a new review on {site_name}.\n"
+"\n"
+"Listing: {listing_title}\n"
+"Reviewer: {review_author}\n"
+"Rating: {review_rating}/5\n"
+"\n"
+"Review:\n"
+"{review_content}\n"
+"\n"
+"View listing: {listing_url}"
+msgstr ""
+
+#: ../src/Email/EmailManager.php:880
+msgid ""
+"You have received a new inquiry about your listing on {site_name}.\n"
+"\n"
+"Listing: {listing_title}\n"
+"\n"
+"From: {inquiry_name}\n"
+"Email: {inquiry_email}\n"
+"Phone: {inquiry_phone}\n"
+"\n"
+"Message:\n"
+"{inquiry_message}\n"
+"\n"
+"View listing: {listing_url}"
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/AbstractFieldType.php:120, ../src/Fields/FieldValidator.php:441, ../src/Fields/Types/FileField.php:205, ../src/Fields/Types/GalleryField.php:252, ../src/Fields/Types/ImageField.php:211
+msgid "%s is required."
+msgstr ""
+
+#: ../src/Fields/AbstractFieldType.php:252
+msgid "This field"
+msgstr ""
+
+#. translators: 1: field label, 2: minimum length
+#: ../src/Fields/AbstractFieldType.php:380
+msgid "%1$s must be at least %2$d characters."
+msgstr ""
+
+#. translators: 1: field label, 2: maximum length
+#: ../src/Fields/AbstractFieldType.php:395
+msgid "%1$s must not exceed %2$d characters."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/AbstractFieldType.php:409
+msgid "%s format is invalid."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/AbstractFieldType.php:428
+msgid "%s is invalid."
+msgstr ""
+
+#: ../src/Fields/FieldRegistry.php:191
+msgid "Field name cannot be empty."
+msgstr ""
+
+#. translators: %s: field name
+#: ../src/Fields/FieldRegistry.php:206
+msgid "Field \"%s\" is already registered."
+msgstr ""
+
+#: ../src/Fields/FieldRenderer.php:422
+msgid "*"
+msgstr ""
+
+#. translators: %s: field name
+#: ../src/Fields/FieldValidator.php:103, ../src/Fields/FieldValidator.php:212
+msgid "Unknown field: %s."
+msgstr ""
+
+#. translators: %s: field type
+#: ../src/Fields/FieldValidator.php:116
+msgid "Unknown field type: %s."
+msgstr ""
+
+#: ../src/Listing/AdminColumns.php:67, ../templates/dashboard/my-listings.php:121
+msgid "Image"
+msgstr ""
+
+#: ../src/Listing/AdminColumns.php:75, ../src/Search/Filters/CategoryFilter.php:54, ../templates/submission/category-selector.php:32
+msgid "Category"
+msgstr ""
+
+#: ../src/Listing/AdminColumns.php:145
+msgid "No image"
+msgstr ""
+
+#: ../src/Listing/AdminColumns.php:160
+msgid "No category"
+msgstr ""
+
+#: ../src/Listing/AdminColumns.php:205, ../src/Listing/AdminColumns.php:335, ../src/Frontend/Dashboard/MyListings.php:363, ../src/Frontend/Dashboard/MyListings.php:800, ../templates/emails/listing-expired.php:43
+msgid "Expired"
+msgstr ""
+
+#: ../src/Listing/AdminColumns.php:308, ../src/Taxonomy/CategoryTaxonomy.php:95, ../src/Search/Filters/CategoryFilter.php:58
+msgid "All Categories"
+msgstr ""
+
+#: ../src/Listing/AdminColumns.php:331, ../src/Listing/AdminColumns.php:339
+msgid "All Statuses"
+msgstr ""
+
+#: ../src/Listing/PostType.php:57
+msgctxt "post status"
+msgid "Expired"
+msgstr ""
+
+#. translators: %s: Number of expired listings
+#: ../src/Listing/PostType.php:63
+msgid "Expired <span class=\"count\">(%s)</span>"
+msgid_plural "Expired <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/Listing/PostType.php:79
+msgctxt "post type general name"
+msgid "Listings"
+msgstr ""
+
+#: ../src/Listing/PostType.php:80
+msgctxt "post type singular name"
+msgid "Listing"
+msgstr ""
+
+#: ../src/Listing/PostType.php:81
+msgctxt "admin menu"
+msgid "Listings"
+msgstr ""
+
+#: ../src/Listing/PostType.php:82
+msgctxt "add new on admin bar"
+msgid "Listing"
+msgstr ""
+
+#: ../src/Listing/PostType.php:83
+msgctxt "listing"
+msgid "Add New"
+msgstr ""
+
+#: ../src/Listing/PostType.php:84, ../src/Frontend/Dashboard/Dashboard.php:557
+msgid "Add New Listing"
+msgstr ""
+
+#: ../src/Listing/PostType.php:85
+msgid "New Listing"
+msgstr ""
+
+#: ../src/Listing/PostType.php:86
+msgid "Edit Listing"
+msgstr ""
+
+#: ../src/Listing/PostType.php:89
+msgid "Search Listings"
+msgstr ""
+
+#: ../src/Listing/PostType.php:90
+msgid "Parent Listings:"
+msgstr ""
+
+#: ../src/Listing/PostType.php:92
+msgid "No listings found in Trash."
+msgstr ""
+
+#: ../src/Listing/PostType.php:93
+msgctxt "Overrides the \"Featured Image\" phrase"
+msgid "Listing Image"
+msgstr ""
+
+#: ../src/Listing/PostType.php:94
+msgctxt "Overrides the \"Set featured image\" phrase"
+msgid "Set listing image"
+msgstr ""
+
+#: ../src/Listing/PostType.php:95
+msgctxt "Overrides the \"Remove featured image\" phrase"
+msgid "Remove listing image"
+msgstr ""
+
+#: ../src/Listing/PostType.php:96
+msgctxt "Overrides the \"Use as featured image\" phrase"
+msgid "Use as listing image"
+msgstr ""
+
+#: ../src/Listing/PostType.php:97
+msgctxt "The post type archive label"
+msgid "Listing archives"
+msgstr ""
+
+#: ../src/Listing/PostType.php:98
+msgctxt "Overrides the \"Insert into post\" phrase"
+msgid "Insert into listing"
+msgstr ""
+
+#: ../src/Listing/PostType.php:99
+msgctxt "Overrides the \"Uploaded to this post\" phrase"
+msgid "Uploaded to this listing"
+msgstr ""
+
+#: ../src/Listing/PostType.php:100
+msgctxt "Screen reader text"
+msgid "Filter listings list"
+msgstr ""
+
+#: ../src/Listing/PostType.php:101
+msgctxt "Screen reader text"
+msgid "Listings list navigation"
+msgstr ""
+
+#: ../src/Listing/PostType.php:102
+msgctxt "Screen reader text"
+msgid "Listings list"
+msgstr ""
+
+#: ../src/Listing/PostType.php:114
+msgid "Directory listings"
+msgstr ""
+
+#. translators: 1: rating value, 2: maximum rating (star count)
+#: ../src/Review/RatingCalculator.php:411
+msgid "%1$s out of %2$s stars"
+msgstr ""
+
+#. translators: %d: number of reviews
+#: ../src/Review/RatingCalculator.php:419
+msgid ", based on %d review"
+msgid_plural ", based on %d reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of reviews
+#: ../src/Review/RatingCalculator.php:464
+msgid "(%d review)"
+msgid_plural "(%d reviews)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/Review/ReviewDisplay.php:289
+msgid "Reviews list"
+msgstr ""
+
+#: ../src/Review/ReviewForm.php:389
+msgid "Please share your honest experience. Reviews help other users make informed decisions."
+msgstr ""
+
+#: ../src/Review/ReviewForm.php:412
+msgid "Submitting review..."
+msgstr ""
+
+#: ../src/Review/ReviewForm.php:413, ../src/Review/ReviewHandler.php:262
+msgid "Thank you for your review!"
+msgstr ""
+
+#: ../src/Review/ReviewForm.php:414, ../src/Review/ReviewHandler.php:261
+msgid "Your review has been updated."
+msgstr ""
+
+#: ../src/Review/ReviewForm.php:415
+msgid "Failed to submit review. Please try again."
+msgstr ""
+
+#: ../src/Review/ReviewForm.php:416
+msgid "Please select a rating."
+msgstr ""
+
+#. translators: %d: Minimum number of characters required for review
+#: ../src/Review/ReviewForm.php:418
+msgid "Your review is too short. Please write at least %d characters."
+msgstr ""
+
+#: ../src/Review/ReviewForm.php:419
+msgid "Your review has been submitted and is pending approval."
+msgstr ""
+
+#: ../src/Review/ReviewForm.php:420, ../templates/review/star-input.php:79
+msgid "Select a rating"
+msgstr ""
+
+#. translators: %d: Star rating number (singular)
+#. translators: %d: number of stars (singular)
+#: ../src/Review/ReviewForm.php:422, ../templates/review/rating-summary.php:67, ../templates/review/review-item.php:38, ../templates/review/star-input.php:48
+msgid "%d star"
+msgstr ""
+
+#. translators: %d: Star rating number (plural)
+#. translators: %d: number of stars (plural)
+#: ../src/Review/ReviewForm.php:424, ../templates/review/rating-summary.php:69, ../templates/review/review-item.php:40, ../templates/review/star-input.php:50
+msgid "%d stars"
+msgstr ""
+
+#: ../src/Review/ReviewHandler.php:126, ../src/Shortcode/RegisterFormShortcode.php:264, ../src/Frontend/Submission/SubmissionHandler.php:218
+msgid "Security check failed. Please try again."
+msgstr ""
+
+#: ../src/Review/ReviewHandler.php:127
+msgid "Error"
+msgstr ""
+
+#: ../src/Review/ReviewHandler.php:186, ../src/Review/ReviewHandler.php:215
+msgid "Security check failed. Please refresh the page and try again."
+msgstr ""
+
+#: ../src/Review/ReviewHandler.php:207, ../src/Review/ReviewManager.php:737
+msgid "You must be logged in to submit a review."
+msgstr ""
+
+#: ../src/Review/ReviewHandler.php:265
+msgid "Thank you! Your review has been submitted and is pending approval."
+msgstr ""
+
+#: ../src/Review/ReviewHandler.php:317, ../src/Api/Endpoints/ReviewsEndpoint.php:400
+msgid "You do not have permission to edit this review."
+msgstr ""
+
+#. translators: 1: minimum rating, 2: maximum rating
+#: ../src/Review/ReviewHandler.php:408, ../src/Review/ReviewManager.php:327, ../src/Review/ReviewManager.php:751
+msgid "Rating must be between %1$d and %2$d."
+msgstr ""
+
+#. translators: %d: minimum content length
+#: ../src/Review/ReviewHandler.php:426
+msgid "Review must be at least %d characters."
+msgstr ""
+
+#: ../src/Review/ReviewHandler.php:420, ../src/Review/ReviewManager.php:761
+msgid "Review content is required."
+msgstr ""
+
+#: ../src/Review/ReviewHandler.php:435, ../src/Review/ReviewManager.php:781
+msgid "Your name is required."
+msgstr ""
+
+#: ../src/Review/ReviewHandler.php:439, ../src/Review/ReviewManager.php:784
+msgid "A valid email address is required."
+msgstr ""
+
+#: ../src/Review/ReviewManager.php:217, ../src/Api/Endpoints/ReviewsEndpoint.php:594
+msgid "You have already reviewed this listing."
+msgstr ""
+
+#: ../src/Review/ReviewManager.php:271
+msgid "Failed to create review."
+msgstr ""
+
+#: ../src/Review/ReviewManager.php:315
+msgid "Invalid review ID."
+msgstr ""
+
+#. translators: %d: minimum content length
+#: ../src/Review/ReviewManager.php:345, ../src/Review/ReviewManager.php:771
+msgid "Review content must be at least %d characters."
+msgstr ""
+
+#: ../src/Review/ReviewManager.php:743
+msgid "Rating is required."
+msgstr ""
+
+#: ../src/Search/FilterRegistry.php:115
+msgid "Filter name cannot be empty."
+msgstr ""
+
+#. translators: %s: filter name
+#: ../src/Search/FilterRegistry.php:126
+msgid "Filter \"%s\" is already registered."
+msgstr ""
+
+#: ../src/Search/FilterRenderer.php:219, ../src/Search/Filters/KeywordFilter.php:41, ../templates/search/search-form.php:71
+msgid "Search"
+msgstr ""
+
+#: ../src/Search/FilterRenderer.php:224, ../templates/search/search-form.php:74
+msgid "Clear Filters"
+msgstr ""
+
+#: ../src/Search/FilterRenderer.php:323
+msgid "Sort by"
+msgstr ""
+
+#: ../src/Search/FilterRenderer.php:419, ../templates/search/active-filters.php:33
+msgid "Active filters:"
+msgstr ""
+
+#. translators: %s: filter label
+#. translators: %s: Filter label (e.g., Category, Tag, Keyword)
+#: ../src/Search/FilterRenderer.php:444, ../templates/search/active-filters.php:70
+msgid "Remove %s filter"
+msgstr ""
+
+#: ../src/Search/FilterRenderer.php:456, ../templates/search/active-filters.php:79
+msgid "Clear all"
+msgstr ""
+
+#: ../src/Search/FilterRenderer.php:519
+msgid "No listings found matching your criteria."
+msgstr ""
+
+#: ../src/Search/FilterRenderer.php:524
+msgid "Clear all filters"
+msgstr ""
+
+#: ../src/Search/SearchQuery.php:430
+msgid "Newest First"
+msgstr ""
+
+#: ../src/Search/SearchQuery.php:431
+msgid "Title A-Z"
+msgstr ""
+
+#: ../src/Search/SearchQuery.php:432
+msgid "Most Viewed"
+msgstr ""
+
+#: ../src/Shortcode/AbstractShortcode.php:287
+msgid "Shortcode Error"
+msgstr ""
+
+#. translators: %s: Feature name
+#: ../src/Shortcode/AbstractShortcode.php:307
+msgid "%s is coming soon."
+msgstr ""
+
+#: ../src/Shortcode/AbstractShortcode.php:327
+msgid "Please log in to access this content."
+msgstr ""
+
+#: ../src/Shortcode/AbstractShortcode.php:339, ../src/Shortcode/RegisterFormShortcode.php:366, ../src/Shortcode/RegisterFormShortcode.php:385, ../templates/dashboard/login-required.php:56, ../templates/submission/edit-not-allowed.php:49
+msgid "Log In"
+msgstr ""
+
+#: ../src/Shortcode/FavoritesShortcode.php:116
+msgid "Please log in to view your favorites."
+msgstr ""
+
+#: ../src/Shortcode/FavoritesShortcode.php:144, ../src/Frontend/Dashboard/Dashboard.php:178
+msgid "Favorites"
+msgstr ""
+
+#: ../src/Shortcode/LoginFormShortcode.php:258
+msgid "Lost your password?"
+msgstr ""
+
+#: ../src/Shortcode/LoginFormShortcode.php:267, ../src/Shortcode/RegisterFormShortcode.php:240
+msgid "Register"
+msgstr ""
+
+#. translators: %s: User display name
+#: ../src/Shortcode/LoginFormShortcode.php:295
+msgid "You are logged in as %s."
+msgstr ""
+
+#: ../src/Shortcode/LoginFormShortcode.php:309, ../src/Shortcode/RegisterFormShortcode.php:437
+msgid "Log Out"
+msgstr ""
+
+#: ../src/Shortcode/RegisterFormShortcode.php:197
+msgid "Username"
+msgstr ""
+
+#: ../src/Shortcode/RegisterFormShortcode.php:211, ../templates/dashboard/profile.php:135
+msgid "Email Address"
+msgstr ""
+
+#: ../src/Shortcode/RegisterFormShortcode.php:224
+msgid "A password will be sent to your email address."
+msgstr ""
+
+#: ../src/Shortcode/RegisterFormShortcode.php:277
+msgid "Invalid username. Please use only letters, numbers, and underscores."
+msgstr ""
+
+#: ../src/Shortcode/RegisterFormShortcode.php:275
+msgid "This username is already registered."
+msgstr ""
+
+#: ../src/Shortcode/RegisterFormShortcode.php:273
+msgid "Please enter a username."
+msgstr ""
+
+#: ../src/Shortcode/RegisterFormShortcode.php:288
+msgid "This email address is already registered."
+msgstr ""
+
+#: ../src/Shortcode/RegisterFormShortcode.php:284
+msgid "Please enter an email address."
+msgstr ""
+
+#: ../src/Shortcode/RegisterFormShortcode.php:362
+msgid "Registration successful! Please check your email for your password."
+msgstr ""
+
+#: ../src/Shortcode/RegisterFormShortcode.php:383
+msgid "Already have an account?"
+msgstr ""
+
+#: ../src/Shortcode/RegisterFormShortcode.php:403
+msgid "User registration is currently disabled."
+msgstr ""
+
+#. translators: %s: User display name
+#: ../src/Shortcode/RegisterFormShortcode.php:423
+msgid "You are already logged in as %s."
+msgstr ""
+
+#: ../src/Shortcode/SubmissionFormShortcode.php:177
+msgid "Please log in to submit a listing."
+msgstr ""
+
+#: ../src/Shortcode/SubmissionFormShortcode.php:299
+msgid "Listing Not Found"
+msgstr ""
+
+#: ../src/Shortcode/SubmissionFormShortcode.php:300
+msgid "The listing you are trying to edit does not exist or has been removed."
+msgstr ""
+
+#: ../src/Shortcode/SubmissionFormShortcode.php:307
+msgid "Permission Denied"
+msgstr ""
+
+#: ../src/Shortcode/SubmissionFormShortcode.php:308
+msgid "You do not have permission to edit this listing. You can only edit listings that you have created."
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:92
+msgctxt "taxonomy general name"
+msgid "Categories"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:93
+msgctxt "taxonomy singular name"
+msgid "Category"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:94
+msgctxt "admin menu"
+msgid "Categories"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:96
+msgid "Parent Category"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:97
+msgid "Parent Category:"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:98
+msgid "New Category Name"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:99
+msgid "Add New Category"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:100
+msgid "Edit Category"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:101
+msgid "Update Category"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:102
+msgid "View Category"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:103
+msgid "Separate categories with commas"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:104
+msgid "Add or remove categories"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:105
+msgid "Choose from the most used"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:106
+msgid "Popular Categories"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:107
+msgid "Search Categories"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:109
+msgid "No categories"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:110
+msgid "Categories list"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:111
+msgid "Categories list navigation"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:112
+msgid "&larr; Back to Categories"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:124
+msgid "Listing categories for organizing directory entries."
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:153, ../src/Taxonomy/CategoryTaxonomy.php:181, ../src/Taxonomy/CategoryTaxonomy.php:262
+msgid "Icon"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:155, ../src/Taxonomy/CategoryTaxonomy.php:185
+msgid "&mdash; No Icon &mdash;"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:158, ../src/Taxonomy/CategoryTaxonomy.php:188
+msgid "Select a dashicon to represent this category."
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:162, ../src/Taxonomy/CategoryTaxonomy.php:200, ../src/Taxonomy/CategoryTaxonomy.php:280
+msgid "Color"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:164, ../src/Taxonomy/CategoryTaxonomy.php:204
+msgid "Choose a color to represent this category."
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:192
+msgid "Current icon preview"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:309
+msgid "No icon"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:324
+msgid "No color"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:321
+msgid "Color: %s"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:411
+msgid "Business"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:412
+msgid "Store"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:413
+msgid "Cart"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:414
+msgid "Portfolio"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:415
+msgid "Building"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:416
+msgid "Money"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:417
+msgid "Bank"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:418
+msgid "Businessman"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:419
+msgid "Business Person"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:420
+msgid "Businesswoman"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:422
+msgid "Food & Drink"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:423
+msgid "Food"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:424
+msgid "Coffee"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:425
+msgid "Carrot"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:426
+msgid "Beer"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:428, ../src/Taxonomy/CategoryTaxonomy.php:429
+msgid "Location"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:430
+msgid "Location (alt)"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:431
+msgid "Globe"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:432
+msgid "Globe (alt)"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:434
+msgid "Transportation"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:435
+msgid "Car"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:436
+msgid "Airplane"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:438
+msgid "Activities"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:439
+msgid "Palm Tree"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:440
+msgid "Pets"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:441
+msgid "Games"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:442
+msgid "Tickets"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:443
+msgid "Art"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:444
+msgid "Camera"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:445
+msgid "Video"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:447
+msgid "Education & Health"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:448
+msgid "Book"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:449
+msgid "Book (alt)"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:450
+msgid "Learn"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:451
+msgid "Heart"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:452
+msgid "Medical Plus"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:454
+msgid "Technology"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:455
+msgid "Laptop"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:456
+msgid "Smartphone"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:457
+msgid "Tablet"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:458
+msgid "Desktop"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:460
+msgid "Services"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:461
+msgid "Hammer"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:462
+msgid "Tools"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:463
+msgid "Home"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:464
+msgid "Cog"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:465
+msgid "Shield"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:466
+msgid "Shield (alt)"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:468
+msgid "Communication"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:469, ../templates/emails/new-inquiry.php:56
+msgid "Phone"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:471
+msgid "Email (alt)"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:472
+msgid "Share"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:473
+msgid "Networking"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:475
+msgid "Other"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:476
+msgid "Star (filled)"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:477
+msgid "Star (empty)"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:478
+msgid "Flag"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:479
+msgid "Tag"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:480
+msgid "Award"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:481
+msgid "Megaphone"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:482
+msgid "Lightbulb"
+msgstr ""
+
+#: ../src/Taxonomy/CategoryTaxonomy.php:483
+msgid "Info"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:55
+msgctxt "taxonomy general name"
+msgid "Tags"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:56
+msgctxt "taxonomy singular name"
+msgid "Tag"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:57
+msgctxt "admin menu"
+msgid "Tags"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:58
+msgid "All Tags"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:59
+msgid "New Tag Name"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:60
+msgid "Add New Tag"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:61
+msgid "Edit Tag"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:62
+msgid "Update Tag"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:63
+msgid "View Tag"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:64
+msgid "Separate tags with commas"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:65
+msgid "Add or remove tags"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:66
+msgid "Choose from the most used tags"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:67
+msgid "Popular Tags"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:68
+msgid "Search Tags"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:69
+msgid "No tags found."
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:70
+msgid "No tags"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:71
+msgid "Tags list"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:72
+msgid "Tags list navigation"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:73
+msgid "&larr; Back to Tags"
+msgstr ""
+
+#: ../src/Taxonomy/TagTaxonomy.php:85
+msgid "Tags for flexible labeling of directory listings."
+msgstr ""
+
+#: ../src/User/FavoriteToggle.php:119
+msgid "Invalid security token. Please refresh the page and try again."
+msgstr ""
+
+#: ../src/User/FavoriteToggle.php:150, ../src/User/FavoriteToggle.php:439
+msgid "Please log in to save favorites."
+msgstr ""
+
+#: ../src/User/FavoriteToggle.php:164
+msgid "Failed to update favorite status."
+msgstr ""
+
+#: ../src/User/FavoriteToggle.php:183, ../src/User/FavoriteToggle.php:435
+msgid "Added to favorites."
+msgstr ""
+
+#: ../src/User/FavoriteToggle.php:184, ../src/User/FavoriteToggle.php:436
+msgid "Removed from favorites."
+msgstr ""
+
+#. translators: %s: number of people who favorited
+#: ../src/User/FavoriteToggle.php:273
+msgid "%s person favorited this"
+msgid_plural "%s people favorited this"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/User/FavoriteToggle.php:440
+msgid "Failed to update favorite. Please try again."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:104
+msgid "Listing ID to remove from favorites."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:123
+msgid "Listing ID to toggle favorite."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:143
+msgid "Listing ID to add to favorites."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:161, ../src/Api/Endpoints/ListingsEndpoint.php:661, ../src/Api/Endpoints/TaxonomiesEndpoint.php:357
+msgid "Current page of the collection."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:167, ../src/Api/Endpoints/ListingsEndpoint.php:667, ../src/Api/Endpoints/TaxonomiesEndpoint.php:363
+msgid "Maximum number of items per page."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:190
+msgid "Array of favorite listing IDs."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:197
+msgid "Total number of favorites."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:218, ../src/Api/Endpoints/ListingsEndpoint.php:97, ../src/Api/Endpoints/ListingsEndpoint.php:115, ../src/Api/Endpoints/ListingsEndpoint.php:769, ../src/Api/Endpoints/ListingsEndpoint.php:792
+msgid "Unique identifier for the listing."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:222, ../src/Api/Endpoints/ListingsEndpoint.php:719, ../src/Api/Endpoints/ListingsEndpoint.php:797
+msgid "Listing title."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:226
+msgid "Listing slug."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:230, ../src/Api/Endpoints/ListingsEndpoint.php:805
+msgid "Listing excerpt."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:234
+msgid "URL to the listing."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:335
+msgid "Listing is already in favorites."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:348
+msgid "Failed to add listing to favorites."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:356, ../src/Api/Endpoints/FavoritesEndpoint.php:439
+msgid "Listing added to favorites."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:379
+msgid "Listing is not in favorites."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:390
+msgid "Failed to remove listing from favorites."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:398, ../src/Api/Endpoints/FavoritesEndpoint.php:440
+msgid "Listing removed from favorites."
+msgstr ""
+
+#: ../src/Api/Endpoints/FavoritesEndpoint.php:433
+msgid "Failed to toggle favorite status."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:86, ../src/Api/Endpoints/InquiriesEndpoint.php:99, ../src/Api/Endpoints/InquiriesEndpoint.php:125, ../src/Api/Endpoints/InquiriesEndpoint.php:144
+msgid "Inquiry ID."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:105, ../src/Api/Endpoints/ReviewsEndpoint.php:121
+msgid "Whether to permanently delete."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:177, ../src/Api/Endpoints/InquiriesEndpoint.php:226
+msgid "Filter by read status."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:183, ../src/Api/Endpoints/InquiriesEndpoint.php:232, ../src/Api/Endpoints/ReviewsEndpoint.php:171, ../src/Api/Endpoints/ReviewsEndpoint.php:220
+msgid "Current page."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:189, ../src/Api/Endpoints/InquiriesEndpoint.php:238, ../src/Api/Endpoints/ReviewsEndpoint.php:177, ../src/Api/Endpoints/ReviewsEndpoint.php:226
+msgid "Items per page."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:196, ../src/Api/Endpoints/ReviewsEndpoint.php:184
+msgid "Order by field."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:202, ../src/Api/Endpoints/ListingsEndpoint.php:701, ../src/Api/Endpoints/ReviewsEndpoint.php:190, ../src/Api/Endpoints/TaxonomiesEndpoint.php:399
+msgid "Sort order."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:220, ../src/Api/Endpoints/InquiriesEndpoint.php:266, ../src/Api/Endpoints/ReviewsEndpoint.php:208, ../src/Api/Endpoints/ReviewsEndpoint.php:324
+msgid "Listing ID."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:261, ../src/Api/Endpoints/ReviewsEndpoint.php:319
+msgid "Unique identifier."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:270
+msgid "Listing details."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:275
+msgid "Sender details."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:279
+msgid "Inquiry subject."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:283
+msgid "Inquiry message."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:287
+msgid "Whether inquiry has been read."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:291
+msgid "Sent date."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:315, ../src/Api/Endpoints/InquiriesEndpoint.php:352
+msgid "You must be logged in to view inquiries."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:332
+msgid "You do not have permission to view this inquiry."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:370
+msgid "You do not have permission to view these inquiries."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:472
+msgid "Inquiry not found."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:498
+msgid "Failed to mark inquiry as read."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:526
+msgid "Failed to mark inquiry as unread."
+msgstr ""
+
+#: ../src/Api/Endpoints/InquiriesEndpoint.php:555
+msgid "Failed to delete inquiry."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:120
+msgid "Whether to bypass trash and force deletion."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:266
+msgid "Title is required."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:508
+msgid "Failed to delete listing."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:674, ../src/Api/Endpoints/TaxonomiesEndpoint.php:370
+msgid "Search term."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:678
+msgid "Filter by category ID or slug."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:682
+msgid "Filter by tag ID or slug."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:686, ../src/Api/Endpoints/ReviewsEndpoint.php:160
+msgid "Filter by author user ID."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:690
+msgid "Filter by status (requires manage listings capability)."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:695, ../src/Api/Endpoints/TaxonomiesEndpoint.php:393
+msgid "Sort collection by field."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:724
+msgid "Listing content/description."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:728
+msgid "Listing short description."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:732, ../src/Api/Endpoints/ListingsEndpoint.php:809
+msgid "Listing status."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:738
+msgid "Category term IDs."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:743
+msgid "Tag term IDs."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:748, ../src/Api/Endpoints/ListingsEndpoint.php:860
+msgid "Custom field values."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:752, ../src/Api/Endpoints/ListingsEndpoint.php:830
+msgid "Featured image attachment ID."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:801
+msgid "Listing content."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:814, ../src/Api/Endpoints/ReviewsEndpoint.php:328
+msgid "Author user ID."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:818
+msgid "Published date (RFC3339 format)."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:824
+msgid "Listing URL."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:834
+msgid "Assigned categories."
+msgstr ""
+
+#: ../src/Api/Endpoints/ListingsEndpoint.php:847
+msgid "Assigned tags."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:96, ../src/Api/Endpoints/ReviewsEndpoint.php:115, ../src/Api/Endpoints/ReviewsEndpoint.php:281
+msgid "Review ID."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:155
+msgid "Filter by listing ID."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:165, ../src/Api/Endpoints/ReviewsEndpoint.php:214
+msgid "Filter by review status."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:245
+msgid "Listing ID to review."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:251, ../src/Api/Endpoints/ReviewsEndpoint.php:287, ../src/Api/Endpoints/ReviewsEndpoint.php:338
+msgid "Rating from 1 to 5."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:258, ../src/Api/Endpoints/ReviewsEndpoint.php:293, ../src/Api/Endpoints/ReviewsEndpoint.php:344
+msgid "Review title."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:263, ../src/Api/Endpoints/ReviewsEndpoint.php:298, ../src/Api/Endpoints/ReviewsEndpoint.php:348
+msgid "Review content."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:333
+msgid "Author details."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:352
+msgid "Review status."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:357
+msgid "Created date."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:381, ../src/Api/Endpoints/ReviewsEndpoint.php:420, ../src/Api/Endpoints/ReviewsEndpoint.php:555
+msgid "Review not found."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:439
+msgid "You do not have permission to delete this review."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:655
+msgid "No data provided to update."
+msgstr ""
+
+#: ../src/Api/Endpoints/ReviewsEndpoint.php:694
+msgid "Failed to delete review."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:88, ../src/Api/Endpoints/TaxonomiesEndpoint.php:421
+msgid "Unique identifier for the category."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:124, ../src/Api/Endpoints/TaxonomiesEndpoint.php:478
+msgid "Unique identifier for the tag."
+msgstr ""
+
+#. translators: %s: term type (category or tag)
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:293
+msgid "%s not found."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:374
+msgid "Filter by parent term ID (0 for top-level)."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:378
+msgid "Hide terms with no posts."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:383
+msgid "Limit to specific term IDs."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:388
+msgid "Exclude specific term IDs."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:426
+msgid "Category name."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:430
+msgid "Category slug."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:434
+msgid "Category description."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:438
+msgid "Parent category ID."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:442
+msgid "Number of posts in this category."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:447
+msgid "Category URL."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:453
+msgid "Category icon class."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:457
+msgid "Category color (hex)."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:483
+msgid "Tag name."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:487
+msgid "Tag slug."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:491
+msgid "Tag description."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:495
+msgid "Number of posts with this tag."
+msgstr ""
+
+#: ../src/Api/Endpoints/TaxonomiesEndpoint.php:500
+msgid "Tag URL."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/CheckboxField.php:143
+msgid "%s must be checked."
+msgstr ""
+
+#: ../src/Fields/Types/CheckboxField.php:177
+msgid "Yes"
+msgstr ""
+
+#: ../src/Fields/Types/CheckboxField.php:178
+msgid "No"
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/CheckboxGroupField.php:175, ../src/Fields/Types/MultiSelectField.php:151, ../src/Fields/Types/RadioField.php:149, ../src/Fields/Types/SelectField.php:128
+msgid "%s contains an invalid selection."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/ColorField.php:132
+msgid "%s must be a valid hex color (e.g., #FF5733 or #F53)."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/CurrencyField.php:196
+msgid "%s must be a valid amount."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/CurrencyField.php:211
+msgid "%s cannot be negative."
+msgstr ""
+
+#. translators: 1: field label, 2: minimum value with currency
+#. translators: 1: field label, 2: minimum value
+#: ../src/Fields/Types/CurrencyField.php:223, ../src/Fields/Types/DecimalField.php:181
+msgid "%1$s must be at least %2$s."
+msgstr ""
+
+#. translators: 1: field label, 2: maximum value with currency
+#. translators: 1: field label, 2: maximum value
+#: ../src/Fields/Types/CurrencyField.php:236, ../src/Fields/Types/DecimalField.php:194
+msgid "%1$s must be no more than %2$s."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/DateField.php:146
+msgid "%s must be a valid date in YYYY-MM-DD format."
+msgstr ""
+
+#. translators: 1: field label, 2: minimum date
+#. translators: 1: field label, 2: minimum datetime
+#: ../src/Fields/Types/DateField.php:160, ../src/Fields/Types/DateTimeField.php:164
+msgid "%1$s must be on or after %2$s."
+msgstr ""
+
+#. translators: 1: field label, 2: maximum date
+#. translators: 1: field label, 2: maximum datetime
+#: ../src/Fields/Types/DateField.php:175, ../src/Fields/Types/DateTimeField.php:180
+msgid "%1$s must be on or before %2$s."
+msgstr ""
+
+#: ../src/Fields/Types/DateRangeField.php:133
+msgid "Start Date"
+msgstr ""
+
+#: ../src/Fields/Types/DateRangeField.php:142
+msgid "End Date"
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/DateRangeField.php:204
+msgid "%s requires both start and end dates."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/DateRangeField.php:223
+msgid "%s start date must be in YYYY-MM-DD format."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/DateRangeField.php:234
+msgid "%s end date must be in YYYY-MM-DD format."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/DateRangeField.php:252
+msgid "%s end date cannot be before the start date."
+msgstr ""
+
+#. translators: 1: field label, 2: minimum date
+#: ../src/Fields/Types/DateRangeField.php:268
+msgid "%1$s start date must be on or after %2$s."
+msgstr ""
+
+#. translators: 1: field label, 2: minimum date
+#: ../src/Fields/Types/DateRangeField.php:280
+msgid "%1$s end date must be on or after %2$s."
+msgstr ""
+
+#. translators: 1: field label, 2: maximum date
+#: ../src/Fields/Types/DateRangeField.php:297
+msgid "%1$s start date must be on or before %2$s."
+msgstr ""
+
+#. translators: 1: field label, 2: maximum date
+#: ../src/Fields/Types/DateRangeField.php:309
+msgid "%1$s end date must be on or before %2$s."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/DateTimeField.php:147
+msgid "%s must be a valid date and time."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/DecimalField.php:166, ../src/Fields/Types/NumberField.php:143
+msgid "%s must be a number."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/EmailField.php:122
+msgid "%s must be a valid email address."
+msgstr ""
+
+#: ../src/Fields/Types/FileField.php:153
+msgid "Remove file"
+msgstr ""
+
+#: ../src/Fields/Types/FileField.php:154, ../src/Fields/Types/ImageField.php:160, ../templates/submission/image-upload.php:84
+msgid "Remove"
+msgstr ""
+
+#: ../src/Fields/Types/FileField.php:163, ../src/Fields/Types/FileField.php:165
+msgid "Select File"
+msgstr ""
+
+#: ../src/Fields/Types/FileField.php:164
+msgid "Use this file"
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/FileField.php:226
+msgid "%s contains an invalid file."
+msgstr ""
+
+#. translators: 1: field label, 2: allowed file types
+#. translators: 1: field label, 2: allowed image types
+#: ../src/Fields/Types/FileField.php:244, ../src/Fields/Types/ImageField.php:263
+msgid "%1$s must be one of the following types: %2$s."
+msgstr ""
+
+#: ../src/Fields/Types/FileField.php:288
+msgid "Download"
+msgstr ""
+
+#: ../src/Fields/Types/GalleryField.php:158, ../src/Fields/Types/GalleryField.php:161
+msgid "Add Images"
+msgstr ""
+
+#: ../src/Fields/Types/GalleryField.php:159
+msgid "Add to gallery"
+msgstr ""
+
+#. translators: 1: current count, 2: max images
+#: ../src/Fields/Types/GalleryField.php:170
+msgid "%1$d of %2$d images"
+msgstr ""
+
+#: ../src/Fields/Types/GalleryField.php:214, ../src/Fields/Types/ImageField.php:159
+msgid "Remove image"
+msgstr ""
+
+#. translators: 1: field label, 2: max images
+#: ../src/Fields/Types/GalleryField.php:271
+msgid "%1$s cannot contain more than %2$d images."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/GalleryField.php:288, ../src/Fields/Types/ImageField.php:232
+msgid "%s contains an invalid image."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/GalleryField.php:301
+msgid "%s must contain only image files."
+msgstr ""
+
+#. translators: 1: field label, 2: allowed image types
+#: ../src/Fields/Types/GalleryField.php:318
+msgid "%1$s images must be one of the following types: %2$s."
+msgstr ""
+
+#: ../src/Fields/Types/ImageField.php:169, ../src/Fields/Types/ImageField.php:171, ../templates/submission/image-upload.php:76
+msgid "Select Image"
+msgstr ""
+
+#: ../src/Fields/Types/ImageField.php:170
+msgid "Use this image"
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/ImageField.php:245
+msgid "%s must be an image file."
+msgstr ""
+
+#. translators: 1: field label, 2: minimum value
+#: ../src/Fields/Types/NumberField.php:158
+msgid "%1$s must be at least %2$d."
+msgstr ""
+
+#. translators: 1: field label, 2: maximum value
+#: ../src/Fields/Types/NumberField.php:171
+msgid "%1$s must be no more than %2$d."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/PhoneField.php:131, ../src/Fields/Types/PhoneField.php:143
+msgid "%s must be a valid phone number."
+msgstr ""
+
+#: ../src/Fields/Types/SwitchField.php:69, ../src/Fields/Types/SwitchField.php:192
+msgid "On"
+msgstr ""
+
+#: ../src/Fields/Types/SwitchField.php:70, ../src/Fields/Types/SwitchField.php:193
+msgid "Off"
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/SwitchField.php:158
+msgid "%s must be enabled."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/TimeField.php:147
+msgid "%s must be a valid time in HH:MM format."
+msgstr ""
+
+#. translators: 1: field label, 2: minimum time
+#: ../src/Fields/Types/TimeField.php:165
+msgid "%1$s must be at or after %2$s."
+msgstr ""
+
+#. translators: 1: field label, 2: maximum time
+#: ../src/Fields/Types/TimeField.php:181
+msgid "%1$s must be at or before %2$s."
+msgstr ""
+
+#. translators: %s: field label
+#: ../src/Fields/Types/UrlField.php:122
+msgid "%s must be a valid URL."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Dashboard.php:164, ../templates/dashboard/my-listings.php:58
+msgid "My Listings"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Dashboard.php:171
+msgid "Add New"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Dashboard.php:185
+msgid "Profile"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Dashboard.php:424
+msgid "Please log in to access your dashboard."
+msgstr ""
+
+#. translators: %s: Tab name
+#: ../src/Frontend/Dashboard/Dashboard.php:515
+msgid "%s content is coming soon."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Dashboard.php:555
+msgid "Create a new listing to share with the community."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:381, ../templates/dashboard/my-listings.php:130
+msgid "Inquiries"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:730
+msgid "Listing marked as expired."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:731
+msgid "Listing published."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:732
+msgid "Listing saved as draft."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:735
+msgid "Action completed."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:749
+msgid "Failed to trash listing. You may not have permission."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:750
+msgid "Failed to expire listing. You may not have permission."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:751
+msgid "Failed to publish listing. You may not have permission."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:752
+msgid "Failed to save listing as draft. You may not have permission."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:755
+msgid "Action failed. Please try again."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:832
+msgid "Edit"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:841
+msgid "View"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:851
+msgid "Mark Expired"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:854
+msgid "Are you sure you want to mark this listing as expired?"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:868
+msgid "Submit for Review"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:862
+msgid "Publish"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:877
+msgid "Save as Draft"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:886
+msgid "Delete"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/MyListings.php:889
+msgid "Are you sure you want to delete this listing?"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Profile.php:289
+msgid "Security verification failed. Please try again."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Profile.php:350
+msgid "Profile updated successfully."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Profile.php:399
+msgid "Display name is required."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Profile.php:411
+msgid "This email is already registered to another account."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Profile.php:404
+msgid "Email is required."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Profile.php:417
+msgid "Please enter a valid website URL."
+msgstr ""
+
+#. translators: %s: Social platform name
+#: ../src/Frontend/Dashboard/Profile.php:427
+msgid "Please enter a valid %s URL."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Profile.php:544
+msgid "There was an error uploading the file. Please try again."
+msgstr ""
+
+#. translators: %s: Maximum file size
+#: ../src/Frontend/Dashboard/Profile.php:553
+msgid "Avatar file size must be less than %s."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Profile.php:566
+msgid "Invalid file type. Please upload a JPEG, PNG, GIF, or WebP image."
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Profile.php:709
+msgid "Facebook"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Profile.php:710
+msgid "X (Twitter)"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Profile.php:711
+msgid "LinkedIn"
+msgstr ""
+
+#: ../src/Frontend/Dashboard/Profile.php:712
+msgid "Instagram"
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionForm.php:109
+msgid "I agree to the terms and conditions"
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionForm.php:115
+msgid "Update Listing"
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionForm.php:116
+msgid "Submit Listing"
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionForm.php:734
+msgid "Website URL"
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:335
+msgid "You must be logged in to submit a listing."
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:352
+msgid "You do not have permission to submit listings."
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:544
+msgid "Description is required."
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:554
+msgid "Please select at least one category."
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:603
+msgid "A featured image is required."
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:619
+msgid "Invalid image type. Please upload a JPG, PNG, GIF, or WebP image."
+msgstr ""
+
+#. translators: %s: maximum file size
+#: ../src/Frontend/Submission/SubmissionHandler.php:630
+msgid "Image file is too large. Maximum size is %s."
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:674, ../src/Frontend/Submission/SubmissionHandler.php:675
+msgid "The uploaded file exceeds the maximum file size."
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:676
+msgid "The uploaded file was only partially uploaded."
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:677
+msgid "No file was uploaded."
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:678
+msgid "Server configuration error: Missing temporary folder."
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:679
+msgid "Failed to write file to disk."
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:680
+msgid "A PHP extension stopped the file upload."
+msgstr ""
+
+#: ../src/Frontend/Submission/SubmissionHandler.php:683
+msgid "Unknown upload error."
+msgstr ""
+
+#. translators: %s: listing title
+#: ../src/Frontend/Submission/SubmissionHandler.php:941
+msgid "[%1$s] New Listing Submission: %2$s"
+msgstr ""
+
+#. translators: 1: listing title, 2: author name, 3: edit URL
+#: ../src/Frontend/Submission/SubmissionHandler.php:950
+msgid ""
+"A new listing has been submitted:\n"
+"\n"
+"Title: %1$s\n"
+"Author: %2$s\n"
+"Status: %3$s\n"
+"\n"
+"Review the listing: %4$s"
+msgstr ""
+
+#: ../src/Search/Filters/DateRangeFilter.php:46, ../templates/emails/new-inquiry.php:47, ../templates/search/filter-date-range.php:55
+msgid "From"
+msgstr ""
+
+#: ../src/Search/Filters/DateRangeFilter.php:47, ../templates/search/filter-date-range.php:74
+msgid "To"
+msgstr ""
+
+#: ../src/Search/Filters/DateRangeFilter.php:48
+msgid "Start date"
+msgstr ""
+
+#: ../src/Search/Filters/DateRangeFilter.php:49
+msgid "End date"
+msgstr ""
+
+#. translators: %s: end date
+#: ../src/Search/Filters/DateRangeFilter.php:328
+msgid "Until %s"
+msgstr ""
+
+#: ../src/Search/Filters/DateRangeFilter.php:322
+msgid "From %s"
+msgstr ""
+
+#: ../src/Search/Filters/KeywordFilter.php:43
+msgid "Search listings..."
+msgstr ""
+
+#. translators: %s: search keyword
+#: ../src/Search/Filters/KeywordFilter.php:161
+msgid "\"%s\""
+msgstr ""
+
+#: ../src/Search/Filters/RangeFilter.php:47, ../templates/search/filter-range.php:62
+msgid "Min"
+msgstr ""
+
+#: ../src/Search/Filters/RangeFilter.php:48, ../templates/search/filter-range.php:83
+msgid "Max"
+msgstr ""
+
+#. translators: %s: maximum value
+#: ../src/Search/Filters/RangeFilter.php:336
+msgid "Up to %s"
+msgstr ""
+
+#: ../src/Search/Filters/RangeFilter.php:330
+msgid "%s or more"
+msgstr ""
+
+#: ../src/Search/Filters/TagFilter.php:42, ../templates/single-listing.php:224, ../templates/submission/tag-selector.php:32
+msgid "Tags"
+msgstr ""
+
+#: ../templates/listing-card-list.php:222, ../templates/listing-card.php:202
+msgid "View Details"
+msgstr ""
+
+#: ../templates/single-listing.php:200
+msgid "Details"
+msgstr ""
+
+#: ../templates/single-listing.php:271
+msgid "Listed by"
+msgstr ""
+
+#: ../templates/single-listing.php:360
+msgid "Related Listings"
+msgstr ""
+
+#: ../templates/contact/contact-form.php:28
+msgid "Contact the Owner"
+msgstr ""
+
+#: ../templates/contact/contact-form.php:46
+msgid "Contact form"
+msgstr ""
+
+#: ../templates/contact/contact-form.php:54, ../templates/review/review-form.php:235
+msgid "Your Name"
+msgstr ""
+
+#: ../templates/contact/contact-form.php:70, ../templates/review/review-form.php:249
+msgid "Your Email"
+msgstr ""
+
+#: ../templates/contact/contact-form.php:87
+msgid "Your Phone"
+msgstr ""
+
+#: ../templates/contact/contact-form.php:91, ../templates/contact/contact-form.php:112, ../templates/review/review-form.php:191
+msgid "(optional)"
+msgstr ""
+
+#: ../templates/contact/contact-form.php:108
+msgid "Subject"
+msgstr ""
+
+#: ../templates/contact/contact-form.php:127
+msgid "Message"
+msgstr ""
+
+#. translators: %d: minimum number of characters
+#. translators: %d: minimum character count
+#: ../templates/contact/contact-form.php:142, ../templates/review/review-form.php:224
+msgid "Minimum %d characters required."
+msgstr ""
+
+#: ../templates/contact/contact-form.php:162
+msgid "Send Message"
+msgstr ""
+
+#: ../templates/dashboard/dashboard.php:45
+msgid "Dashboard Statistics"
+msgstr ""
+
+#: ../templates/dashboard/dashboard.php:57
+msgid "Dashboard navigation"
+msgstr ""
+
+#: ../templates/dashboard/favorites-empty.php:31
+msgid "No favorites yet"
+msgstr ""
+
+#: ../templates/dashboard/favorites-empty.php:35
+msgid "You haven't saved any listings to your favorites. Browse listings and click the heart icon to save them here."
+msgstr ""
+
+#: ../templates/dashboard/favorites-empty.php:42
+msgid "Browse Listings"
+msgstr ""
+
+#: ../templates/dashboard/favorites.php:45
+msgid "Your Favorites"
+msgstr ""
+
+#: ../templates/dashboard/favorites.php:90
+msgid "Favorites pagination"
+msgstr ""
+
+#. translators: %d: number of additional categories
+#: ../templates/dashboard/listing-row.php:68
+msgid " +%d more"
+msgstr ""
+
+#: ../templates/dashboard/listing-row.php:102
+msgid "views"
+msgstr ""
+
+#: ../templates/dashboard/listing-row.php:114
+msgid "inquiries"
+msgstr ""
+
+#: ../templates/dashboard/login-required.php:47
+msgid "Login Required"
+msgstr ""
+
+#: ../templates/dashboard/login-required.php:60
+msgid "or"
+msgstr ""
+
+#: ../templates/dashboard/login-required.php:62
+msgid "Create an Account"
+msgstr ""
+
+#: ../templates/dashboard/my-listings-empty.php:24
+msgid "No Listings Yet"
+msgstr ""
+
+#: ../templates/dashboard/my-listings-empty.php:25
+msgid "You haven't created any listings yet. Get started by adding your first listing!"
+msgstr ""
+
+#: ../templates/dashboard/my-listings-empty.php:29
+msgid "No Published Listings"
+msgstr ""
+
+#: ../templates/dashboard/my-listings-empty.php:30
+msgid "You don't have any published listings. Submit a listing for review to get it published."
+msgstr ""
+
+#: ../templates/dashboard/my-listings-empty.php:34
+msgid "No Pending Listings"
+msgstr ""
+
+#: ../templates/dashboard/my-listings-empty.php:35
+msgid "You don't have any listings pending review."
+msgstr ""
+
+#: ../templates/dashboard/my-listings-empty.php:39
+msgid "No Draft Listings"
+msgstr ""
+
+#: ../templates/dashboard/my-listings-empty.php:40
+msgid "You don't have any draft listings saved."
+msgstr ""
+
+#: ../templates/dashboard/my-listings-empty.php:44
+msgid "No Expired Listings"
+msgstr ""
+
+#: ../templates/dashboard/my-listings-empty.php:45
+msgid "You don't have any expired listings."
+msgstr ""
+
+#: ../templates/dashboard/my-listings-empty.php:74
+msgid "Create New Listing"
+msgstr ""
+
+#: ../templates/dashboard/my-listings-empty.php:82, ../templates/search/no-results.php:38
+msgid "View all listings"
+msgstr ""
+
+#: ../templates/dashboard/my-listings.php:65
+msgid "Filter by status"
+msgstr ""
+
+#: ../templates/dashboard/my-listings.php:94
+msgid "Sort by:"
+msgstr ""
+
+#: ../templates/dashboard/my-listings.php:135
+msgid "Actions"
+msgstr ""
+
+#. translators: %d: Number of items in this tab
+#: ../templates/dashboard/navigation.php:48
+msgid "%d items"
+msgstr ""
+
+#: ../templates/dashboard/profile-avatar.php:35
+msgid "Profile photo"
+msgstr ""
+
+#: ../templates/dashboard/profile-avatar.php:46
+msgid "Upload New Photo"
+msgstr ""
+
+#: ../templates/dashboard/profile-avatar.php:66
+msgid "Remove custom photo"
+msgstr ""
+
+#. translators: %s: Maximum file size
+#: ../templates/dashboard/profile-avatar.php:76
+msgid "Accepted formats: JPEG, PNG, GIF, or WebP. Maximum size: %s."
+msgstr ""
+
+#: ../templates/dashboard/profile-avatar.php:81
+msgid "Currently using Gravatar."
+msgstr ""
+
+#: ../templates/dashboard/profile.php:61
+msgid "Profile Photo"
+msgstr ""
+
+#: ../templates/dashboard/profile.php:77
+msgid "Basic Information"
+msgstr ""
+
+#: ../templates/dashboard/profile.php:84
+msgid "Display Name"
+msgstr ""
+
+#: ../templates/dashboard/profile.php:97
+msgid "This is how your name will appear publicly."
+msgstr ""
+
+#: ../templates/dashboard/profile.php:106
+msgid "First Name"
+msgstr ""
+
+#: ../templates/dashboard/profile.php:120
+msgid "Last Name"
+msgstr ""
+
+#: ../templates/dashboard/profile.php:152
+msgid "Phone Number"
+msgstr ""
+
+#: ../templates/dashboard/profile.php:166
+msgid "Website"
+msgstr ""
+
+#: ../templates/dashboard/profile.php:181
+msgid "Bio"
+msgstr ""
+
+#: ../templates/dashboard/profile.php:191
+msgid "A short description about yourself."
+msgstr ""
+
+#: ../templates/dashboard/profile.php:201
+msgid "Social Links"
+msgstr ""
+
+#: ../templates/dashboard/profile.php:228
+msgid "Save Profile"
+msgstr ""
+
+#: ../templates/dashboard/stats.php:33
+msgid "Total Listings"
+msgstr ""
+
+#: ../templates/dashboard/stats.php:50
+msgid "Drafts"
+msgstr ""
+
+#: ../templates/dashboard/stats.php:55
+msgid "Total Views"
+msgstr ""
+
+#: ../templates/emails/listing-approved.php:23
+msgid "Your Listing Has Been Approved!"
+msgstr ""
+
+#. translators: %s: author name
+#: ../templates/emails/listing-approved.php:29, ../templates/emails/listing-expired.php:28, ../templates/emails/listing-expiring.php:30, ../templates/emails/listing-rejected.php:31, ../templates/emails/new-inquiry.php:33, ../templates/emails/new-review.php:51
+msgid "Hi %s,"
+msgstr ""
+
+#: ../templates/emails/listing-approved.php:35
+msgid "Great news! Your listing has been reviewed and approved. It is now live and visible to the public."
+msgstr ""
+
+#: ../templates/emails/listing-approved.php:39, ../templates/emails/listing-expired.php:38, ../templates/emails/listing-expiring.php:53, ../templates/emails/listing-rejected.php:41, ../templates/submission/submission-form.php:106
+msgid "Listing Title"
+msgstr ""
+
+#: ../templates/emails/listing-approved.php:49, ../templates/emails/listing-expiring.php:75, ../templates/submission/submission-success.php:86
+msgid "View Your Listing"
+msgstr ""
+
+#: ../templates/emails/listing-approved.php:52
+msgid "Thank you for your submission!"
+msgstr ""
+
+#: ../templates/emails/listing-expired.php:22
+msgid "Your Listing Has Expired"
+msgstr ""
+
+#: ../templates/emails/listing-expired.php:34
+msgid "Your listing has expired and is no longer visible to the public."
+msgstr ""
+
+#: ../templates/emails/listing-expired.php:46
+msgid "Expired On"
+msgstr ""
+
+#: ../templates/emails/listing-expired.php:51
+msgid "To make your listing visible again, you'll need to renew it or contact us for assistance."
+msgstr ""
+
+#: ../templates/emails/listing-expired.php:53
+msgid "Thank you for being part of our community."
+msgstr ""
+
+#: ../templates/emails/listing-expiring.php:24
+msgid "Your Listing Expires Soon"
+msgstr ""
+
+#. translators: %d: number of days
+#: ../templates/emails/listing-expiring.php:40
+msgid "Your listing will expire in %d day."
+msgid_plural "Your listing will expire in %d days."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../templates/emails/listing-expiring.php:57
+msgid "Days Remaining"
+msgstr ""
+
+#. translators: %d: number of days
+#: ../templates/emails/listing-expiring.php:63
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../templates/emails/listing-expiring.php:72
+msgid "To keep your listing active and visible to potential customers, please renew it before it expires."
+msgstr ""
+
+#: ../templates/emails/listing-expiring.php:78
+msgid "Once your listing expires, it will no longer be visible to the public until it is renewed."
+msgstr ""
+
+#: ../templates/emails/listing-rejected.php:25
+msgid "Listing Not Approved"
+msgstr ""
+
+#: ../templates/emails/listing-rejected.php:37
+msgid "We're sorry, but your listing submission was not approved after our review."
+msgstr ""
+
+#: ../templates/emails/listing-rejected.php:46
+msgid "Not Approved"
+msgstr ""
+
+#: ../templates/emails/listing-rejected.php:52
+msgid "Reason:"
+msgstr ""
+
+#. translators: %s: site name
+#: ../templates/emails/listing-rejected.php:61
+msgid "If you believe this was a mistake or have any questions, please don't hesitate to contact us. You may also submit a new listing that meets our %s guidelines."
+msgstr ""
+
+#: ../templates/emails/listing-rejected.php:67
+msgid "Thank you for your understanding."
+msgstr ""
+
+#: ../templates/emails/listing-submitted.php:28
+msgid "New Listing Submitted"
+msgstr ""
+
+#: ../templates/emails/listing-submitted.php:30
+msgid "A new listing has been submitted and is awaiting your review."
+msgstr ""
+
+#: ../templates/emails/listing-submitted.php:46
+msgid "Submitted"
+msgstr ""
+
+#: ../templates/emails/listing-submitted.php:52
+msgid "Review Listing"
+msgstr ""
+
+#: ../templates/emails/listing-submitted.php:57
+msgid "Manage All Listings"
+msgstr ""
+
+#: ../templates/emails/new-inquiry.php:27
+msgid "New Inquiry About Your Listing"
+msgstr ""
+
+#: ../templates/emails/new-inquiry.php:39
+msgid "You have received a new inquiry about your listing. Here are the details:"
+msgstr ""
+
+#: ../templates/emails/new-inquiry.php:73
+msgid "Reply to Inquiry"
+msgstr ""
+
+#: ../templates/emails/new-inquiry.php:76
+msgid "Responding quickly to inquiries can help convert potential customers. We recommend replying within 24 hours."
+msgstr ""
+
+#: ../templates/emails/new-review.php:45
+msgid "New Review on Your Listing"
+msgstr ""
+
+#: ../templates/emails/new-review.php:57
+msgid "Your listing has received a new review! Here are the details:"
+msgstr ""
+
+#: ../templates/emails/new-review.php:65
+msgid "Reviewer"
+msgstr ""
+
+#: ../templates/emails/new-review.php:87
+msgid "View Review"
+msgstr ""
+
+#: ../templates/emails/new-review.php:90
+msgid "Reviews help build trust with potential customers. Thank your reviewer or respond to their feedback to show you value their opinion!"
+msgstr ""
+
+#: ../templates/review/rating-summary.php:29
+msgid "Rating summary"
+msgstr ""
+
+#. translators: %d: number of reviews
+#: ../templates/review/rating-summary.php:52
+msgid "%d review"
+msgid_plural "%d reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../templates/review/rating-summary.php:61
+msgid "Rating breakdown"
+msgstr ""
+
+#: ../templates/review/review-form.php:78
+msgid "Thank you for your review! It has been submitted and is pending approval."
+msgstr ""
+
+#: ../templates/review/review-form.php:76
+msgid "Your review has been updated successfully."
+msgstr ""
+
+#: ../templates/review/review-form.php:110
+msgid "Write a Review"
+msgstr ""
+
+#: ../templates/review/review-form.php:108
+msgid "Edit Your Review"
+msgstr ""
+
+#: ../templates/review/review-form.php:124, ../templates/submission/submission-form.php:88
+msgid "Please fix the following errors:"
+msgstr ""
+
+#: ../templates/review/review-form.php:140
+msgid "Edit review"
+msgstr ""
+
+#: ../templates/review/review-form.php:140
+msgid "Write review"
+msgstr ""
+
+#: ../templates/review/review-form.php:165
+msgid "Your Rating"
+msgstr ""
+
+#: ../templates/review/review-form.php:169
+msgid "Click a star to rate"
+msgstr ""
+
+#: ../templates/review/review-form.php:187
+msgid "Review Title"
+msgstr ""
+
+#: ../templates/review/review-form.php:200
+msgid "Summarize your experience"
+msgstr ""
+
+#: ../templates/review/review-form.php:207
+msgid "Your Review"
+msgstr ""
+
+#: ../templates/review/review-form.php:218
+msgid "Share your experience..."
+msgstr ""
+
+#: ../templates/review/review-form.php:260
+msgid "Your email will not be published."
+msgstr ""
+
+#: ../templates/review/review-form.php:284
+msgid "Submit Review"
+msgstr ""
+
+#: ../templates/review/review-form.php:282
+msgid "Update Review"
+msgstr ""
+
+#: ../templates/review/review-form.php:92
+msgid "Please <a href=\"%1$s\">log in</a> or <a href=\"%2$s\">register</a> to write a review."
+msgstr ""
+
+#: ../templates/review/reviews-empty.php:27
+msgid "No reviews yet. Be the first to share your experience!"
+msgstr ""
+
+#: ../templates/review/reviews-pagination.php:47
+msgid "Reviews navigation"
+msgstr ""
+
+#: ../templates/review/reviews-pagination.php:56
+msgid "Previous page of reviews"
+msgstr ""
+
+#: ../templates/review/reviews-pagination.php:73
+msgid "Page 1"
+msgstr ""
+
+#. translators: %d: Page number
+#: ../templates/review/reviews-pagination.php:97, ../templates/review/reviews-pagination.php:117
+msgid "Page %d"
+msgstr ""
+
+#: ../templates/review/reviews-pagination.php:129
+msgid "Next page of reviews"
+msgstr ""
+
+#. translators: 1: current page, 2: total pages
+#: ../templates/review/reviews-pagination.php:147
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: ../templates/review/reviews-section.php:50
+msgid "Reviews (%d)"
+msgid_plural "Reviews (%d)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../templates/review/star-input.php:71
+msgid "%d star selected"
+msgstr ""
+
+#: ../templates/review/star-input.php:73
+msgid "%d stars selected"
+msgstr ""
+
+#: ../templates/search/filter-range.php:64
+msgid "Minimum value"
+msgstr ""
+
+#: ../templates/search/filter-range.php:85
+msgid "Maximum value"
+msgstr ""
+
+#: ../templates/search/no-results.php:33
+msgid "No listings match your current search criteria. Try adjusting your filters or search terms."
+msgstr ""
+
+#: ../templates/search/search-form.php:32
+msgid "Search listings"
+msgstr ""
+
+#: ../templates/submission/category-selector.php:49
+msgid "Select one or more categories that best describe your listing."
+msgstr ""
+
+#: ../templates/submission/edit-not-allowed.php:44, ../templates/submission/submission-success.php:97
+msgid "Return to Home"
+msgstr ""
+
+#: ../templates/submission/image-upload.php:37
+msgid "Featured Image"
+msgstr ""
+
+#: ../templates/submission/image-upload.php:40
+msgid "Upload an image to represent your listing. Recommended size: 1200x800 pixels."
+msgstr ""
+
+#: ../templates/submission/image-upload.php:48
+msgid "Featured image preview"
+msgstr ""
+
+#: ../templates/submission/image-upload.php:76
+msgid "Change Image"
+msgstr ""
+
+#: ../templates/submission/image-upload.php:83
+msgid "Remove featured image"
+msgstr ""
+
+#. translators: %s: maximum file size
+#: ../templates/submission/image-upload.php:93
+msgid "Accepted formats: JPG, PNG, GIF, WebP. Maximum size: %s."
+msgstr ""
+
+#: ../templates/submission/submission-form.php:49
+msgid "Edit listing"
+msgstr ""
+
+#: ../templates/submission/submission-form.php:49
+msgid "Submit listing"
+msgstr ""
+
+#: ../templates/submission/submission-form.php:118
+msgid "Enter a descriptive title for your listing"
+msgstr ""
+
+#: ../templates/submission/submission-form.php:121
+msgid "Choose a clear and descriptive title that summarizes your listing."
+msgstr ""
+
+#: ../templates/submission/submission-form.php:140
+msgid "Description"
+msgstr ""
+
+#: ../templates/submission/submission-form.php:152
+msgid "Provide a detailed description of your listing"
+msgstr ""
+
+#: ../templates/submission/submission-form.php:155
+msgid "Provide a comprehensive description to help users understand your listing."
+msgstr ""
+
+#: ../templates/submission/submission-form.php:174
+msgid "Short Description"
+msgstr ""
+
+#: ../templates/submission/submission-form.php:183
+msgid "Brief summary for search results"
+msgstr ""
+
+#: ../templates/submission/submission-form.php:186
+msgid "Optional short summary that appears in listing previews."
+msgstr ""
+
+#: ../templates/submission/submission-form.php:214
+msgid "Additional Details"
+msgstr ""
+
+#: ../templates/submission/submission-success.php:42
+msgid "Thank You for Your Submission!"
+msgstr ""
+
+#: ../templates/submission/submission-success.php:40
+msgid "Listing Updated Successfully!"
+msgstr ""
+
+#: ../templates/submission/submission-success.php:64
+msgid "Your listing has been submitted and is awaiting review by our team."
+msgstr ""
+
+#: ../templates/submission/submission-success.php:62
+msgid "Your listing has been updated and is awaiting review."
+msgstr ""
+
+#: ../templates/submission/submission-success.php:69
+msgid "We will review your submission shortly. You will be notified once it has been approved."
+msgstr ""
+
+#: ../templates/submission/submission-success.php:54
+msgid "Your listing has been published and is now live."
+msgstr ""
+
+#: ../templates/submission/submission-success.php:52
+msgid "Your listing has been updated and is now live."
+msgstr ""
+
+#: ../templates/submission/submission-success.php:77
+msgid "Listing:"
+msgstr ""
+
+#: ../templates/submission/submission-success.php:92
+msgid "Submit Another Listing"
+msgstr ""
+
+#: ../templates/submission/tag-selector.php:35
+msgid "Select tags to help users find your listing."
+msgstr ""

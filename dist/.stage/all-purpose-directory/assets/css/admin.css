@@ -1,0 +1,901 @@
+/**
+ * All Purpose Directory - Admin Styles
+ *
+ * @package APD
+ */
+
+/* ==========================================================================
+   Admin List Table Columns
+   ========================================================================== */
+
+/**
+ * Thumbnail column
+ */
+.column-thumbnail {
+    width: 60px;
+}
+
+.apd-admin-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.apd-no-image {
+    color: #999;
+    font-size: 16px;
+}
+
+/**
+ * Category column
+ */
+.column-apd_category {
+    width: 15%;
+}
+
+.apd-no-category {
+    color: #999;
+}
+
+/**
+ * Status badge column
+ */
+.column-listing_status {
+    width: 100px;
+}
+
+.apd-status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-transform: capitalize;
+}
+
+.apd-status-publish {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.apd-status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.apd-status-draft {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+.apd-status-expired {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/**
+ * Views count column
+ */
+.column-views_count {
+    width: 80px;
+}
+
+.apd-views-count {
+    font-variant-numeric: tabular-nums;
+}
+
+/**
+ * Responsive adjustments
+ */
+@media screen and (max-width: 782px) {
+    .column-thumbnail,
+    .column-views_count {
+        display: none;
+    }
+
+    .column-apd_category,
+    .column-listing_status {
+        width: auto;
+    }
+}
+
+/* ==========================================================================
+   Meta Box Field Styles
+   ========================================================================== */
+
+/**
+ * Field Wrapper
+ * Base container for all field types
+ */
+.apd-field {
+    display: block;
+    margin-bottom: 1.5em;
+}
+
+.apd-field:last-child {
+    margin-bottom: 0;
+}
+
+.apd-field--admin {
+    padding: 0;
+}
+
+.apd-field--required .apd-field__label::after {
+    content: " *";
+    color: #d63638;
+}
+
+.apd-field--has-error .apd-field__input input,
+.apd-field--has-error .apd-field__input select,
+.apd-field--has-error .apd-field__input textarea {
+    border-color: #d63638;
+    box-shadow: 0 0 0 1px #d63638;
+}
+
+.apd-field--has-error .apd-field__label {
+    color: #d63638;
+}
+
+/**
+ * Field Label
+ */
+.apd-field__label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    color: #1e1e1e;
+}
+
+.apd-field__required-indicator {
+    color: #d63638;
+    font-weight: 400;
+    margin-left: 0.25em;
+}
+
+/**
+ * Field Input Container
+ */
+.apd-field__input {
+    width: 100%;
+}
+
+.apd-field__input input[type="text"],
+.apd-field__input input[type="email"],
+.apd-field__input input[type="url"],
+.apd-field__input input[type="tel"],
+.apd-field__input input[type="number"],
+.apd-field__input input[type="date"],
+.apd-field__input input[type="time"],
+.apd-field__input input[type="datetime-local"],
+.apd-field__input input[type="color"],
+.apd-field__input select,
+.apd-field__input textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 8px;
+    min-height: 30px;
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #1e1e1e;
+    font-size: 14px;
+    line-height: 2;
+    box-sizing: border-box;
+}
+
+.apd-field__input input[type="color"] {
+    width: 60px;
+    min-height: 36px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.apd-field__input textarea {
+    min-height: 100px;
+    line-height: 1.5;
+    padding: 8px;
+}
+
+.apd-field__input select {
+    padding-right: 24px;
+}
+
+.apd-field__input select[multiple] {
+    min-height: 120px;
+    padding: 8px;
+}
+
+/* Focus states - WCAG compliant visible focus */
+.apd-field__input input:focus,
+.apd-field__input select:focus,
+.apd-field__input textarea:focus {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+/* Checkbox and radio inputs */
+.apd-field__input input[type="checkbox"],
+.apd-field__input input[type="radio"] {
+    width: auto;
+    min-height: auto;
+    margin-right: 0.5em;
+}
+
+/**
+ * Field Description
+ */
+.apd-field__description {
+    display: block;
+    margin-top: 0.5em;
+    font-size: 13px;
+    color: #757575;
+    line-height: 1.5;
+}
+
+/**
+ * Field Errors
+ * Uses role="alert" for screen reader announcements
+ */
+.apd-field__errors {
+    margin-top: 0.5em;
+    padding: 0.5em 0.75em;
+    background-color: #fcf0f1;
+    border-left: 4px solid #d63638;
+    border-radius: 0 4px 4px 0;
+}
+
+.apd-field__error {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5em;
+    color: #d63638;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.apd-field__error::before {
+    content: "\f534";
+    font-family: dashicons;
+    font-size: 16px;
+    line-height: 1.3;
+    flex-shrink: 0;
+}
+
+.apd-field__error + .apd-field__error {
+    margin-top: 0.25em;
+}
+
+/* ==========================================================================
+   Field Groups
+   ========================================================================== */
+
+/**
+ * Field Group Container
+ */
+.apd-field-group {
+    margin-bottom: 1.5em;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.apd-field-group:last-child {
+    margin-bottom: 0;
+}
+
+/**
+ * Field Group Header
+ */
+.apd-field-group__header {
+    padding: 12px 16px;
+    background-color: #f6f7f7;
+    border-bottom: 1px solid #e0e0e0;
+    border-left: 3px solid #2271b1;
+    border-radius: 6px 6px 0 0;
+}
+
+.apd-field-group__title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e1e1e;
+    line-height: 1.4;
+}
+
+.apd-field-group__description {
+    margin: 0.5em 0 0;
+    font-size: 13px;
+    color: #757575;
+    line-height: 1.5;
+}
+
+/**
+ * Field Group Body
+ */
+.apd-field-group__body {
+    padding: 16px;
+}
+
+/**
+ * Collapsible Field Groups
+ */
+.apd-field-group--collapsible .apd-field-group__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+}
+
+.apd-field-group--collapsible .apd-field-group__header:hover {
+    background-color: #f0f0f1;
+}
+
+.apd-field-group--collapsible .apd-field-group__header:focus {
+    outline: 2px solid #2271b1;
+    outline-offset: -2px;
+}
+
+.apd-field-group__header-content {
+    flex: 1;
+}
+
+.apd-field-group__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #50575e;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.apd-field-group__toggle:hover {
+    color: #1e1e1e;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.apd-field-group__toggle:focus {
+    outline: 2px solid #2271b1;
+    outline-offset: 2px;
+}
+
+.apd-field-group__indicator {
+    font-size: 20px;
+    transition: transform 0.2s ease;
+}
+
+.apd-field-group__indicator::before {
+    content: "\f140";
+    font-family: dashicons;
+}
+
+/* Collapsed state */
+.apd-field-group--collapsed .apd-field-group__header {
+    border-bottom: none;
+    border-radius: 4px;
+}
+
+.apd-field-group--collapsed .apd-field-group__body {
+    display: none;
+}
+
+.apd-field-group--collapsed .apd-field-group__indicator {
+    transform: rotate(-90deg);
+}
+
+/* ==========================================================================
+   Display Fields (Read-only)
+   ========================================================================== */
+
+/**
+ * Display Field Container
+ */
+.apd-field-display {
+    margin-bottom: 1em;
+}
+
+.apd-field-display:last-child {
+    margin-bottom: 0;
+}
+
+/**
+ * Display Field Definition List
+ */
+.apd-field-display__list {
+    margin: 0;
+    padding: 0;
+}
+
+.apd-field-display__item {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.75em 0;
+    border-bottom: 1px solid #f0f0f1;
+}
+
+.apd-field-display__item:last-child {
+    border-bottom: none;
+}
+
+.apd-field-display__label {
+    flex: 0 0 30%;
+    margin: 0;
+    padding-right: 1em;
+    font-weight: 600;
+    color: #1e1e1e;
+}
+
+.apd-field-display__value {
+    flex: 1;
+    margin: 0;
+    color: #3c434a;
+    word-break: break-word;
+}
+
+.apd-field-display__value--empty {
+    color: #757575;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   Switch Field
+   ========================================================================== */
+
+.apd-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75em;
+}
+
+.apd-switch__input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.apd-switch__track {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    background-color: #8c8f94;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.apd-switch__input:checked + .apd-switch__track {
+    background-color: #2271b1;
+}
+
+.apd-switch__input:focus + .apd-switch__track {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #2271b1;
+}
+
+.apd-switch__thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.apd-switch__input:checked + .apd-switch__track .apd-switch__thumb {
+    transform: translateX(16px);
+}
+
+.apd-switch__label {
+    font-size: 13px;
+    color: #1e1e1e;
+}
+
+/* ==========================================================================
+   Checkbox and Radio Groups
+   ========================================================================== */
+
+.apd-fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.apd-fieldset__legend {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    color: #1e1e1e;
+    padding: 0;
+}
+
+.apd-fieldset__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.apd-fieldset__option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5em;
+}
+
+.apd-fieldset__option input {
+    margin-top: 0.25em;
+    flex-shrink: 0;
+}
+
+.apd-fieldset__option label {
+    font-size: 14px;
+    color: #1e1e1e;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   File Upload Fields
+   ========================================================================== */
+
+.apd-file-upload {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1em;
+}
+
+.apd-file-upload__preview {
+    flex: 0 0 auto;
+}
+
+.apd-file-upload__preview img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 4px;
+    border: 1px solid #c3c4c7;
+}
+
+.apd-file-upload__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+/* ==========================================================================
+   Gallery Field
+   ========================================================================== */
+
+.apd-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75em;
+}
+
+.apd-gallery__item {
+    position: relative;
+    aspect-ratio: 1;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.apd-gallery__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.apd-gallery__remove {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.apd-gallery__remove:hover {
+    background-color: #d63638;
+}
+
+.apd-gallery__remove:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+@media screen and (max-width: 782px) {
+    .apd-field__input input[type="text"],
+    .apd-field__input input[type="email"],
+    .apd-field__input input[type="url"],
+    .apd-field__input input[type="tel"],
+    .apd-field__input input[type="number"],
+    .apd-field__input input[type="date"],
+    .apd-field__input input[type="time"],
+    .apd-field__input input[type="datetime-local"],
+    .apd-field__input select {
+        min-height: 40px;
+        font-size: 16px;
+        line-height: 2.5;
+    }
+
+    .apd-field__input textarea {
+        font-size: 16px;
+    }
+
+    .apd-field-display__item {
+        flex-direction: column;
+    }
+
+    .apd-field-display__label {
+        flex: 0 0 auto;
+        margin-bottom: 0.25em;
+        padding-right: 0;
+    }
+
+    .apd-field-group__header {
+        padding: 10px 12px;
+    }
+
+    .apd-field-group__body {
+        padding: 12px;
+    }
+
+    .apd-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .apd-file-upload {
+        flex-direction: column;
+    }
+
+    .apd-file-upload__preview img {
+        max-width: 100%;
+    }
+
+    .apd-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ==========================================================================
+   Review Moderation Admin Page
+   ========================================================================== */
+
+/**
+ * Reviews table layout
+ */
+.apd-reviews-wrap {
+    max-width: 100%;
+}
+
+.apd-reviews-table {
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.apd-reviews-table thead th {
+    background: #f6f7f7;
+    font-weight: 600;
+}
+
+.apd-reviews-table .column-cb {
+    width: 2.2em;
+}
+
+.apd-reviews-table .column-listing {
+    width: 15%;
+}
+
+.apd-reviews-table .column-author {
+    width: 12%;
+}
+
+.apd-reviews-table .column-rating {
+    width: 100px;
+}
+
+.apd-reviews-table .column-review {
+    width: auto;
+}
+
+.apd-reviews-table .column-status {
+    width: 80px;
+}
+
+.apd-reviews-table .column-date {
+    width: 12%;
+}
+
+/**
+ * Star rating display
+ */
+.apd-stars {
+    display: inline-flex;
+    gap: 2px;
+    color: #f0ad4e;
+}
+
+.apd-stars .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.apd-stars .dashicons-star-empty {
+    color: #ccc;
+}
+
+/**
+ * Review status badges
+ */
+.apd-review-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-transform: capitalize;
+}
+
+.apd-review-status--approved {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.apd-review-status--pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.apd-review-status--spam {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.apd-review-status--trash {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+/**
+ * Unapproved row highlighting
+ */
+.apd-reviews-table tr.unapproved {
+    background-color: #fcf9e8;
+}
+
+.apd-reviews-table tr.unapproved:hover {
+    background-color: #f5f0dd;
+}
+
+/**
+ * Row actions
+ */
+.apd-reviews-table .row-actions {
+    visibility: hidden;
+    padding-top: 3px;
+}
+
+.apd-reviews-table tr:hover .row-actions,
+.apd-reviews-table tr:focus-within .row-actions {
+    visibility: visible;
+}
+
+.apd-reviews-table .row-actions a {
+    text-decoration: none;
+}
+
+.apd-reviews-table .row-actions .submitdelete {
+    color: #b32d2e;
+}
+
+.apd-reviews-table .row-actions .submitdelete:hover {
+    color: #a00;
+}
+
+/**
+ * Filters
+ */
+.apd-reviews-filters {
+    clear: both;
+    margin: 1em 0;
+}
+
+.apd-reviews-filters .search-box {
+    margin-bottom: 0;
+}
+
+/**
+ * Filter dropdowns alignment
+ */
+.apd-reviews-wrap .tablenav .actions select {
+    float: left;
+    margin-right: 6px;
+}
+
+/**
+ * Pending count bubble in menu
+ */
+.awaiting-mod {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    margin: 1px 0 -1px 2px;
+    padding: 0 5px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    background-color: #d63638;
+    color: #fff;
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+#adminmenu .awaiting-mod .pending-count {
+    color: #fff;
+}
+
+/**
+ * Review content truncation
+ */
+.apd-reviews-table .column-review strong {
+    display: block;
+    margin-bottom: 3px;
+}
+
+/**
+ * Responsive styles for review moderation
+ */
+@media screen and (max-width: 782px) {
+    .apd-reviews-table .column-listing,
+    .apd-reviews-table .column-author,
+    .apd-reviews-table .column-date {
+        display: none;
+    }
+
+    .apd-reviews-table .column-rating,
+    .apd-reviews-table .column-status {
+        width: auto;
+    }
+
+    .apd-reviews-table .row-actions {
+        visibility: visible;
+    }
+
+    .apd-reviews-wrap .tablenav .actions select {
+        float: none;
+        display: block;
+        width: 100%;
+        margin-bottom: 6px;
+    }
+
+    .apd-reviews-wrap .tablenav .actions input[type="submit"] {
+        width: 100%;
+    }
+}

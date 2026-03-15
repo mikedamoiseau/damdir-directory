@@ -1,0 +1,668 @@
+/**
+ * Admin Demo Data Page Styles
+ *
+ * @package APD
+ * @since 1.0.0
+ */
+
+/* Page Wrapper */
+.apd-demo-data-wrap {
+	max-width: 960px;
+}
+
+/* ==========================================================================
+   Shared Users Section
+   ========================================================================== */
+
+.apd-demo-users {
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	padding: 24px 28px;
+	margin-bottom: 0;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.apd-demo-users h2 {
+	margin: 0 0 8px;
+	padding: 0 0 0 12px;
+	font-size: 1.3em;
+	font-weight: 600;
+	color: #1d2327;
+	border: none;
+	border-left: 3px solid #2271b1;
+}
+
+.apd-section-description {
+	margin: 0 0 16px;
+	color: #646970;
+	font-style: normal;
+}
+
+.apd-users-status {
+	margin-bottom: 16px;
+}
+
+.apd-users-actions {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.apd-inline-form {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+}
+
+.apd-inline-form fieldset {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+.apd-inline-form .button {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.apd-inline-form .button .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.apd-delete-users-hint {
+	color: #d63638;
+	font-size: 12px;
+}
+
+/* ==========================================================================
+   Tab Navigation
+   ========================================================================== */
+
+.apd-demo-tabs {
+	margin-top: 24px;
+	margin-bottom: 0;
+	border-bottom: 1px solid #c3c4c7;
+}
+
+.apd-demo-tabs .nav-tab {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	margin-left: 0;
+	margin-right: 2px;
+	padding: 8px 12px;
+	font-size: 13px;
+	font-weight: 500;
+	color: #50575e;
+	background: #f0f0f1;
+	border: 1px solid #c3c4c7;
+	border-bottom: none;
+	border-radius: 3px 3px 0 0;
+	transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+	text-decoration: none;
+}
+
+.apd-demo-tabs .nav-tab .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.apd-demo-tabs .nav-tab:hover {
+	background: #fff;
+	color: #135e96;
+}
+
+.apd-demo-tabs .nav-tab-active,
+.apd-demo-tabs .nav-tab-active:hover {
+	background: #fff;
+	color: #1d2327;
+	border-bottom: 1px solid #fff;
+	margin-bottom: -1px;
+	box-shadow: inset 0 3px 0 #2271b1;
+}
+
+.apd-demo-tabs .nav-tab:focus {
+	outline: 2px solid #2271b1;
+	outline-offset: -2px;
+	box-shadow: none;
+}
+
+/* Tab Content Wrapper */
+.apd-tab-content-wrap {
+	border: 1px solid #e0e0e0;
+	border-top: none;
+	background: #f9f9f9;
+	padding: 24px;
+	margin-bottom: 24px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.apd-tab-content {
+	animation: apd-fade-in 0.2s ease-in-out;
+}
+
+@keyframes apd-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* No tabs - single tab mode (hide wrapper border) */
+.apd-demo-data-wrap:not(:has(.apd-demo-tabs)) .apd-tab-content-wrap {
+	border: none;
+	background: transparent;
+	padding: 24px 0;
+	box-shadow: none;
+}
+
+/* ==========================================================================
+   Sections (inside tabs)
+   ========================================================================== */
+
+.apd-demo-section {
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	padding: 24px 28px;
+	margin-bottom: 24px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.apd-demo-section:last-child {
+	margin-bottom: 0;
+}
+
+.apd-demo-section h2 {
+	margin: 0 0 16px;
+	padding: 0 0 0 12px;
+	font-size: 1.3em;
+	font-weight: 600;
+	color: #1d2327;
+	border: none;
+	border-left: 3px solid #2271b1;
+}
+
+/* ==========================================================================
+   Stats Grid
+   ========================================================================== */
+
+.apd-stats-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0;
+}
+
+.apd-stat-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 12px 8px 0;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.apd-stat-item .dashicons {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	font-size: 16px;
+	color: #2271b1;
+	background: #f0f6fc;
+	border-radius: 6px;
+	flex-shrink: 0;
+}
+
+.apd-stat-label {
+	flex: 1;
+	min-width: 0;
+}
+
+.apd-stat-count,
+.apd-stat-total {
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	text-align: right;
+}
+
+/* Total footer row */
+.apd-stat-footer {
+	grid-column: 1 / -1;
+	border-top: 2px solid #c3c4c7;
+	border-bottom: none;
+	padding-top: 12px;
+	margin-top: -1px;
+	font-weight: 600;
+}
+
+.apd-stat-footer .apd-stat-label {
+	font-weight: 600;
+}
+
+.apd-stat-footer .dashicons {
+	display: none;
+}
+
+/* ==========================================================================
+   Tab Intro Text
+   ========================================================================== */
+
+.apd-tab-intro {
+	margin: 0 0 16px;
+	padding: 10px 14px;
+	background: #f0f6fc;
+	border-left: 3px solid #2271b1;
+	border-radius: 0 4px 4px 0;
+	color: #1d2327;
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+/* ==========================================================================
+   Generate Form
+   ========================================================================== */
+
+.apd-demo-form fieldset {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+.apd-form-row {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 0;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.apd-form-row:last-child {
+	border-bottom: none;
+}
+
+.apd-checkbox-label {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	min-width: 120px;
+	font-weight: 500;
+}
+
+.apd-checkbox-label input[type="checkbox"] {
+	margin: 0;
+}
+
+.apd-form-row input[type="number"].small-text {
+	width: 60px;
+}
+
+.apd-form-row .description {
+	color: #646970;
+	font-style: normal;
+}
+
+/* Module Data Divider */
+.apd-form-divider {
+	padding: 14px 0 6px;
+	margin-top: 4px;
+	border-top: 2px solid #c3c4c7;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: #646970;
+}
+
+/* Module Data Row */
+.apd-module-data-label {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	min-width: 120px;
+	font-weight: 500;
+}
+
+.apd-module-data-label .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	color: #2271b1;
+}
+
+/* Form Actions */
+.apd-form-actions {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #e0e0e0;
+}
+
+.apd-form-actions .button {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.apd-form-actions .button .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+/* ==========================================================================
+   Progress Indicator
+   ========================================================================== */
+
+.apd-progress {
+	margin-top: 24px;
+	padding: 20px;
+	background: #f0f6fc;
+	border: 1px solid #c3c4c7;
+	border-radius: 6px;
+}
+
+.apd-progress-bar {
+	height: 24px;
+	background: #e0e0e0;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.apd-progress-bar-fill {
+	height: 100%;
+	width: 0%;
+	background: linear-gradient(90deg, #2271b1, #135e96);
+	border-radius: 12px;
+	transition: width 0.3s ease;
+}
+
+.apd-progress-text {
+	margin: 12px 0 0;
+	text-align: center;
+	font-weight: 500;
+	color: #1d2327;
+}
+
+/* ==========================================================================
+   Results
+   ========================================================================== */
+
+.apd-results {
+	margin-top: 20px;
+	padding: 16px 20px;
+	border-radius: 6px;
+}
+
+.apd-results.success {
+	background: #edfaef;
+	border: 1px solid #46b450;
+	color: #1e4620;
+}
+
+.apd-results.error {
+	background: #fcf0f1;
+	border: 1px solid #d63638;
+	color: #8a1f1f;
+}
+
+.apd-results h3 {
+	margin: 0 0 12px;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.apd-results ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.apd-results li {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 4px 0;
+}
+
+.apd-results .dashicons-yes {
+	color: #46b450;
+}
+
+/* ==========================================================================
+   Delete Section
+   ========================================================================== */
+
+.apd-demo-delete {
+	border-color: #f0b8b8;
+}
+
+.apd-demo-delete h2 {
+	border-left-color: #d63638;
+}
+
+.apd-warning {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 16px;
+	background: #fcf0f1;
+	border: 1px solid #d63638;
+	border-radius: 6px;
+	margin-bottom: 20px;
+}
+
+.apd-warning .dashicons {
+	color: #d63638;
+	font-size: 24px;
+	width: 24px;
+	height: 24px;
+	flex-shrink: 0;
+}
+
+.apd-warning p {
+	margin: 0;
+	color: #8a1f1f;
+}
+
+.apd-warning strong {
+	color: #d63638;
+}
+
+.button-link-delete {
+	color: #d63638 !important;
+	border-color: #d63638 !important;
+	background: #fff !important;
+}
+
+.button-link-delete:hover,
+.button-link-delete:focus {
+	color: #fff !important;
+	background: #d63638 !important;
+}
+
+.button-link-delete .dashicons {
+	margin-right: 4px;
+}
+
+.button-link-delete:disabled,
+.button-link-delete[disabled] {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.button-link-delete:disabled:hover,
+.button-link-delete[disabled]:hover {
+	color: #d63638 !important;
+	background: #fff !important;
+}
+
+/* No Data State */
+.apd-no-data {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	color: #46b450;
+	font-weight: 500;
+}
+
+.apd-no-data .dashicons {
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+}
+
+/* ==========================================================================
+   Disabled / Loading States
+   ========================================================================== */
+
+.apd-demo-form.is-loading button {
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+.apd-demo-form.is-loading fieldset {
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+/* Animation */
+@keyframes apd-pulse {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.6;
+	}
+}
+
+.apd-progress.is-active .apd-progress-text {
+	animation: apd-pulse 1.5s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media screen and (max-width: 782px) {
+	.apd-demo-tabs .nav-tab {
+		padding: 6px 10px;
+		font-size: 12px;
+	}
+
+	.apd-tab-content-wrap {
+		padding: 16px;
+	}
+
+	.apd-stats-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.apd-demo-section {
+		padding: 16px;
+	}
+
+	.apd-demo-users {
+		padding: 16px;
+	}
+
+	.apd-form-row {
+		flex-wrap: wrap;
+	}
+
+	.apd-checkbox-label {
+		min-width: 100%;
+		margin-bottom: 8px;
+	}
+
+	.apd-form-row .description {
+		flex-basis: 100%;
+		margin-top: 4px;
+	}
+
+	.apd-users-actions {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.apd-inline-form fieldset {
+		flex-wrap: wrap;
+	}
+
+	.apd-demo-tabs .nav-tab .dashicons {
+		display: none;
+	}
+}
+
+/* ==========================================================================
+   High Contrast Mode
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+	.apd-demo-section {
+		border-width: 2px;
+		box-shadow: none;
+	}
+
+	.apd-demo-users {
+		border-width: 2px;
+		box-shadow: none;
+	}
+
+	.apd-demo-tabs .nav-tab {
+		border-width: 2px;
+	}
+
+	.apd-demo-tabs .nav-tab-active {
+		border-bottom-width: 2px;
+	}
+
+	.apd-tab-content-wrap {
+		border-width: 2px;
+		box-shadow: none;
+	}
+
+	.apd-warning {
+		border-width: 2px;
+	}
+
+	.apd-progress-bar {
+		border: 2px solid #1d2327;
+	}
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+	.apd-progress-bar-fill {
+		transition: none;
+	}
+
+	.apd-progress.is-active .apd-progress-text {
+		animation: none;
+	}
+
+	.apd-tab-content {
+		animation: none;
+	}
+
+	.apd-demo-tabs .nav-tab {
+		transition: none;
+	}
+}

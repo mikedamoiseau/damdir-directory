@@ -1,0 +1,215 @@
+/**
+ * Admin Modules Page Styles.
+ *
+ * @package APD
+ * @since   1.0.0
+ */
+
+/* Page wrapper */
+.apd-modules-wrap {
+	max-width: 1200px;
+}
+
+/* Module count */
+.apd-modules-count {
+	margin-bottom: 15px;
+	font-size: 14px;
+}
+
+/* Empty state */
+.apd-modules-empty {
+	text-align: center;
+	padding: 60px 20px;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	margin-top: 20px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.apd-modules-empty .dashicons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 80px;
+	height: 80px;
+	margin: 0 auto 20px;
+	font-size: 40px;
+	color: #2271b1;
+	background: #f0f6fc;
+	border-radius: 50%;
+}
+
+.apd-modules-empty h2 {
+	margin: 0 0 15px;
+	font-size: 21px;
+	font-weight: 400;
+	color: #1d2327;
+}
+
+.apd-modules-empty p {
+	margin: 0 0 10px;
+	font-size: 14px;
+	color: #646970;
+	max-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Modules table */
+.apd-modules-table {
+	margin-top: 20px;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+	overflow: hidden;
+}
+
+.apd-modules-table thead th {
+	background: #f6f7f7;
+	border-bottom: 1px solid #e0e0e0;
+	font-weight: 600;
+}
+
+.apd-modules-table .column-icon {
+	width: 60px;
+	text-align: center;
+}
+
+.apd-modules-table .column-icon .dashicons {
+	font-size: 24px;
+	width: 24px;
+	height: 24px;
+	color: #2271b1;
+}
+
+/* Module icon circle */
+.apd-module-icon-wrap {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	background: #f0f6fc;
+	border-radius: 10px;
+}
+
+.apd-modules-table .column-name {
+	width: 200px;
+}
+
+.apd-modules-table .column-name strong {
+	font-size: 14px;
+	color: #1d2327;
+}
+
+.apd-modules-table .column-description {
+	width: auto;
+}
+
+.apd-modules-table .column-version {
+	width: 80px;
+}
+
+.apd-modules-table .column-author {
+	width: 150px;
+}
+
+/* Module slug */
+.apd-module-slug {
+	display: block;
+	font-size: 12px;
+	color: #646970;
+	font-family: monospace;
+	margin-top: 2px;
+}
+
+/* Feature badges */
+.apd-module-features {
+	margin-top: 8px;
+}
+
+.apd-feature-badge {
+	display: inline-block;
+	background: #f0f6fc;
+	color: #2271b1;
+	padding: 3px 10px;
+	border-radius: 10px;
+	font-size: 11px;
+	font-weight: 500;
+	margin-right: 4px;
+	margin-bottom: 4px;
+}
+
+/* Module warnings */
+.apd-module-row.apd-module-has-warnings {
+	background-color: #fcf9e8;
+}
+
+.apd-module-warnings {
+	margin-top: 10px;
+}
+
+.apd-warning-message {
+	display: flex;
+	align-items: flex-start;
+	gap: 5px;
+	margin: 5px 0 0;
+	color: #996800;
+	font-size: 13px;
+}
+
+.apd-warning-message .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	color: #dba617;
+	flex-shrink: 0;
+	margin-top: 1px;
+}
+
+/* No author placeholder */
+.apd-no-author {
+	color: #a7aaad;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 782px) {
+	.apd-modules-table .column-icon {
+		width: 50px;
+	}
+
+	.apd-module-icon-wrap {
+		width: 32px;
+		height: 32px;
+		border-radius: 8px;
+	}
+
+	.apd-module-icon-wrap .dashicons {
+		font-size: 18px;
+		width: 18px;
+		height: 18px;
+	}
+
+	.apd-modules-table .column-name {
+		width: auto;
+	}
+
+	.apd-modules-table .column-version,
+	.apd-modules-table .column-author {
+		display: none;
+	}
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+	.apd-modules-table {
+		box-shadow: none;
+		border-width: 2px;
+	}
+
+	.apd-modules-empty {
+		box-shadow: none;
+		border-width: 2px;
+	}
+}

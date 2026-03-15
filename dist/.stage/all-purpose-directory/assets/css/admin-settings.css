@@ -1,0 +1,263 @@
+/**
+ * Admin Settings Page Styles
+ *
+ * @package APD
+ * @since 1.0.0
+ */
+
+/* Settings Page Wrapper */
+.apd-settings-wrap {
+	max-width: 1200px;
+}
+
+/* Tab Navigation */
+.apd-settings-tabs {
+	margin-bottom: 0;
+	border-bottom: 1px solid #c3c4c7;
+}
+
+.apd-settings-tabs .nav-tab {
+	margin-left: 0;
+	margin-right: 4px;
+	padding: 10px 20px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #50575e;
+	background: #f0f0f1;
+	border: 1px solid #c3c4c7;
+	border-bottom: none;
+	border-radius: 3px 3px 0 0;
+	transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.apd-settings-tabs .nav-tab:hover {
+	background: #fff;
+	color: #135e96;
+}
+
+.apd-settings-tabs .nav-tab-active,
+.apd-settings-tabs .nav-tab-active:hover {
+	background: #fff;
+	color: #1d2327;
+	border-bottom: 1px solid #fff;
+	margin-bottom: -1px;
+	box-shadow: inset 0 3px 0 #2271b1;
+}
+
+.apd-settings-tabs .nav-tab:focus {
+	outline: 2px solid #2271b1;
+	outline-offset: -2px;
+	box-shadow: none;
+}
+
+/* Settings Content */
+.apd-settings-content {
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-top: none;
+	padding: 24px 28px;
+	margin-top: 0;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* Settings Form */
+.apd-settings-form h2 {
+	font-size: 1.3em;
+	font-weight: 600;
+	margin: 28px 0 12px;
+	padding: 0 0 0 12px;
+	color: #1d2327;
+	border-left: 3px solid #2271b1;
+}
+
+.apd-settings-form h2:first-child {
+	margin-top: 0;
+}
+
+.apd-settings-form p.description {
+	margin-top: 4px;
+	font-style: normal;
+	color: #646970;
+}
+
+/* Section Descriptions */
+.apd-settings-form .settings-section-description {
+	margin-bottom: 20px;
+	color: #50575e;
+}
+
+/* Form Table Overrides */
+.apd-settings-form .form-table {
+	margin-top: 0;
+}
+
+.apd-settings-form .form-table th {
+	padding: 20px 10px 20px 0;
+	width: 220px;
+	vertical-align: top;
+}
+
+.apd-settings-form .form-table td {
+	padding: 15px 10px;
+	vertical-align: top;
+}
+
+.apd-settings-form .form-table td fieldset label {
+	margin: 0.35em 0 0.5em;
+	display: inline-block;
+}
+
+/* Input Fields */
+.apd-settings-form input[type="text"],
+.apd-settings-form input[type="email"],
+.apd-settings-form input[type="number"],
+.apd-settings-form input[type="url"],
+.apd-settings-form select {
+	width: auto;
+	max-width: 100%;
+}
+
+.apd-settings-form input[type="text"].regular-text,
+.apd-settings-form input[type="email"].regular-text {
+	width: 25em;
+}
+
+.apd-settings-form input[type="text"].small-text {
+	width: 50px;
+}
+
+.apd-settings-form textarea.large-text {
+	width: 100%;
+	max-width: 700px;
+}
+
+.apd-settings-form textarea.code {
+	font-family: Consolas, Monaco, monospace;
+	font-size: 13px;
+}
+
+/* Checkbox Styling */
+.apd-settings-form input[type="checkbox"] {
+	margin-right: 8px;
+}
+
+.apd-settings-form label input[type="checkbox"] {
+	vertical-align: middle;
+}
+
+/* Submit Button */
+.apd-settings-form .submit {
+	padding: 24px 0 0;
+	margin: 24px 0 0;
+	border-top: 1px solid #e0e0e0;
+}
+
+.apd-settings-form .submit .button-primary {
+	padding: 6px 24px;
+}
+
+/* Tab-specific Content */
+.apd-settings-tab {
+	animation: apd-fade-in 0.2s ease-in-out;
+}
+
+@keyframes apd-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Warning/Info Notices */
+.apd-settings-form .notice {
+	margin: 10px 0 15px;
+}
+
+.apd-settings-form .description.warning {
+	color: #b32d2e;
+}
+
+/* Color Picker Field */
+.apd-settings-form .wp-picker-container {
+	display: inline-block;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 782px) {
+	.apd-settings-tabs .nav-tab {
+		padding: 8px 14px;
+		font-size: 13px;
+	}
+
+	.apd-settings-form .form-table th {
+		padding: 10px 0;
+		width: auto;
+	}
+
+	.apd-settings-form input[type="text"].regular-text,
+	.apd-settings-form input[type="email"].regular-text {
+		width: 100%;
+	}
+
+	.apd-settings-content {
+		padding: 16px;
+	}
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+	.apd-settings-tabs .nav-tab {
+		border-width: 2px;
+	}
+
+	.apd-settings-tabs .nav-tab-active {
+		border-bottom-width: 2px;
+	}
+
+	.apd-settings-content {
+		box-shadow: none;
+		border-width: 2px;
+	}
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+	.apd-settings-tab {
+		animation: none;
+	}
+
+	.apd-settings-tabs .nav-tab {
+		transition: none;
+	}
+}
+
+/* Roles Field */
+.apd-roles-field {
+	padding: 10px;
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	max-width: 300px;
+}
+
+.apd-roles-field.hidden {
+	display: none;
+}
+
+.apd-roles-field label {
+	display: block;
+	margin-bottom: 6px;
+	padding: 4px 0;
+}
+
+.apd-roles-field label:last-child {
+	margin-bottom: 0;
+}
+
+/* Validation States */
+.apd-settings-form input.apd-invalid {
+	border-color: #d63638;
+	box-shadow: 0 0 0 1px #d63638;
+}
