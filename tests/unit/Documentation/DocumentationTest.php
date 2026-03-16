@@ -247,26 +247,14 @@ class DocumentationTest extends TestCase {
      */
     public function test_developer_guide_documents_action_hooks(): void {
         $guide = file_get_contents( $this->plugin_dir . '/docs/DEVELOPER.md' );
+        $hooks = $this->get_plugin_hook_inventory();
 
         $this->assertStringContainsString( '## Action Hooks', $guide );
-
-        // Core hooks
-        $hooks = [
-            'apd_init',
-            'apd_loaded',
-            'apd_before_listing_save',
-            'apd_after_listing_save',
-            'apd_before_submission',
-            'apd_after_submission',
-            'apd_field_registered',
-            'apd_favorite_added',
-            'apd_review_created',
-            'apd_contact_sent',
-        ];
-
-        foreach ( $hooks as $hook ) {
-            $this->assertStringContainsString( $hook, $guide, "Developer guide should document $hook action" );
-        }
+        $this->assertSame(
+            $hooks['actions'],
+            $this->get_documented_hook_table_entries( $guide, 'Action Hooks', 'Filter Hooks' ),
+            'Developer guide action hook table should exactly match the codebase.'
+        );
     }
 
     /**
@@ -274,24 +262,29 @@ class DocumentationTest extends TestCase {
      */
     public function test_developer_guide_documents_filter_hooks(): void {
         $guide = file_get_contents( $this->plugin_dir . '/docs/DEVELOPER.md' );
+        $hooks = $this->get_plugin_hook_inventory();
 
         $this->assertStringContainsString( '## Filter Hooks', $guide );
+        $this->assertSame(
+            $hooks['filters'],
+            $this->get_documented_hook_table_entries( $guide, 'Filter Hooks', 'Custom Fields' ),
+            'Developer guide filter hook table should exactly match the codebase.'
+        );
+    }
 
-        // Core filters
-        $filters = [
-            'apd_listing_fields',
-            'apd_submission_fields',
-            'apd_listing_query_args',
-            'apd_search_filters',
-            'apd_validate_field',
-            'apd_render_field',
-            'apd_dashboard_tabs',
-            'apd_email_subject',
-        ];
+    /**
+     * Test DEVELOPER.md examples only reference existing hooks.
+     */
+    public function test_developer_guide_hook_examples_reference_existing_hooks(): void {
+        $guide      = file_get_contents( $this->plugin_dir . '/docs/DEVELOPER.md' );
+        $hooks      = $this->get_plugin_hook_inventory();
+        $actions    = $this->get_example_hook_references( $guide, [ 'add_action', 'do_action' ] );
+        $filters    = $this->get_example_hook_references( $guide, [ 'add_filter' ] );
+        $bad_action = array_values( array_diff( $actions, $hooks['actions'] ) );
+        $bad_filter = array_values( array_diff( $filters, $hooks['filters'] ) );
 
-        foreach ( $filters as $filter ) {
-            $this->assertStringContainsString( $filter, $guide, "Developer guide should document $filter filter" );
-        }
+        $this->assertSame( [], $bad_action, 'Developer guide examples should only use existing action hooks.' );
+        $this->assertSame( [], $bad_filter, 'Developer guide examples should only use existing filter hooks.' );
     }
 
     /**
@@ -381,6 +374,126 @@ class DocumentationTest extends TestCase {
 
         // Should have add_action examples
         $this->assertStringContainsString( "add_action( 'apd_init'", $guide );
+    }
+
+    /**
+     * Get the current plugin hook inventory from source files.
+     *
+     * @return array{actions: string[], filters: string[]}
+     */
+    private function get_plugin_hook_inventory(): array {
+        $actions = [];
+        $filters = [];
+
+        foreach ( $this->get_hook_source_files() as $file ) {
+            $content = file_get_contents( $file );
+
+            preg_match_all( '/do_action\s*\(\s*[\'"](?P<hook>apd_[^\'"]+)[\'"]/', $content, $action_matches );
+            preg_match_all( '/apply_filters\s*\(\s*[\'"](?P<hook>apd_[^\'"]+)[\'"]/', $content, $filter_matches );
+
+            foreach ( $action_matches['hook'] as $hook ) {
+                $actions[ $hook ] = true;
+            }
+
+            foreach ( $filter_matches['hook'] as $hook ) {
+                $filters[ $hook ] = true;
+            }
+        }
+
+        $actions = array_keys( $actions );
+        $filters = array_keys( $filters );
+
+        sort( $actions );
+        sort( $filters );
+
+        return [
+            'actions' => $actions,
+            'filters' => $filters,
+        ];
+    }
+
+    /**
+     * Get source files that define plugin hooks.
+     *
+     * @return string[]
+     */
+    private function get_hook_source_files(): array {
+        $files = [ $this->plugin_dir . '/all-purpose-directory.php' ];
+        $roots = [
+            $this->plugin_dir . '/src',
+            $this->plugin_dir . '/includes',
+            $this->plugin_dir . '/templates',
+        ];
+
+        foreach ( $roots as $root ) {
+            $iterator = new \RecursiveIteratorIterator( new \RecursiveDirectoryIterator( $root ) );
+
+            foreach ( $iterator as $file ) {
+                if ( $file->isDir() || 'php' !== $file->getExtension() ) {
+                    continue;
+                }
+
+                $files[] = $file->getPathname();
+            }
+        }
+
+        sort( $files );
+
+        return $files;
+    }
+
+    /**
+     * Extract hook names from a hook table section in DEVELOPER.md.
+     *
+     * @param string $guide         Full guide contents.
+     * @param string $start_heading Section heading without hashes.
+     * @param string $end_heading   Following section heading without hashes.
+     * @return string[]
+     */
+    private function get_documented_hook_table_entries( string $guide, string $start_heading, string $end_heading ): array {
+        $pattern = sprintf(
+            '/## %s\n(?P<section>.*?)(?:\n---\n\n## %s|\n## %s)/s',
+            preg_quote( $start_heading, '/' ),
+            preg_quote( $end_heading, '/' ),
+            preg_quote( $end_heading, '/' )
+        );
+
+        $this->assertSame( 1, preg_match( $pattern, $guide, $matches ), "Could not find $start_heading section." );
+
+        preg_match_all( '/^\| `(?P<hook>apd_[^`]+)` \|/m', $matches['section'], $hook_matches );
+
+        $hooks = $hook_matches['hook'];
+        sort( $hooks );
+
+        return array_values( array_unique( $hooks ) );
+    }
+
+    /**
+     * Extract hook names referenced in add_action/do_action/add_filter examples.
+     *
+     * @param string   $guide Full guide contents.
+     * @param string[] $calls Function names to scan.
+     * @return string[]
+     */
+    private function get_example_hook_references( string $guide, array $calls ): array {
+        $hooks = [];
+
+        foreach ( $calls as $call ) {
+            preg_match_all(
+                sprintf( '/%s\s*\(\s*[\'"](?P<hook>apd_[^\'"]+)[\'"]/', preg_quote( $call, '/' ) ),
+                $guide,
+                $matches
+            );
+
+            foreach ( $matches['hook'] as $hook ) {
+                $hooks[ $hook ] = true;
+            }
+        }
+
+        $hooks = array_keys( $hooks );
+        sort( $hooks );
+
+        return $hooks;
     }
 
     /**

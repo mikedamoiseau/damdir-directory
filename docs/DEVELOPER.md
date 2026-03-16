@@ -68,2297 +68,443 @@ all-purpose-directory/
 
 ## Action Hooks
 
-### Core Lifecycle
-
-```php
-/**
- * Fires after the plugin is activated.
- */
-do_action( 'apd_activated' );
-
-/**
- * Fires after the plugin is deactivated.
- */
-do_action( 'apd_deactivated' );
-
-/**
- * Fires after the plugin initializes.
- * Use for registering custom field types, filters, views.
- */
-do_action( 'apd_init' );
-
-/**
- * Fires when all plugin components are loaded.
- * Safe to use all plugin functions.
- */
-do_action( 'apd_loaded' );
-
-/**
- * Fires after text domain is loaded.
- * Use for translation-related setup.
- */
-do_action( 'apd_textdomain_loaded' );
-```
-
-### Listing Lifecycle
-
-```php
-/**
- * Before a listing is saved in admin.
- *
- * @param int   $post_id Post ID.
- * @param array $values  Raw POST values.
- */
-do_action( 'apd_before_listing_save', $post_id, $values );
-
-/**
- * After a listing is saved in admin.
- *
- * @param int   $post_id          Post ID.
- * @param array $sanitized_values Processed field values.
- */
-do_action( 'apd_after_listing_save', $post_id, $sanitized_values );
-
-/**
- * When a listing status changes.
- *
- * @param int    $post_id    Post ID.
- * @param string $new_status New status.
- * @param string $old_status Previous status.
- */
-do_action( 'apd_listing_status_changed', $post_id, $new_status, $old_status );
-
-/**
- * When a listing is viewed (single page).
- *
- * @param int $listing_id Listing ID.
- * @param int $views      Updated view count.
- */
-do_action( 'apd_listing_viewed', $listing_id, $views );
-```
-
-### Submission Lifecycle
-
-```php
-/**
- * Before frontend submission is processed.
- *
- * @param array $data       Submitted form data.
- * @param int   $listing_id Listing ID (0 for new).
- */
-do_action( 'apd_before_submission', $data, $listing_id );
-
-/**
- * After successful frontend submission.
- *
- * @param int   $listing_id Created listing ID.
- * @param array $data       Submitted data.
- * @param bool  $is_new     Whether this is a new listing (not an update).
- */
-do_action( 'apd_after_submission', $listing_id, $data, $is_new );
-
-/**
- * During submission validation.
- *
- * @param WP_Error $errors Validation errors object.
- * @param array    $data   Submitted data.
- */
-do_action( 'apd_validate_submission', $errors, $data );
-
-/**
- * Before a listing update via frontend submission.
- *
- * @param int   $listing_id Listing ID.
- * @param array $post_data  Post data array.
- */
-do_action( 'apd_before_listing_update', $listing_id, $post_data );
-
-/**
- * After a listing is saved (created or updated) via frontend submission.
- *
- * @param int   $listing_id Listing ID.
- * @param array $data       Submitted data.
- * @param bool  $is_update  Whether this was an update.
- */
-do_action( 'apd_listing_saved', $listing_id, $data, $is_update );
-
-/**
- * After listing field values are saved via frontend submission.
- *
- * @param int   $listing_id Listing ID.
- * @param array $values     Saved field values.
- */
-do_action( 'apd_listing_fields_saved', $listing_id, $values );
-
-/**
- * After taxonomies are assigned to a listing via frontend submission.
- *
- * @param int   $listing_id Listing ID.
- * @param array $categories Category IDs.
- * @param array $tags       Tag names.
- */
-do_action( 'apd_listing_taxonomies_assigned', $listing_id, $categories, $tags );
-
-/**
- * When a spam attempt is detected.
- *
- * @param string $type    Spam type (honeypot, rate_limit, time_check).
- * @param string $ip      Client IP address.
- * @param int    $user_id User ID (0 for guest).
- * @param array  $data    Submitted data (optional, only from submission handler).
- */
-do_action( 'apd_spam_attempt_detected', $type, $ip, $user_id, $data );
-```
-
-### Field System
-
-```php
-/**
- * After a field is registered.
- *
- * @param string $name   Field name.
- * @param array  $config Field configuration.
- */
-do_action( 'apd_field_registered', $name, $config );
-
-/**
- * After a field is unregistered.
- *
- * @param string $name   Field name.
- * @param array  $config Field configuration.
- */
-do_action( 'apd_field_unregistered', $name, $config );
-
-/**
- * After a field type handler is registered.
- *
- * @param string             $type       Field type.
- * @param FieldTypeInterface $field_type Field type instance.
- */
-do_action( 'apd_field_type_registered', $type, $field_type );
-
-/**
- * After admin fields are rendered.
- *
- * @param int   $listing_id Listing ID.
- * @param array $values     Field values.
- */
-do_action( 'apd_after_admin_fields', $listing_id, $values );
-
-/**
- * After frontend fields are rendered.
- *
- * @param int   $listing_id Listing ID (0 for new).
- * @param array $values     Field values.
- */
-do_action( 'apd_after_frontend_fields', $listing_id, $values );
-
-/**
- * After field validation completes.
- *
- * @param WP_Error $errors  Validation errors.
- * @param array    $values  Field values.
- * @param array    $args    Validation arguments.
- * @param string   $context Validation context.
- */
-do_action( 'apd_after_validate_fields', $errors, $values, $args, $context );
-```
-
-### Search & Filters
-
-```php
-/**
- * After a filter is registered.
- *
- * @param string $name   Filter name.
- * @param array  $config Filter configuration.
- */
-do_action( 'apd_filter_registered', $name, $config );
-
-/**
- * After a filter is unregistered.
- *
- * @param string $name   Filter name.
- * @param array  $config Filter configuration.
- */
-do_action( 'apd_filter_unregistered', $name, $config );
-
-/**
- * Before search form renders.
- *
- * @param array $args Form arguments.
- */
-do_action( 'apd_before_search_form', $args );
-
-/**
- * After search form renders.
- *
- * @param array $args Form arguments.
- */
-do_action( 'apd_after_search_form', $args );
-
-/**
- * Before and after filter list within search form.
- */
-do_action( 'apd_before_filters' );
-do_action( 'apd_after_filters' );
-
-/**
- * After search query is modified.
- *
- * @param WP_Query $query          Query object.
- * @param array    $active_filters Active filter parameters.
- */
-do_action( 'apd_search_query_modified', $query, $active_filters );
-```
-
-### Display & Templates
-
-```php
-/**
- * Archive page hooks (templates/archive-listing.php).
- */
-do_action( 'apd_before_archive' );
-do_action( 'apd_archive_wrapper_start' );
-do_action( 'apd_before_archive_search_form' );
-do_action( 'apd_after_archive_search_form' );
-do_action( 'apd_before_archive_loop' );
-do_action( 'apd_after_archive_loop' );
-do_action( 'apd_archive_wrapper_end' );
-do_action( 'apd_after_archive' );
-
-/**
- * Single listing page hooks (templates/single-listing.php).
- */
-do_action( 'apd_before_single_listing' );
-do_action( 'apd_single_wrapper_start' );
-
-/** @param int $listing_id Listing ID. */
-do_action( 'apd_single_listing_start', $listing_id );
-do_action( 'apd_single_listing_meta', $listing_id );
-do_action( 'apd_single_listing_header', $listing_id );
-do_action( 'apd_single_listing_image', $listing_id );
-do_action( 'apd_single_listing_before_content', $listing_id );
-do_action( 'apd_single_listing_after_content', $listing_id );
-do_action( 'apd_single_listing_after_fields', $listing_id );
-do_action( 'apd_single_listing_reviews', $listing_id );
-do_action( 'apd_single_listing_sidebar_start', $listing_id );
-do_action( 'apd_single_listing_contact_form', $listing_id );
-do_action( 'apd_single_listing_sidebar_end', $listing_id );
-do_action( 'apd_single_listing_end', $listing_id );
-
-/** @param int $author_id Author user ID. @param int $listing_id Listing ID. */
-do_action( 'apd_single_listing_author', $author_id, $listing_id );
-
-/** @param int $listing_id Listing ID. */
-do_action( 'apd_before_related_listings', $listing_id );
-do_action( 'apd_after_related_listings', $listing_id );
-
-do_action( 'apd_single_wrapper_end' );
-do_action( 'apd_after_single_listing' );
-
-/**
- * Listing card hooks (templates/listing-card.php, listing-card-list.php).
- *
- * @param int $listing_id Listing ID.
- */
-do_action( 'apd_listing_card_start', $listing_id );
-do_action( 'apd_listing_card_image', $listing_id );
-do_action( 'apd_listing_card_body', $listing_id );
-do_action( 'apd_listing_card_footer', $listing_id );
-do_action( 'apd_listing_card_end', $listing_id );
-
-/**
- * After a view is registered.
- *
- * @param ViewInterface $view View instance.
- */
-do_action( 'apd_view_registered', $view );
-
-/**
- * After a view is unregistered.
- *
- * @param string        $type View type name.
- * @param ViewInterface $view View instance.
- */
-do_action( 'apd_view_unregistered', $type, $view );
-
-/**
- * Views initialization (register custom views here).
- *
- * @param ViewRegistry $registry View registry instance.
- */
-do_action( 'apd_views_init', $registry );
-```
-
-### Dashboard
-
-```php
-/**
- * Dashboard lifecycle hooks.
- *
- * @param array $args Dashboard template arguments.
- */
-do_action( 'apd_before_dashboard', $args );
-do_action( 'apd_dashboard_start', $args );
-do_action( 'apd_dashboard_end', $args );
-
-/**
- * After dashboard output is generated.
- *
- * @param string $output Dashboard HTML output.
- * @param array  $args   Dashboard template arguments.
- */
-do_action( 'apd_after_dashboard', $output, $args );
-
-/**
- * Before/after dashboard tab content.
- *
- * @param string $tab Current tab slug.
- */
-do_action( 'apd_dashboard_before_content', $tab );
-
-/**
- * After dashboard tab content.
- *
- * @param string $tab    Current tab slug.
- * @param string $output Tab HTML output.
- */
-do_action( 'apd_dashboard_after_content', $tab, $output );
-
-/**
- * Dynamic tab content hook.
- *
- * @param string $tab Current tab slug.
- */
-do_action( "apd_dashboard_{$tab}_content", $tab );
-
-/**
- * My Listings tab hooks.
- *
- * @param array $args My Listings template arguments.
- */
-do_action( 'apd_my_listings_start', $args );
-do_action( 'apd_my_listings_end', $args );
-
-/**
- * Favorites tab hooks.
- *
- * @param array $args Favorites template arguments.
- */
-do_action( 'apd_favorites_start', $args );
-do_action( 'apd_favorites_end', $args );
-```
-
-### Profile
-
-```php
-/**
- * Profile template hooks.
- *
- * @param array $args Profile template arguments.
- */
-do_action( 'apd_profile_start', $args );
-do_action( 'apd_profile_end', $args );
-
-/**
- * Before profile data is saved.
- *
- * @param array $data    Submitted profile data.
- * @param int   $user_id User ID.
- */
-do_action( 'apd_before_save_profile', $data, $user_id );
-
-/**
- * After profile data is saved.
- *
- * @param array $data    Submitted profile data.
- * @param int   $user_id User ID.
- */
-do_action( 'apd_after_save_profile', $data, $user_id );
-
-/**
- * After profile is saved successfully.
- *
- * @param int   $user_id User ID.
- * @param array $data    Submitted profile data.
- */
-do_action( 'apd_profile_saved', $user_id, $data );
-
-/**
- * When a custom avatar is uploaded.
- *
- * @param int $attachment_id Attachment ID.
- * @param int $user_id      User ID.
- */
-do_action( 'apd_avatar_uploaded', $attachment_id, $user_id );
-```
-
-### My Listings (Dashboard)
-
-```php
-/**
- * Before/after a listing is deleted from dashboard.
- *
- * @param int $listing_id Listing ID.
- * @param int $user_id    User ID.
- */
-do_action( 'apd_before_delete_listing', $listing_id, $user_id );
-do_action( 'apd_after_delete_listing', $listing_id, $user_id );
-
-/**
- * Before/after a listing is trashed from dashboard.
- *
- * @param int $listing_id Listing ID.
- * @param int $user_id    User ID.
- */
-do_action( 'apd_before_trash_listing', $listing_id, $user_id );
-do_action( 'apd_after_trash_listing', $listing_id, $user_id );
-
-/**
- * Before/after a listing status is changed from dashboard.
- *
- * @param int    $listing_id Listing ID.
- * @param string $status     New status.
- * @param string $old_status Previous status.
- * @param int    $user_id    User ID.
- */
-do_action( 'apd_before_change_listing_status', $listing_id, $status, $old_status, $user_id );
-do_action( 'apd_after_change_listing_status', $listing_id, $status, $old_status, $user_id );
-```
-
-### Favorites
-
-```php
-/**
- * Favorites initialization.
- *
- * @param Favorites $favorites Favorites instance.
- */
-do_action( 'apd_favorites_init', $favorites );
-
-/**
- * When a favorite is added.
- *
- * @param int $listing_id Listing ID.
- * @param int $user_id    User ID (0 for guest).
- */
-do_action( 'apd_favorite_added', $listing_id, $user_id );
-
-/**
- * When a favorite is removed.
- *
- * @param int $listing_id Listing ID.
- * @param int $user_id    User ID (0 for guest).
- */
-do_action( 'apd_favorite_removed', $listing_id, $user_id );
-
-/**
- * When all favorites are cleared.
- *
- * @param int $user_id User ID.
- */
-do_action( 'apd_favorites_cleared', $user_id );
-```
-
-### Reviews
-
-```php
-/**
- * Reviews initialization.
- *
- * @param ReviewManager $manager ReviewManager instance.
- */
-do_action( 'apd_reviews_init', $manager );
-
-/**
- * Before a review is created.
- *
- * @param array $comment_data Comment data for wp_insert_comment.
- * @param int   $listing_id   Listing ID.
- */
-do_action( 'apd_before_review_create', $comment_data, $listing_id );
-
-/**
- * After a review is created.
- *
- * @param int   $comment_id Comment ID.
- * @param int   $listing_id Listing ID.
- * @param array $data       Original review data.
- */
-do_action( 'apd_review_created', $comment_id, $listing_id, $data );
-
-/**
- * Before a review is updated.
- *
- * @param int   $review_id Review ID.
- * @param array $data      Updated data.
- */
-do_action( 'apd_before_review_update', $review_id, $data );
-
-/**
- * After a review is updated.
- *
- * @param int   $review_id Review ID.
- * @param array $data      Updated data.
- */
-do_action( 'apd_review_updated', $review_id, $data );
-
-/**
- * Before a review is deleted.
- *
- * @param int  $review_id    Review ID.
- * @param bool $force_delete Whether to permanently delete.
- */
-do_action( 'apd_before_review_delete', $review_id, $force_delete );
-
-/**
- * After a review is deleted.
- *
- * @param int  $review_id    Review ID.
- * @param bool $force_delete Whether it was permanently deleted.
- */
-do_action( 'apd_review_deleted', $review_id, $force_delete );
-
-/**
- * When a review is approved.
- *
- * @param int $review_id Review ID.
- */
-do_action( 'apd_review_approved', $review_id );
-
-/**
- * When a review is rejected.
- *
- * @param int $review_id Review ID.
- */
-do_action( 'apd_review_rejected', $review_id );
-
-/**
- * Review template hooks (templates/review/).
- *
- * @param int $listing_id Listing ID.
- */
-do_action( 'apd_before_reviews_section', $listing_id );
-do_action( 'apd_after_reviews_section', $listing_id );
-do_action( 'apd_reviews_section_start', $listing_id );
-do_action( 'apd_reviews_section_after_header', $listing_id );
-do_action( 'apd_reviews_section_before_form', $listing_id );
-do_action( 'apd_reviews_section_after_form', $listing_id );
-do_action( 'apd_reviews_section_end', $listing_id );
-do_action( 'apd_before_review_form', $listing_id );
-do_action( 'apd_after_review_form', $listing_id );
-
-/** @param int $listing_id Listing ID. @param bool $is_edit_mode Whether editing. */
-do_action( 'apd_review_form_start', $listing_id, $is_edit_mode );
-do_action( 'apd_review_form_before_submit', $listing_id, $is_edit_mode );
-do_action( 'apd_review_form_end', $listing_id, $is_edit_mode );
-
-/** @param WP_Comment $review Review comment object. */
-do_action( 'apd_review_item_footer', $review );
-```
-
-### Contact & Inquiries
-
-```php
-/**
- * Contact form initialization.
- */
-do_action( 'apd_contact_form_init' );
-
-/**
- * Contact handler initialization.
- */
-do_action( 'apd_contact_handler_init' );
-
-/**
- * After contact form fields in template.
- *
- * @param int    $listing_id Listing ID.
- * @param object $form       ContactForm instance.
- */
-do_action( 'apd_contact_form_after_fields', $listing_id, $form );
-
-/**
- * Before contact form email is sent.
- *
- * @param array   $data    Contact form data.
- * @param WP_Post $listing Listing post object.
- * @param WP_User $owner   Listing owner user object.
- */
-do_action( 'apd_before_send_contact', $data, $listing, $owner );
-
-/**
- * After contact form is successfully sent.
- *
- * @param array   $data    Contact form data.
- * @param WP_Post $listing Listing post object.
- * @param WP_User $owner   Listing owner user object.
- */
-do_action( 'apd_contact_sent', $data, $listing, $owner );
-
-/**
- * When an inquiry is logged.
- *
- * @param int     $inquiry_id Inquiry post ID.
- * @param array   $data       Inquiry data.
- * @param WP_Post $listing    Listing post object.
- */
-do_action( 'apd_inquiry_logged', $inquiry_id, $data, $listing );
-
-/**
- * Inquiry tracking initialization.
- */
-do_action( 'apd_inquiry_tracker_init' );
-
-/**
- * When an inquiry is marked as read/unread.
- *
- * @param int $inquiry_id Inquiry post ID.
- */
-do_action( 'apd_inquiry_marked_read', $inquiry_id );
-do_action( 'apd_inquiry_marked_unread', $inquiry_id );
-
-/**
- * Before an inquiry is deleted.
- *
- * @param int  $inquiry_id   Inquiry post ID.
- * @param bool $force_delete Whether to permanently delete.
- */
-do_action( 'apd_before_inquiry_delete', $inquiry_id, $force_delete );
-```
-
-### Email
-
-```php
-/**
- * Email manager initialization.
- */
-do_action( 'apd_email_manager_init' );
-
-/**
- * Before any email is sent.
- *
- * @param string $to      Recipient.
- * @param string $subject Subject.
- * @param string $message Message body.
- * @param array  $headers Headers.
- * @param array  $context Email context (type, listing_id, etc.).
- */
-do_action( 'apd_before_send_email', $to, $subject, $message, $headers, $context );
-
-/**
- * After an email is sent.
- *
- * @param bool   $sent    Whether email was sent.
- * @param string $to      Recipient.
- * @param string $subject Subject.
- * @param array  $context Email context.
- */
-do_action( 'apd_after_send_email', $sent, $to, $subject, $context );
-```
-
-### REST API
-
-```php
-/**
- * After REST API controller is initialized.
- *
- * @param RestController $controller Controller instance.
- */
-do_action( 'apd_rest_api_init', $controller );
-
-/**
- * Before routes are registered (add custom endpoints here).
- *
- * @param RestController $controller Controller instance.
- */
-do_action( 'apd_register_rest_routes', $controller );
-
-/**
- * After all routes are registered.
- *
- * @param RestController $controller Controller instance.
- */
-do_action( 'apd_rest_routes_registered', $controller );
-
-/**
- * After an endpoint controller is registered/unregistered.
- *
- * @param string $name     Endpoint name.
- * @param object $endpoint Endpoint controller instance.
- */
-do_action( 'apd_rest_endpoint_registered', $name, $endpoint );
-do_action( 'apd_rest_endpoint_unregistered', $name );
-
-/**
- * REST API CRUD hooks for listings.
- *
- * @param array           $post_data Post data array.
- * @param WP_REST_Request $request   REST request.
- */
-do_action( 'apd_rest_before_create_listing', $post_data, $request );
-do_action( 'apd_rest_after_create_listing', $listing_id, $request );
-do_action( 'apd_rest_before_update_listing', $post_data, $listing, $request );
-do_action( 'apd_rest_after_update_listing', $listing_id, $request );
-do_action( 'apd_rest_before_delete_listing', $listing, $force, $request );
-do_action( 'apd_rest_after_delete_listing', $listing_id, $force, $request );
-```
-
-### Settings
-
-```php
-/**
- * After settings are initialized.
- *
- * @param Settings $settings Settings instance.
- */
-do_action( 'apd_settings_init', $settings );
-
-/**
- * After settings are registered (add custom sections/fields).
- *
- * @param Settings $settings Settings instance.
- */
-do_action( 'apd_register_settings', $settings );
-
-/**
- * Before/after settings page renders.
- *
- * @param string $current_tab Current settings tab.
- */
-do_action( 'apd_before_settings_page', $current_tab );
-do_action( 'apd_after_settings_page', $current_tab );
-
-/**
- * Before/after settings tab content.
- *
- * @param string $tab_id Tab identifier.
- */
-do_action( 'apd_before_settings_tab', $tab_id );
-do_action( 'apd_after_settings_tab', $tab_id );
-```
-
-### Blocks
-
-```php
-/**
- * Block system initialization (register custom blocks here).
- *
- * @param BlockManager $manager Block manager instance.
- */
-do_action( 'apd_blocks_init', $manager );
-
-/**
- * After a block is registered.
- *
- * @param AbstractBlock $block Block instance.
- * @param string        $name  Block name.
- */
-do_action( 'apd_block_registered', $block, $name );
-
-/**
- * Before/after a specific block renders.
- *
- * @param array $attributes Block attributes.
- */
-do_action( "apd_before_block_{$name}", $attributes );
-do_action( "apd_after_block_{$name}", $attributes );
-```
-
-### Shortcodes
-
-```php
-/**
- * Shortcode system initialization (register custom shortcodes here).
- *
- * @param ShortcodeManager $manager Shortcode manager instance.
- */
-do_action( 'apd_shortcodes_init', $manager );
-
-/**
- * After a shortcode is registered.
- *
- * @param AbstractShortcode $shortcode Shortcode instance.
- * @param string            $tag       Shortcode tag.
- */
-do_action( 'apd_shortcode_registered', $shortcode, $tag );
-
-/**
- * Before/after a specific shortcode renders.
- *
- * @param array       $atts    Shortcode attributes.
- * @param string|null $content Shortcode content.
- */
-do_action( "apd_before_shortcode_{$tag}", $atts, $content );
-do_action( "apd_after_shortcode_{$tag}", $output, $atts, $content );
-
-/**
- * User registration hook.
- *
- * @param int    $user_id  Created user ID.
- * @param string $username Username.
- * @param string $email    Email address.
- */
-do_action( 'apd_user_registered', $user_id, $username, $email );
-```
-
-### Submission Form Templates
-
-```php
-/**
- * Submission form template hooks (templates/submission/submission-form.php).
- *
- * @param array $config     Form configuration.
- * @param int   $listing_id Listing ID (0 for new).
- */
-do_action( 'apd_submission_form_start', $config, $listing_id );
-do_action( 'apd_submission_form_after_basic_fields', $config, $listing_id );
-do_action( 'apd_submission_form_after_custom_fields', $config, $listing_id );
-do_action( 'apd_submission_form_after_taxonomies', $config, $listing_id );
-do_action( 'apd_submission_form_after_image', $config, $listing_id );
-do_action( 'apd_submission_form_before_submit', $config, $listing_id );
-do_action( 'apd_submission_form_end', $config, $listing_id );
-
-/**
- * Before/after submission form renders (PHP class hooks).
- *
- * @param array $args Form arguments.
- */
-do_action( 'apd_before_submission_form', $args );
-
-/**
- * @param string $output Form HTML output.
- * @param array  $args   Form arguments.
- */
-do_action( 'apd_after_submission_form', $output, $args );
-
-/**
- * After successful submission (template hook).
- *
- * @param int    $listing_id Listing ID.
- * @param string $status     Listing status.
- * @param bool   $is_update  Whether this was an update.
- */
-do_action( 'apd_after_submission_success', $listing_id, $status, $is_update );
-```
-
-### Modules
-
-```php
-/**
- * Fires when modules can register (fires at init priority 1).
- *
- * @param ModuleRegistry $registry Module registry instance.
- */
-do_action( 'apd_modules_init', $registry );
-
-/**
- * After all modules are loaded.
- *
- * @param ModuleRegistry $registry Module registry instance.
- */
-do_action( 'apd_modules_loaded', $registry );
-
-/**
- * After a module is registered/unregistered.
- *
- * @param string $slug   Module slug.
- * @param array  $config Module configuration.
- */
-do_action( 'apd_module_registered', $slug, $config );
-do_action( 'apd_module_unregistered', $slug, $config );
-```
-
-### Demo Data
-
-```php
-/**
- * Demo data page initialization.
- *
- * @param DemoDataPage $page Page instance.
- */
-do_action( 'apd_demo_data_init', $page );
-
-/**
- * Before/after demo data generation.
- */
-do_action( 'apd_before_generate_demo_data' );
-
-/**
- * @param array $results Generation results with counts.
- */
-do_action( 'apd_after_generate_demo_data', $results );
-
-/**
- * Before/after demo data deletion.
- */
-do_action( 'apd_before_delete_demo_data' );
-
-/**
- * @param array $counts Deleted item counts by type.
- */
-do_action( 'apd_after_delete_demo_data', $counts );
-```
-
-### Performance & Caching
-
-```php
-/**
- * When category cache is invalidated.
- */
-do_action( 'apd_category_cache_invalidated' );
-
-/**
- * When listing caches are invalidated.
- *
- * @param int     $post_id Post ID.
- * @param WP_Post $post    Post object.
- */
-do_action( 'apd_listing_cache_invalidated', $post_id, $post );
-
-/**
- * When all plugin caches are cleared.
- *
- * @param int $deleted Number of deleted transients.
- */
-do_action( 'apd_cache_cleared', $deleted );
-```
-
-### Templates
-
-```php
-/**
- * Before/after a template is loaded.
- *
- * @param string $template_name Template name.
- * @param string $template      Located template path.
- * @param array  $args          Template arguments.
- */
-do_action( 'apd_before_get_template', $template_name, $template, $args );
-do_action( 'apd_after_get_template', $template_name, $template, $args );
-```
-
-### AJAX
-
-```php
-/**
- * Before/after AJAX filter request is processed.
- */
-do_action( 'apd_before_ajax_filter' );
-do_action( 'apd_after_ajax_filter' );
-```
+The table below is the hook inventory currently present in the codebase. `Dynamic` entries are literal runtime hook patterns from the source and should be treated as exact strings when matching plugin integrations against this API version.
+
+| Hook | Type | Source |
+| --- | --- | --- |
+| `apd_activated` | Static | `src/Core/Activator.php:48` |
+| `apd_after_admin_fields` | Static | `src/Fields/FieldRenderer.php:817` |
+| `apd_after_ajax_filter` | Static | `src/Api/AjaxHandler.php:192` |
+| `apd_after_archive` | Static | `src/Core/TemplateLoader.php:649` |
+| `apd_after_archive_loop` | Static | `src/Core/TemplateLoader.php:615` |
+| `apd_after_archive_search_form` | Static | `src/Core/TemplateLoader.php:546` |
+| `apd_after_block_{$this->name}` | Dynamic | `src/Blocks/AbstractBlock.php:233` |
+| `apd_after_categories_shortcode` | Static | `src/Shortcode/CategoriesShortcode.php:202` |
+| `apd_after_change_listing_status` | Static | `src/Frontend/Dashboard/MyListings.php:664` |
+| `apd_after_dashboard` | Static | `src/Frontend/Dashboard/Dashboard.php:426` |
+| `apd_after_delete_demo_data` | Static | `src/Admin/DemoData/DemoDataPage.php:691`, `src/Admin/DemoData/DemoDataTracker.php:780` |
+| `apd_after_delete_listing` | Static | `src/Frontend/Dashboard/MyListings.php:556` |
+| `apd_after_edit_not_allowed` | Static | `templates/submission/edit-not-allowed.php:63` |
+| `apd_after_favorites_shortcode` | Static | `src/Shortcode/FavoritesShortcode.php:241` |
+| `apd_after_filters` | Static | `src/Search/FilterRenderer.php:228`, `templates/search/search-form.php:58` |
+| `apd_after_frontend_fields` | Static | `src/Fields/FieldRenderer.php:880` |
+| `apd_after_generate_demo_data` | Static | `src/CLI/DemoDataCommand.php:331`, `src/Admin/DemoData/DemoDataPage.php:628` |
+| `apd_after_get_template` | Static | `src/Core/Template.php:200` |
+| `apd_after_listing_save` | Static | `src/Admin/ListingMetaBox.php:228` |
+| `apd_after_listings_shortcode` | Static | `src/Shortcode/ListingsShortcode.php:276` |
+| `apd_after_login_form_shortcode` | Static | `src/Shortcode/LoginFormShortcode.php:180` |
+| `apd_after_register_form_shortcode` | Static | `src/Shortcode/RegisterFormShortcode.php:165` |
+| `apd_after_related_listings` | Static | `src/Core/TemplateLoader.php:797`, `templates/single-listing.php:407` |
+| `apd_after_review_form` | Static | `templates/review/review-form.php:328` |
+| `apd_after_reviews_section` | Static | `src/Review/ReviewForm.php:182` |
+| `apd_after_save_profile` | Static | `src/Frontend/Dashboard/Profile.php:538` |
+| `apd_after_search_form` | Static | `src/Search/FilterRenderer.php:181` |
+| `apd_after_search_form_shortcode` | Static | `src/Shortcode/SearchFormShortcode.php:190` |
+| `apd_after_send_email` | Static | `src/Email/EmailManager.php:403` |
+| `apd_after_settings_page` | Static | `src/Admin/Settings.php:1374` |
+| `apd_after_settings_tab` | Static | `src/Admin/Settings.php:1450` |
+| `apd_after_shortcode_{$this->tag}` | Dynamic | `src/Shortcode/AbstractShortcode.php:167` |
+| `apd_after_single_listing` | Static | `templates/single-listing.php:431` |
+| `apd_after_submission` | Static | `src/Frontend/Submission/SubmissionHandler.php:298` |
+| `apd_after_submission_form` | Static | `src/Frontend/Submission/SubmissionForm.php:594` |
+| `apd_after_submission_form_shortcode` | Static | `src/Shortcode/SubmissionFormShortcode.php:271` |
+| `apd_after_submission_success` | Static | `templates/submission/submission-success.php:111` |
+| `apd_after_trash_listing` | Static | `src/Frontend/Dashboard/MyListings.php:597` |
+| `apd_after_validate_fields` | Static | `src/Fields/FieldValidator.php:257` |
+| `apd_all_ratings_recalculated` | Static | `src/Review/RatingCalculator.php:314` |
+| `apd_archive_wrapper_end` | Static | `src/Core/TemplateLoader.php:638` |
+| `apd_archive_wrapper_start` | Static | `src/Core/TemplateLoader.php:508` |
+| `apd_avatar_uploaded` | Static | `src/Frontend/Dashboard/Profile.php:608` |
+| `apd_before_ajax_filter` | Static | `src/Api/AjaxHandler.php:87` |
+| `apd_before_archive` | Static | `src/Core/TemplateLoader.php:497` |
+| `apd_before_archive_loop` | Static | `src/Core/TemplateLoader.php:575` |
+| `apd_before_archive_search_form` | Static | `src/Core/TemplateLoader.php:530` |
+| `apd_before_block_{$this->name}` | Dynamic | `src/Blocks/AbstractBlock.php:211` |
+| `apd_before_categories_shortcode` | Static | `src/Shortcode/CategoriesShortcode.php:186` |
+| `apd_before_change_listing_status` | Static | `src/Frontend/Dashboard/MyListings.php:643` |
+| `apd_before_dashboard` | Static | `src/Frontend/Dashboard/Dashboard.php:402` |
+| `apd_before_delete_demo_data` | Static | `src/Admin/DemoData/DemoDataPage.php:680`, `src/Admin/DemoData/DemoDataTracker.php:751` |
+| `apd_before_delete_listing` | Static | `src/Frontend/Dashboard/MyListings.php:543` |
+| `apd_before_favorites_shortcode` | Static | `src/Shortcode/FavoritesShortcode.php:218` |
+| `apd_before_filters` | Static | `src/Search/FilterRenderer.php:213`, `templates/search/search-form.php:40` |
+| `apd_before_generate_demo_data` | Static | `src/CLI/DemoDataCommand.php:199`, `src/Admin/DemoData/DemoDataPage.php:606` |
+| `apd_before_get_template` | Static | `src/Core/Template.php:187` |
+| `apd_before_inquiry_delete` | Static | `src/Contact/InquiryTracker.php:557` |
+| `apd_before_listing_save` | Static | `src/Admin/ListingMetaBox.php:200` |
+| `apd_before_listing_update` | Static | `src/Frontend/Submission/SubmissionHandler.php:771` |
+| `apd_before_listings_shortcode` | Static | `src/Shortcode/ListingsShortcode.php:253` |
+| `apd_before_login_form_shortcode` | Static | `src/Shortcode/LoginFormShortcode.php:162` |
+| `apd_before_register_form_shortcode` | Static | `src/Shortcode/RegisterFormShortcode.php:139` |
+| `apd_before_related_listings` | Static | `src/Core/TemplateLoader.php:777`, `templates/single-listing.php:381` |
+| `apd_before_review_create` | Static | `src/Review/ReviewManager.php:269` |
+| `apd_before_review_delete` | Static | `src/Review/ReviewManager.php:435` |
+| `apd_before_review_form` | Static | `templates/review/review-form.php:74` |
+| `apd_before_review_process` | Static | `src/Review/ReviewHandler.php:342` |
+| `apd_before_review_update` | Static | `src/Review/ReviewManager.php:374` |
+| `apd_before_reviews_section` | Static | `src/Review/ReviewForm.php:170` |
+| `apd_before_save_profile` | Static | `src/Frontend/Dashboard/Profile.php:487` |
+| `apd_before_search_form` | Static | `src/Search/FilterRenderer.php:116` |
+| `apd_before_search_form_shortcode` | Static | `src/Shortcode/SearchFormShortcode.php:170` |
+| `apd_before_send_contact` | Static | `src/Contact/ContactHandler.php:227` |
+| `apd_before_send_email` | Static | `src/Email/EmailManager.php:389` |
+| `apd_before_settings_page` | Static | `src/Admin/Settings.php:1318` |
+| `apd_before_settings_tab` | Static | `src/Admin/Settings.php:1431` |
+| `apd_before_shortcode_{$this->tag}` | Dynamic | `src/Shortcode/AbstractShortcode.php:142` |
+| `apd_before_single_listing` | Static | `templates/single-listing.php:26` |
+| `apd_before_submission` | Static | `src/Frontend/Submission/SubmissionHandler.php:261` |
+| `apd_before_submission_form` | Static | `src/Frontend/Submission/SubmissionForm.php:570` |
+| `apd_before_submission_form_shortcode` | Static | `src/Shortcode/SubmissionFormShortcode.php:257` |
+| `apd_before_trash_listing` | Static | `src/Frontend/Dashboard/MyListings.php:584` |
+| `apd_block_registered` | Static | `src/Blocks/BlockManager.php:193` |
+| `apd_block_unregistered` | Static | `src/Blocks/BlockManager.php:225` |
+| `apd_blocks_init` | Static | `src/Blocks/BlockManager.php:162` |
+| `apd_cache_cleared` | Static | `src/Core/Performance.php:726` |
+| `apd_category_cache_invalidated` | Static | `src/Core/Performance.php:595` |
+| `apd_contact_form_after_fields` | Static | `templates/contact/contact-form.php:186` |
+| `apd_contact_form_init` | Static | `src/Contact/ContactForm.php:135` |
+| `apd_contact_handler_init` | Static | `src/Contact/ContactHandler.php:116` |
+| `apd_contact_sent` | Static | `src/Contact/ContactHandler.php:247` |
+| `apd_contact_spam_attempt_detected` | Static | `src/Contact/ContactHandler.php:924` |
+| `apd_dashboard_after_content` | Static | `src/Frontend/Dashboard/Dashboard.php:513` |
+| `apd_dashboard_before_content` | Static | `src/Frontend/Dashboard/Dashboard.php:475` |
+| `apd_dashboard_end` | Static | `templates/dashboard/dashboard.php:89` |
+| `apd_dashboard_start` | Static | `templates/dashboard/dashboard.php:39` |
+| `apd_dashboard_{$tab}_content` | Dynamic | `src/Frontend/Dashboard/Dashboard.php:487` |
+| `apd_deactivated` | Static | `src/Core/Deactivator.php:33` |
+| `apd_demo_data_init` | Static | `src/Admin/DemoData/DemoDataPage.php:146` |
+| `apd_demo_provider_registered` | Static | `src/Admin/DemoData/DemoDataProviderRegistry.php:164` |
+| `apd_demo_provider_unregistered` | Static | `src/Admin/DemoData/DemoDataProviderRegistry.php:195` |
+| `apd_demo_providers_init` | Static | `src/Admin/DemoData/DemoDataProviderRegistry.php:113` |
+| `apd_email_manager_init` | Static | `src/Email/EmailManager.php:144` |
+| `apd_favorite_added` | Static | `src/User/Favorites.php:189`, `src/User/Favorites.php:800` |
+| `apd_favorite_removed` | Static | `src/User/Favorites.php:244`, `src/User/Favorites.php:837` |
+| `apd_favorites_cleared` | Static | `src/User/Favorites.php:397`, `src/User/Favorites.php:911` |
+| `apd_favorites_end` | Static | `templates/dashboard/favorites.php:134` |
+| `apd_favorites_init` | Static | `src/User/Favorites.php:131` |
+| `apd_favorites_start` | Static | `templates/dashboard/favorites.php:39` |
+| `apd_field_registered` | Static | `src/Fields/FieldRegistry.php:258` |
+| `apd_field_type_registered` | Static | `src/Fields/FieldRegistry.php:147` |
+| `apd_field_unregistered` | Static | `src/Fields/FieldRegistry.php:289` |
+| `apd_filter_registered` | Static | `src/Search/FilterRegistry.php:153` |
+| `apd_filter_unregistered` | Static | `src/Search/FilterRegistry.php:184` |
+| `apd_init` | Static | `src/Core/Plugin.php:93` |
+| `apd_inquiry_logged` | Static | `src/Contact/InquiryTracker.php:196` |
+| `apd_inquiry_marked_read` | Static | `src/Contact/InquiryTracker.php:505` |
+| `apd_inquiry_marked_unread` | Static | `src/Contact/InquiryTracker.php:530` |
+| `apd_inquiry_tracker_init` | Static | `src/Contact/InquiryTracker.php:104` |
+| `apd_listing_cache_invalidated` | Static | `src/Core/Performance.php:624` |
+| `apd_listing_card_body` | Static | `templates/listing-card-list.php:197`, `templates/listing-card.php:195` |
+| `apd_listing_card_end` | Static | `templates/listing-card-list.php:250`, `templates/listing-card.php:228` |
+| `apd_listing_card_footer` | Static | `templates/listing-card-list.php:232`, `templates/listing-card.php:211` |
+| `apd_listing_card_image` | Static | `templates/listing-card-list.php:127`, `templates/listing-card.php:133` |
+| `apd_listing_card_start` | Static | `templates/listing-card-list.php:101`, `templates/listing-card.php:93` |
+| `apd_listing_fields_saved` | Static | `src/Frontend/Submission/SubmissionHandler.php:999` |
+| `apd_listing_processed` | Static | `includes/functions.php:2023` |
+| `apd_listing_saved` | Static | `src/Frontend/Submission/SubmissionHandler.php:812` |
+| `apd_listing_status_changed` | Static | `src/Core/Plugin.php:432` |
+| `apd_listing_taxonomies_assigned` | Static | `src/Frontend/Submission/SubmissionHandler.php:901` |
+| `apd_listing_type_registered` | Static | `src/Taxonomy/ListingTypeTaxonomy.php:197` |
+| `apd_listing_viewed` | Static | `includes/functions.php:1419` |
+| `apd_loaded` | Static | `src/Core/Plugin.php:293` |
+| `apd_module_registered` | Static | `src/Module/ModuleRegistry.php:230` |
+| `apd_module_unregistered` | Static | `src/Module/ModuleRegistry.php:289` |
+| `apd_modules_admin_init` | Static | `src/Module/ModulesAdminPage.php:108` |
+| `apd_modules_init` | Static | `src/Module/ModuleRegistry.php:127` |
+| `apd_modules_loaded` | Static | `src/Module/ModuleRegistry.php:136` |
+| `apd_my_listings_end` | Static | `templates/dashboard/my-listings.php:196` |
+| `apd_my_listings_start` | Static | `templates/dashboard/my-listings.php:46` |
+| `apd_profile_end` | Static | `templates/dashboard/profile.php:249` |
+| `apd_profile_saved` | Static | `src/Frontend/Dashboard/Profile.php:366` |
+| `apd_profile_start` | Static | `templates/dashboard/profile.php:44` |
+| `apd_rating_calculated` | Static | `src/Review/RatingCalculator.php:197` |
+| `apd_rating_calculator_init` | Static | `src/Review/RatingCalculator.php:135` |
+| `apd_rating_invalidated` | Static | `src/Review/RatingCalculator.php:342` |
+| `apd_register_filters` | Static | `src/Core/Plugin.php:692` |
+| `apd_register_form_fields` | Static | `src/Shortcode/RegisterFormShortcode.php:235` |
+| `apd_register_rest_routes` | Static | `src/Api/RestController.php:165` |
+| `apd_register_settings` | Static | `src/Admin/Settings.php:245` |
+| `apd_render_review_form` | Static | `templates/review/reviews-section.php:114` |
+| `apd_rest_after_create_listing` | Static | `src/Api/Endpoints/ListingsEndpoint.php:370` |
+| `apd_rest_after_delete_listing` | Static | `src/Api/Endpoints/ListingsEndpoint.php:559` |
+| `apd_rest_after_update_listing` | Static | `src/Api/Endpoints/ListingsEndpoint.php:498` |
+| `apd_rest_api_init` | Static | `src/Api/RestController.php:130` |
+| `apd_rest_before_create_listing` | Static | `src/Api/Endpoints/ListingsEndpoint.php:316` |
+| `apd_rest_before_delete_listing` | Static | `src/Api/Endpoints/ListingsEndpoint.php:536` |
+| `apd_rest_before_update_listing` | Static | `src/Api/Endpoints/ListingsEndpoint.php:440` |
+| `apd_rest_endpoint_registered` | Static | `src/Api/RestController.php:226` |
+| `apd_rest_endpoint_unregistered` | Static | `src/Api/RestController.php:251` |
+| `apd_rest_routes_registered` | Static | `src/Api/RestController.php:181` |
+| `apd_review_approved` | Static | `src/Review/ReviewManager.php:670` |
+| `apd_review_created` | Static | `src/Review/ReviewManager.php:298` |
+| `apd_review_deleted` | Static | `src/Review/ReviewManager.php:448` |
+| `apd_review_display_init` | Static | `src/Review/ReviewDisplay.php:117` |
+| `apd_review_form_before_submit` | Static | `templates/review/review-form.php:285` |
+| `apd_review_form_created` | Static | `src/Review/ReviewHandler.php:413` |
+| `apd_review_form_end` | Static | `templates/review/review-form.php:311` |
+| `apd_review_form_init` | Static | `src/Review/ReviewForm.php:138` |
+| `apd_review_form_start` | Static | `templates/review/review-form.php:166` |
+| `apd_review_form_updated` | Static | `src/Review/ReviewHandler.php:377` |
+| `apd_review_handler_init` | Static | `src/Review/ReviewHandler.php:120` |
+| `apd_review_item_footer` | Static | `templates/review/review-item.php:113` |
+| `apd_review_rejected` | Static | `src/Review/ReviewManager.php:701` |
+| `apd_review_updated` | Static | `src/Review/ReviewManager.php:406` |
+| `apd_reviews_init` | Static | `src/Review/ReviewManager.php:138` |
+| `apd_reviews_section_after_form` | Static | `templates/review/reviews-section.php:127` |
+| `apd_reviews_section_after_header` | Static | `templates/review/reviews-section.php:79` |
+| `apd_reviews_section_before_form` | Static | `templates/review/reviews-section.php:99` |
+| `apd_reviews_section_end` | Static | `templates/review/reviews-section.php:166` |
+| `apd_reviews_section_start` | Static | `templates/review/reviews-section.php:52` |
+| `apd_search_query_modified` | Static | `src/Search/SearchQuery.php:191` |
+| `apd_settings_init` | Static | `src/Admin/Settings.php:142` |
+| `apd_shortcode_registered` | Static | `src/Shortcode/ShortcodeManager.php:159` |
+| `apd_shortcode_unregistered` | Static | `src/Shortcode/ShortcodeManager.php:191` |
+| `apd_shortcodes_init` | Static | `src/Shortcode/ShortcodeManager.php:128` |
+| `apd_single_listing_after_content` | Static | `src/Core/TemplateLoader.php:701`, `templates/single-listing.php:198` |
+| `apd_single_listing_after_fields` | Static | `src/Core/TemplateLoader.php:730`, `templates/single-listing.php:225` |
+| `apd_single_listing_author` | Static | `templates/single-listing.php:316` |
+| `apd_single_listing_before_content` | Static | `templates/single-listing.php:180` |
+| `apd_single_listing_contact_form` | Static | `src/Core/TemplateLoader.php:756`, `templates/single-listing.php:330` |
+| `apd_single_listing_end` | Static | `templates/single-listing.php:357` |
+| `apd_single_listing_header` | Static | `templates/single-listing.php:144` |
+| `apd_single_listing_image` | Static | `templates/single-listing.php:167` |
+| `apd_single_listing_meta` | Static | `src/Core/TemplateLoader.php:705`, `templates/single-listing.php:132` |
+| `apd_single_listing_reviews` | Static | `src/Core/TemplateLoader.php:878`, `templates/comments-listing.php:42` (+1 more) |
+| `apd_single_listing_sidebar_end` | Static | `templates/single-listing.php:341` |
+| `apd_single_listing_sidebar_start` | Static | `templates/single-listing.php:270` |
+| `apd_single_listing_start` | Static | `templates/single-listing.php:88` |
+| `apd_single_wrapper_end` | Static | `templates/single-listing.php:420` |
+| `apd_single_wrapper_start` | Static | `templates/single-listing.php:37` |
+| `apd_spam_attempt_detected` | Static | `src/Frontend/Submission/SubmissionHandler.php:1568` |
+| `apd_submission_form_after_basic_fields` | Static | `templates/submission/submission-form.php:250` |
+| `apd_submission_form_after_custom_fields` | Static | `templates/submission/submission-form.php:274` |
+| `apd_submission_form_after_image` | Static | `templates/submission/submission-form.php:343` |
+| `apd_submission_form_after_taxonomies` | Static | `templates/submission/submission-form.php:317` |
+| `apd_submission_form_before_submit` | Static | `templates/submission/submission-form.php:397` |
+| `apd_submission_form_end` | Static | `templates/submission/submission-form.php:415` |
+| `apd_submission_form_start` | Static | `templates/submission/submission-form.php:81` |
+| `apd_textdomain_loaded` | Static | `src/Core/Plugin.php:326` |
+| `apd_user_registered` | Static | `src/Shortcode/RegisterFormShortcode.php:326` |
+| `apd_validate_review` | Static | `src/Review/ReviewHandler.php:489` |
+| `apd_validate_submission` | Static | `src/Frontend/Submission/SubmissionHandler.php:628` |
+| `apd_view_registered` | Static | `src/Frontend/Display/ViewRegistry.php:153` |
+| `apd_view_unregistered` | Static | `src/Frontend/Display/ViewRegistry.php:182` |
+| `apd_views_init` | Static | `src/Frontend/Display/ViewRegistry.php:126` |
 
 ---
 
 ## Filter Hooks
 
-### Listing Data
-
-```php
-/**
- * Modify listing fields configuration.
- *
- * @param array $fields Registered fields.
- * @return array Modified fields.
- */
-add_filter( 'apd_listing_fields', function( $fields ) {
-    $fields['custom_field'] = [
-        'type'     => 'text',
-        'label'    => 'Custom Field',
-        'required' => false,
-    ];
-    return $fields;
-});
-
-/**
- * Modify submission form fields.
- *
- * @param array $fields Fields for submission form.
- * @return array Modified fields.
- */
-add_filter( 'apd_submission_fields', function( $fields ) {
-    unset( $fields['admin_only_field'] );
-    return $fields;
-});
-
-/**
- * Modify listing field value on retrieval.
- *
- * @param mixed  $value      Field value.
- * @param int    $listing_id Listing ID.
- * @param string $field_name Field name.
- * @param array  $field      Field configuration.
- * @return mixed Modified value.
- */
-add_filter( 'apd_listing_field_value', function( $value, $listing_id, $field_name, $field ) {
-    if ( $field_name === 'price' ) {
-        return (float) $value;
-    }
-    return $value;
-}, 10, 4 );
-
-/**
- * Modify listing card display data.
- *
- * @param array $data       Card data.
- * @param int   $listing_id Listing post ID.
- * @return array Modified data.
- */
-add_filter( 'apd_listing_card_data', function( $data, $listing_id ) {
-    $data['custom_badge'] = get_post_meta( $listing_id, '_custom_badge', true );
-    return $data;
-}, 10, 2 );
-
-/**
- * Modify listing card CSS classes.
- *
- * @param array $classes    Card CSS classes.
- * @param int   $listing_id Listing post ID.
- * @return array Modified classes.
- */
-add_filter( 'apd_listing_card_classes', function( $classes, $listing_id ) {
-    return $classes;
-}, 10, 2 );
-```
-
-### Query Modifications
-
-```php
-/**
- * Modify listing query arguments.
- *
- * @param array $args WP_Query arguments.
- * @return array Modified arguments.
- */
-add_filter( 'apd_listing_query_args', function( $args ) {
-    $args['meta_query'][] = [
-        'key'     => '_featured',
-        'value'   => '1',
-        'compare' => '=',
-    ];
-    return $args;
-});
-
-/**
- * Modify search query arguments.
- *
- * @param array $args Query arguments.
- * @return array Modified arguments.
- */
-add_filter( 'apd_search_query_args', function( $args ) {
-    // Custom query modifications
-    return $args;
-});
-
-/**
- * Modify searchable meta keys.
- *
- * @param array $meta_keys Meta keys included in search.
- * @return array Modified meta keys.
- */
-add_filter( 'apd_searchable_meta_keys', function( $meta_keys ) {
-    $meta_keys[] = '_apd_custom_field';
-    return $meta_keys;
-});
-
-/**
- * Modify available orderby options.
- *
- * @param array $options Orderby options.
- * @return array Modified options.
- */
-add_filter( 'apd_orderby_options', function( $options ) {
-    return $options;
-});
-```
-
-### Submission
-
-```php
-/**
- * Modify submitted form data before processing.
- *
- * @param array $data Form data.
- * @return array Modified data.
- */
-add_filter( 'apd_submission_form_data', function( $data ) {
-    $data['custom_value'] = 'default';
-    return $data;
-});
-
-/**
- * Modify new listing post data.
- *
- * @param array $post_data Post data for wp_insert_post.
- * @param array $form_data Submitted form data.
- * @return array Modified post data.
- */
-add_filter( 'apd_new_listing_post_data', function( $post_data, $form_data ) {
-    $post_data['post_status'] = 'pending';
-    return $post_data;
-}, 10, 2 );
-
-/**
- * Filter default status for new submissions.
- *
- * @param string $status  Default status.
- * @param int    $user_id Current user ID.
- * @return string Modified status.
- */
-add_filter( 'apd_submission_default_status', function( $status, $user_id ) {
-    return current_user_can( 'publish_posts' ) ? 'publish' : 'pending';
-}, 10, 2 );
-
-/**
- * Filter status for edited listings.
- *
- * @param string $status     Status to set.
- * @param int    $listing_id Listing ID.
- * @param int    $user_id    User ID.
- * @return string Modified status.
- */
-add_filter( 'apd_edit_listing_status', function( $status, $listing_id, $user_id ) {
-    return $status;
-}, 10, 3 );
-
-/**
- * Filter whether user can submit listings.
- *
- * @param bool $can_submit Whether user can submit.
- * @param int  $user_id    User ID.
- * @return bool Modified value.
- */
-add_filter( 'apd_user_can_submit_listing', function( $can_submit, $user_id ) {
-    return $can_submit;
-}, 10, 2 );
-
-/**
- * Filter whether user can edit a listing.
- *
- * @param bool $can_edit   Whether user can edit.
- * @param int  $listing_id Listing ID.
- * @param int  $user_id    User ID.
- * @return bool Modified value.
- */
-add_filter( 'apd_user_can_edit_listing', function( $can_edit, $listing_id, $user_id ) {
-    return $can_edit;
-}, 10, 3 );
-
-/**
- * Filter whether admin notification is sent on submission.
- *
- * @param bool  $notify     Whether to notify admin.
- * @param int   $listing_id Listing ID.
- * @param array $data       Submitted data.
- * @return bool Modified value.
- */
-add_filter( 'apd_submission_admin_notification', function( $notify, $listing_id, $data ) {
-    return $notify;
-}, 10, 3 );
-
-/**
- * Modify redirect URL after successful submission.
- *
- * @param string $url        Redirect URL.
- * @param int    $listing_id Listing ID.
- * @param bool   $is_update  Whether this was an update.
- * @return string Modified URL.
- */
-add_filter( 'apd_submission_success_redirect', function( $url, $listing_id, $is_update ) {
-    return $url;
-}, 10, 3 );
-
-/**
- * Modify redirect URL after submission error.
- *
- * @param string   $url    Redirect URL.
- * @param WP_Error $errors Validation errors.
- * @return string Modified URL.
- */
-add_filter( 'apd_submission_error_redirect', function( $url, $errors ) {
-    return $url;
-}, 10, 2 );
-```
-
-### Spam Protection
-
-```php
-/**
- * Bypass spam protection for trusted users.
- *
- * @param bool $bypass  Whether to bypass.
- * @param int  $user_id Current user ID.
- * @return bool Modified value.
- */
-add_filter( 'apd_bypass_spam_protection', function( $bypass, $user_id ) {
-    return current_user_can( 'edit_others_posts' );
-}, 10, 2 );
-
-/**
- * Custom spam check (e.g., reCAPTCHA).
- *
- * @param bool  $passed  Whether spam check passed.
- * @param array $data    Submitted data ($_POST).
- * @param int   $user_id Current user ID.
- * @return bool Modified value.
- */
-add_filter( 'apd_submission_spam_check', function( $passed, $data, $user_id ) {
-    return $passed && verify_recaptcha( $data['g-recaptcha-response'] );
-}, 10, 3 );
-
-/**
- * Modify honeypot field name.
- *
- * @param string $name Honeypot field name.
- * @return string Modified name.
- */
-add_filter( 'apd_honeypot_field_name', function( $name ) {
-    return 'website_url'; // Default
-});
-
-/**
- * Modify rate limit settings.
- */
-add_filter( 'apd_submission_rate_limit', function( $limit ) {
-    return 5; // Max submissions per period
-});
-
-add_filter( 'apd_submission_rate_period', function( $seconds ) {
-    return 3600; // Per hour
-});
-
-add_filter( 'apd_submission_min_time', function( $seconds ) {
-    return 3; // Minimum seconds to submit form
-});
-```
-
-### Field System
-
-```php
-/**
- * Modify field configuration before registration.
- *
- * @param array  $config Field config.
- * @param string $name   Field name.
- * @return array Modified config.
- */
-add_filter( 'apd_register_field_config', function( $config, $name ) {
-    if ( $name === 'price' ) {
-        $config['required'] = true;
-    }
-    return $config;
-}, 10, 2 );
-
-/**
- * Modify field when retrieved.
- *
- * @param array  $field Field config.
- * @param string $name  Field name.
- * @return array Modified field.
- */
-add_filter( 'apd_get_field', function( $field, $name ) {
-    return $field;
-}, 10, 2 );
-
-/**
- * Modify all fields when retrieved.
- *
- * @param array $fields All registered fields.
- * @param array $args   Query arguments.
- * @return array Modified fields.
- */
-add_filter( 'apd_get_fields', function( $fields, $args ) {
-    return $fields;
-}, 10, 2 );
-
-/**
- * Modify field validation result.
- *
- * @param bool|WP_Error        $result     Validation result.
- * @param mixed                $value      Field value.
- * @param array                $field      Field config.
- * @param string               $context    Validation context.
- * @param FieldTypeInterface   $field_type Field type handler.
- * @return bool|WP_Error Modified result.
- */
-add_filter( 'apd_validate_field', function( $result, $value, $field, $context, $field_type ) {
-    return $result;
-}, 10, 5 );
-
-/**
- * Modify rendered field HTML.
- *
- * @param string $html       Rendered HTML.
- * @param array  $field      Field config.
- * @param mixed  $value      Field value.
- * @param string $context    Render context.
- * @param int    $listing_id Listing ID.
- * @return string Modified HTML.
- */
-add_filter( 'apd_render_field', function( $html, $field, $value, $context, $listing_id ) {
-    return $html;
-}, 10, 5 );
-
-/**
- * Modify rendered field display HTML (single listing).
- *
- * @param string $html       Rendered HTML.
- * @param array  $field      Field config.
- * @param mixed  $value      Field value.
- * @param int    $listing_id Listing ID.
- * @return string Modified HTML.
- */
-add_filter( 'apd_render_field_display', function( $html, $field, $value, $listing_id ) {
-    return $html;
-}, 10, 4 );
-
-/**
- * Control whether a field should be displayed.
- *
- * @param bool   $display    Whether to display.
- * @param array  $field      Field config.
- * @param string $context    Render context.
- * @param int    $listing_id Listing ID.
- * @return bool Modified value.
- */
-add_filter( 'apd_should_display_field', function( $display, $field, $context, $listing_id ) {
-    if ( $field['name'] === 'premium_field' && ! is_premium_listing( $listing_id ) ) {
-        return false;
-    }
-    return $display;
-}, 10, 4 );
-```
-
-### Search Filters
-
-```php
-/**
- * Modify search filters configuration.
- *
- * @param array $filters Registered filters.
- * @return array Modified filters.
- */
-add_filter( 'apd_search_filters', function( $filters ) {
-    $filters['custom_filter'] = [
-        'type'  => 'select',
-        'label' => 'Custom Filter',
-        'options' => [ 'a' => 'Option A', 'b' => 'Option B' ],
-    ];
-    return $filters;
-});
-
-/**
- * Modify filter options dynamically.
- *
- * @param array          $options Filter options.
- * @param AbstractFilter $filter  Filter instance.
- * @return array Modified options.
- */
-add_filter( 'apd_filter_options', function( $options, $filter ) {
-    return $options;
-}, 10, 2 );
-
-/**
- * Modify rendered filter HTML.
- *
- * @param string $output Rendered filter HTML.
- * @param array  $filter Filter configuration.
- * @param mixed  $value  Current filter value.
- * @param array  $request Request data.
- * @return string Modified HTML.
- */
-add_filter( 'apd_render_filter', function( $output, $filter, $value, $request ) {
-    return $output;
-}, 10, 4 );
-```
-
-### Templates
-
-```php
-/**
- * Modify template path lookup.
- *
- * @param string $located  Located template path.
- * @param string $template Template name.
- * @return string Modified path.
- */
-add_filter( 'apd_locate_template', function( $located, $template ) {
-    return $located;
-}, 10, 2 );
-
-/**
- * Modify archive page title.
- *
- * @param string $title Archive title.
- * @return string Modified title.
- */
-add_filter( 'apd_archive_title', function( $title ) {
-    return $title;
-});
-
-/**
- * Modify archive page description.
- *
- * @param string $description Archive description.
- * @return string Modified description.
- */
-add_filter( 'apd_archive_description', function( $description ) {
-    return $description;
-});
-
-/**
- * Modify pagination arguments.
- *
- * @param array    $args  Pagination arguments.
- * @param WP_Query $query Current query.
- * @return array Modified arguments.
- */
-add_filter( 'apd_pagination_args', function( $args, $query ) {
-    return $args;
-}, 10, 2 );
-```
-
-### Shortcodes
-
-```php
-/**
- * Modify shortcode attributes.
- *
- * @param array  $atts    Shortcode attributes.
- * @param string $tag     Shortcode tag.
- * @param string $content Shortcode content.
- * @return array Modified attributes.
- */
-add_filter( 'apd_shortcode_{tag}_atts', function( $atts, $tag, $content ) {
-    $atts['columns'] = 4;
-    return $atts;
-}, 10, 3 );
-
-/**
- * Modify shortcode output.
- *
- * @param string $output  Shortcode HTML output.
- * @param array  $atts    Shortcode attributes.
- * @param string $content Shortcode content.
- * @return string Modified output.
- */
-add_filter( 'apd_shortcode_{tag}_output', function( $output, $atts, $content ) {
-    return '<div class="custom-wrapper">' . $output . '</div>';
-}, 10, 3 );
-```
-
-### Blocks
-
-```php
-/**
- * Modify block arguments before render.
- *
- * @param array         $args  Block arguments.
- * @param AbstractBlock $block Block instance.
- * @return array Modified arguments.
- */
-add_filter( 'apd_block_{name}_args', function( $args, $block ) {
-    return $args;
-}, 10, 2 );
-
-/**
- * Modify block output after render.
- *
- * @param string $output     Block HTML output.
- * @param array  $attributes Block attributes.
- * @return string Modified output.
- */
-add_filter( 'apd_block_{name}_output', function( $output, $attributes ) {
-    return $output;
-}, 10, 2 );
-
-/**
- * Modify listings block query arguments.
- *
- * @param array $query_args WP_Query arguments.
- * @param array $attributes Block attributes.
- * @return array Modified arguments.
- */
-add_filter( 'apd_listings_block_query_args', function( $query_args, $attributes ) {
-    return $query_args;
-}, 10, 2 );
-
-/**
- * Modify block editor data.
- *
- * @param array $data Editor localization data.
- * @return array Modified data.
- */
-add_filter( 'apd_blocks_editor_data', function( $data ) {
-    return $data;
-});
-```
-
-### Dashboard
-
-```php
-/**
- * Modify dashboard tabs.
- *
- * @param array $tabs    Dashboard tabs.
- * @param int   $user_id Current user ID.
- * @return array Modified tabs.
- */
-add_filter( 'apd_dashboard_tabs', function( $tabs, $user_id ) {
-    $tabs['custom'] = [
-        'label' => 'Custom Tab',
-        'callback' => 'render_custom_tab',
-    ];
-    return $tabs;
-}, 10, 2 );
-
-/**
- * Modify dashboard stats.
- *
- * @param array $stats Stats array.
- * @param int   $user_id User ID.
- * @return array Modified stats.
- */
-add_filter( 'apd_dashboard_stats', function( $stats, $user_id ) {
-    $stats['custom_count'] = get_custom_count( $user_id );
-    return $stats;
-}, 10, 2 );
-
-/**
- * Modify dashboard template arguments.
- *
- * @param array $args Dashboard arguments.
- * @return array Modified arguments.
- */
-add_filter( 'apd_dashboard_args', function( $args ) {
-    return $args;
-});
-
-/**
- * Modify dashboard HTML output.
- *
- * @param string $output Dashboard HTML.
- * @param array  $args   Dashboard arguments.
- * @return string Modified HTML.
- */
-add_filter( 'apd_dashboard_html', function( $output, $args ) {
-    return $output;
-}, 10, 2 );
-
-/**
- * Modify dashboard page URL.
- *
- * @param string $url Dashboard URL.
- * @return string Modified URL.
- */
-add_filter( 'apd_dashboard_url', function( $url ) {
-    return $url;
-});
-
-/**
- * Modify My Listings query arguments.
- *
- * @param array $query_args WP_Query arguments.
- * @param int   $user_id    User ID.
- * @return array Modified arguments.
- */
-add_filter( 'apd_my_listings_query_args', function( $query_args, $user_id ) {
-    return $query_args;
-}, 10, 2 );
-
-/**
- * Modify My Listings row actions.
- *
- * @param array   $actions Available actions.
- * @param WP_Post $post    Listing post object.
- * @return array Modified actions.
- */
-add_filter( 'apd_my_listings_actions', function( $actions, $post ) {
-    return $actions;
-}, 10, 2 );
-
-/**
- * Filter whether user can permanently delete a listing.
- *
- * @param bool $can_delete  Whether user can delete.
- * @param int  $listing_id  Listing ID.
- * @param int  $user_id     User ID.
- * @return bool Modified value.
- */
-add_filter( 'apd_user_can_delete_listing', function( $can_delete, $listing_id, $user_id ) {
-    return $can_delete;
-}, 10, 3 );
-
-/**
- * Modify favorites page query arguments.
- *
- * @param array $query_args WP_Query arguments.
- * @param int   $user_id    User ID.
- * @return array Modified arguments.
- */
-add_filter( 'apd_favorites_page_query_args', function( $query_args, $user_id ) {
-    return $query_args;
-}, 10, 2 );
-```
-
-### Profile
-
-```php
-/**
- * Modify profile template arguments.
- *
- * @param array $args Profile arguments.
- * @return array Modified arguments.
- */
-add_filter( 'apd_profile_args', function( $args ) {
-    return $args;
-});
-
-/**
- * Modify profile user data.
- *
- * @param array $data    User data.
- * @param int   $user_id User ID.
- * @return array Modified data.
- */
-add_filter( 'apd_profile_user_data', function( $data, $user_id ) {
-    return $data;
-}, 10, 2 );
-
-/**
- * Modify profile validation errors.
- *
- * @param WP_Error $errors  Validation errors.
- * @param array    $data    Submitted data.
- * @param int      $user_id User ID.
- * @return WP_Error Modified errors.
- */
-add_filter( 'apd_validate_profile', function( $errors, $data, $user_id ) {
-    return $errors;
-}, 10, 3 );
-
-/**
- * Modify user social links.
- *
- * @param array $links   Social link definitions.
- * @param int   $user_id User ID.
- * @return array Modified links.
- */
-add_filter( 'apd_user_social_links', function( $links, $user_id ) {
-    return $links;
-}, 10, 2 );
-```
-
-### Favorites
-
-```php
-/**
- * Require login for favorites.
- *
- * @param bool $require Whether to require login.
- * @return bool Modified value.
- */
-add_filter( 'apd_favorites_require_login', '__return_true' );
-
-/**
- * Enable guest favorites.
- *
- * @param bool $enabled Whether guest favorites are enabled.
- * @return bool Modified value.
- */
-add_filter( 'apd_guest_favorites_enabled', '__return_true' );
-
-/**
- * Modify favorite button CSS classes.
- *
- * @param array $classes     CSS classes.
- * @param int   $listing_id  Listing ID.
- * @param bool  $is_favorite Whether listing is favorited.
- * @return array Modified classes.
- */
-add_filter( 'apd_favorite_button_classes', function( $classes, $listing_id, $is_favorite ) {
-    return $classes;
-}, 10, 3 );
-
-/**
- * Modify favorite button HTML.
- *
- * @param string $html       Button HTML.
- * @param int    $listing_id Listing ID.
- * @param array  $args       Button arguments.
- * @return string Modified HTML.
- */
-add_filter( 'apd_favorite_button_html', function( $html, $listing_id, $args ) {
-    return $html;
-}, 10, 3 );
-```
-
-### Reviews
-
-```php
-/**
- * Require login for reviews.
- *
- * @param bool $require Whether to require login.
- * @return bool Modified value.
- */
-add_filter( 'apd_reviews_require_login', '__return_true' );
-
-/**
- * Set minimum review content length.
- *
- * @param int $length Minimum characters.
- * @return int Modified length.
- */
-add_filter( 'apd_review_min_content_length', function( $length ) {
-    return 50;
-});
-
-/**
- * Modify review comment data before saving.
- *
- * @param array $comment_data Comment data for wp_insert_comment.
- * @param int   $listing_id   Listing ID.
- * @param array $data         Original review data.
- * @return array Modified comment data.
- */
-add_filter( 'apd_review_data', function( $comment_data, $listing_id, $data ) {
-    return $comment_data;
-}, 10, 3 );
-
-/**
- * Set default review status.
- *
- * @param string $status Default status ('pending' or 'approved').
- * @return string Modified status.
- */
-add_filter( 'apd_review_default_status', function( $status ) {
-    return current_user_can( 'moderate_comments' ) ? 'approved' : 'pending';
-});
-
-/**
- * Set number of reviews per page.
- *
- * @param int $per_page Reviews per page.
- * @return int Modified count.
- */
-add_filter( 'apd_reviews_per_page', function( $per_page ) {
-    return 10;
-});
-
-/**
- * Filter whether author can review own listing.
- *
- * @param bool $can_review  Whether author can review.
- * @param int  $listing_id  Listing ID.
- * @param int  $user_id     User ID.
- * @return bool Modified value.
- */
-add_filter( 'apd_author_can_review_own_listing', function( $can_review, $listing_id, $user_id ) {
-    return $can_review;
-}, 10, 3 );
-
-/**
- * Control whether the review form is shown.
- *
- * @param bool $can_show    Whether to show the form.
- * @param int  $listing_id  Listing ID.
- * @return bool Modified value.
- */
-add_filter( 'apd_can_show_review_form', function( $can_show, $listing_id ) {
-    return $can_show;
-}, 10, 2 );
-
-/**
- * Filter whether user can edit a review.
- *
- * @param bool       $can_edit   Whether user can edit.
- * @param int        $review_id  Review comment ID.
- * @param int        $user_id    User ID.
- * @param WP_Comment $review     Review comment object.
- * @return bool Modified value.
- */
-add_filter( 'apd_user_can_edit_review', function( $can_edit, $review_id, $user_id, $review ) {
-    return $can_edit;
-}, 10, 4 );
-
-/**
- * Modify review guidelines text.
- *
- * @param string $text Default guidelines text.
- * @return string Modified text.
- */
-add_filter( 'apd_review_guidelines_text', function( $text ) {
-    return $text;
-});
-```
-
-### Contact Form
-
-```php
-/**
- * Control which listings can receive contact.
- *
- * @param bool    $can_receive Whether listing can receive contact.
- * @param int     $listing_id  Listing ID.
- * @param WP_Post $listing     Listing post object.
- * @return bool Modified value.
- */
-add_filter( 'apd_listing_can_receive_contact', function( $can_receive, $listing_id, $listing ) {
-    return $can_receive;
-}, 10, 3 );
-
-/**
- * Modify contact form validation errors.
- *
- * @param WP_Error $errors Validation errors.
- * @param array    $data   Form data.
- * @return WP_Error Modified errors.
- */
-add_filter( 'apd_contact_validation_errors', function( $errors, $data ) {
-    return $errors;
-}, 10, 2 );
-
-/**
- * Modify contact email recipient.
- *
- * @param string  $to      Recipient email.
- * @param array   $data    Form data.
- * @param WP_Post $listing Listing post object.
- * @return string Modified email.
- */
-add_filter( 'apd_contact_email_to', function( $to, $data, $listing ) {
-    return $to;
-}, 10, 3 );
-
-/**
- * Modify contact email subject.
- *
- * @param string  $subject Email subject.
- * @param array   $data    Form data.
- * @param WP_Post $listing Listing post object.
- * @return string Modified subject.
- */
-add_filter( 'apd_contact_email_subject', function( $subject, $data, $listing ) {
-    return $subject;
-}, 10, 3 );
-
-/**
- * Modify contact email message body.
- *
- * @param string  $message Email message.
- * @param array   $data    Form data.
- * @param WP_Post $listing Listing post object.
- * @return string Modified message.
- */
-add_filter( 'apd_contact_email_message', function( $message, $data, $listing ) {
-    return $message;
-}, 10, 3 );
-
-/**
- * Modify contact email headers.
- *
- * @param array   $headers Email headers.
- * @param array   $data    Form data.
- * @param WP_Post $listing Listing post object.
- * @return array Modified headers.
- */
-add_filter( 'apd_contact_email_headers', function( $headers, $data, $listing ) {
-    return $headers;
-}, 10, 3 );
-
-/**
- * Control whether admin receives a copy of contact emails.
- *
- * @param bool $send_copy Whether to send admin copy.
- * @return bool Modified value.
- */
-add_filter( 'apd_contact_send_admin_copy', '__return_true' );
-
-/**
- * Modify admin email for contact copies.
- *
- * @param string $email Admin email.
- * @return string Modified email.
- */
-add_filter( 'apd_contact_admin_email', function( $email ) {
-    return $email;
-});
-
-/**
- * Contact form spam protection filters.
- */
-add_filter( 'apd_contact_bypass_spam_protection', function( $bypass, $user_id ) {
-    return $bypass;
-}, 10, 2 );
-
-add_filter( 'apd_contact_spam_check', function( $passed, $data, $user_id ) {
-    return $passed;
-}, 10, 3 );
-
-add_filter( 'apd_contact_honeypot_field_name', function( $name ) {
-    return 'contact_website'; // Default
-});
-
-add_filter( 'apd_contact_min_time', function( $seconds ) {
-    return 2; // Minimum seconds
-});
-
-add_filter( 'apd_contact_rate_limit', function( $limit ) {
-    return 10; // Max per period
-});
-
-add_filter( 'apd_contact_rate_period', function( $seconds ) {
-    return 3600; // Per hour
-});
-```
-
-### Email
-
-```php
-/**
- * Modify email recipient.
- *
- * @param string $to      Recipient.
- * @param string $subject Email subject.
- * @param array  $context Email context.
- * @return string Modified recipient.
- */
-add_filter( 'apd_email_to', function( $to, $subject, $context ) {
-    return $to;
-}, 10, 3 );
-
-/**
- * Modify email subject.
- *
- * @param string $subject Email subject.
- * @param string $to      Recipient.
- * @param array  $context Email context.
- * @return string Modified subject.
- */
-add_filter( 'apd_email_subject', function( $subject, $to, $context ) {
-    return $subject;
-}, 10, 3 );
-
-/**
- * Modify email message body.
- *
- * @param string $message Message body.
- * @param string $to      Recipient.
- * @param string $subject Subject.
- * @param array  $context Email context.
- * @return string Modified message.
- */
-add_filter( 'apd_email_message', function( $message, $to, $subject, $context ) {
-    return $message;
-}, 10, 4 );
-
-/**
- * Modify email headers.
- *
- * @param array  $headers Email headers.
- * @param string $to      Recipient.
- * @param string $subject Subject.
- * @param array  $context Email context.
- * @return array Modified headers.
- */
-add_filter( 'apd_email_headers', function( $headers, $to, $subject, $context ) {
-    return $headers;
-}, 10, 4 );
-
-/**
- * Control whether a notification is enabled.
- *
- * @param bool   $enabled Whether enabled.
- * @param string $type    Notification type.
- * @return bool Modified value.
- */
-add_filter( 'apd_email_notification_enabled', function( $enabled, $type ) {
-    return $enabled;
-}, 10, 2 );
-
-/**
- * Customize email from name and address.
- */
-add_filter( 'apd_email_from_name', function( $name ) {
-    return 'My Directory';
-});
-
-add_filter( 'apd_email_from_email', function( $email ) {
-    return 'noreply@example.com';
-});
-
-/**
- * Customize email colors.
- */
-add_filter( 'apd_email_header_color', function( $color ) {
-    return '#1a73e8';
-});
-
-add_filter( 'apd_email_header_text_color', function( $color ) {
-    return '#ffffff';
-});
-
-add_filter( 'apd_email_button_color', function( $color ) {
-    return '#1a73e8';
-});
-
-/**
- * Add custom placeholders to emails.
- *
- * @param string $message Email message.
- * @param array  $context Email context.
- * @return string Modified message.
- */
-add_filter( 'apd_email_replace_placeholders', function( $message, $context ) {
-    $message = str_replace( '{custom_value}', 'replacement', $message );
-    return $message;
-}, 10, 2 );
-```
-
-### Settings
-
-```php
-/**
- * Modify settings tabs.
- *
- * @param array $tabs Settings tabs.
- * @return array Modified tabs.
- */
-add_filter( 'apd_settings_tabs', function( $tabs ) {
-    $tabs['custom'] = 'Custom Settings';
-    return $tabs;
-});
-
-/**
- * Modify default settings.
- *
- * @param array $defaults Default settings.
- * @return array Modified defaults.
- */
-add_filter( 'apd_settings_defaults', function( $defaults ) {
-    $defaults['custom_option'] = 'default_value';
-    return $defaults;
-});
-
-/**
- * Modify settings before saving.
- *
- * @param array $settings Sanitized settings.
- * @return array Modified settings.
- */
-add_filter( 'apd_sanitize_settings', function( $settings ) {
-    return $settings;
-});
-```
-
-### Modules
-
-```php
-/**
- * Modify module configuration before registration.
- *
- * @param array  $config Module config.
- * @param string $slug   Module slug.
- * @return array Modified config.
- */
-add_filter( 'apd_register_module_config', function( $config, $slug ) {
-    return $config;
-}, 10, 2 );
-
-/**
- * Modify module on retrieval.
- *
- * @param array  $config Module config.
- * @param string $slug   Module slug.
- * @return array Modified config.
- */
-add_filter( 'apd_get_module', function( $config, $slug ) {
-    return $config;
-}, 10, 2 );
-
-/**
- * Modify modules list on retrieval.
- *
- * @param array $modules All modules.
- * @param array $args    Query arguments.
- * @return array Modified modules.
- */
-add_filter( 'apd_get_modules', function( $modules, $args ) {
-    return $modules;
-}, 10, 2 );
-```
-
-### Display & Views
-
-```php
-/**
- * Modify view container CSS classes.
- *
- * @param array         $classes CSS classes.
- * @param AbstractView  $view    View instance.
- * @return array Modified classes.
- */
-add_filter( 'apd_view_container_classes', function( $classes, $view ) {
-    return $classes;
-}, 10, 2 );
-
-/**
- * Modify listing template arguments within a view.
- *
- * @param array        $args       Template arguments.
- * @param int          $listing_id Listing ID.
- * @param AbstractView $view       View instance.
- * @return array Modified arguments.
- */
-add_filter( 'apd_view_listing_args', function( $args, $listing_id, $view ) {
-    return $args;
-}, 10, 3 );
-
-/**
- * Control whether to skip view count for admin users.
- *
- * @param bool $skip Whether to skip admin view counting.
- * @return bool Modified value.
- */
-add_filter( 'apd_skip_admin_view_count', '__return_true' );
-
-/**
- * Control whether to load frontend assets on current page.
- *
- * @param bool $should_load Whether to load assets.
- * @return bool Modified value.
- */
-add_filter( 'apd_should_load_frontend_assets', function( $should_load ) {
-    return $should_load;
-});
-
-/**
- * Modify frontend/admin JavaScript localization data.
- *
- * @param array $data Script data.
- * @return array Modified data.
- */
-add_filter( 'apd_frontend_script_data', function( $data ) {
-    return $data;
-});
-
-add_filter( 'apd_admin_script_data', function( $data ) {
-    return $data;
-});
-```
-
-### REST API
-
-```php
-/**
- * Modify REST API listing query arguments.
- *
- * @param array           $args    WP_Query arguments.
- * @param WP_REST_Request $request REST request.
- * @return array Modified arguments.
- */
-add_filter( 'apd_rest_listings_query_args', function( $args, $request ) {
-    return $args;
-}, 10, 2 );
-
-/**
- * Modify REST API listing response data.
- *
- * @param array           $data    Listing data.
- * @param WP_Post         $listing Listing post.
- * @param WP_REST_Request $request REST request.
- * @return array Modified data.
- */
-add_filter( 'apd_rest_listing_data', function( $data, $listing, $request ) {
-    return $data;
-}, 10, 3 );
-
-/**
- * Modify REST API review response data.
- *
- * @param array      $data   Review data.
- * @param WP_Comment $review Review comment.
- * @return array Modified data.
- */
-add_filter( 'apd_rest_review_data', function( $data, $review ) {
-    return $data;
-}, 10, 2 );
-
-/**
- * Modify REST API inquiry response data.
- *
- * @param array   $data    Inquiry data.
- * @param WP_Post $inquiry Inquiry post.
- * @return array Modified data.
- */
-add_filter( 'apd_rest_inquiry_data', function( $data, $inquiry ) {
-    return $data;
-}, 10, 2 );
-
-/**
- * Modify REST API taxonomy term response data.
- *
- * @param array   $data Term data.
- * @param WP_Term $term Term object.
- * @return array Modified data.
- */
-add_filter( 'apd_rest_term_data', function( $data, $term ) {
-    return $data;
-}, 10, 2 );
-```
-
-### Performance
-
-```php
-/**
- * Modify cache expiration time.
- *
- * @param int    $expiration Expiration in seconds (default 3600).
- * @param string $key        Cache key.
- * @return int Modified expiration.
- */
-add_filter( 'apd_cache_expiration', function( $expiration, $key ) {
-    return $expiration;
-}, 10, 2 );
-```
-
-### Demo Data
-
-```php
-/**
- * Modify default demo data quantities.
- *
- * @param array $defaults Default counts.
- * @return array Modified defaults.
- */
-add_filter( 'apd_demo_default_counts', function( $defaults ) {
-    return $defaults;
-});
-
-/**
- * Modify demo category hierarchy data.
- *
- * @param array $categories Category data.
- * @return array Modified categories.
- */
-add_filter( 'apd_demo_category_data', function( $categories ) {
-    return $categories;
-});
-
-/**
- * Modify demo listing data before creation.
- *
- * @param array  $listing_data  Listing data.
- * @param string $category_slug Category slug.
- * @param int    $index         Listing index.
- * @return array Modified listing data.
- */
-add_filter( 'apd_demo_listing_data', function( $listing_data, $category_slug, $index ) {
-    return $listing_data;
-}, 10, 3 );
-```
+The table below is the filter inventory currently present in the codebase. `Dynamic` entries are literal runtime hook patterns from the source.
+
+| Hook | Type | Source |
+| --- | --- | --- |
+| `apd_admin_script_data` | Static | `src/Core/Assets.php:303` |
+| `apd_ajax_filter_response` | Static | `src/Api/AjaxHandler.php:185` |
+| `apd_archive_content` | Static | `src/Core/TemplateLoader.php:660` |
+| `apd_archive_description` | Static | `src/Core/TemplateLoader.php:308` |
+| `apd_archive_title` | Static | `src/Core/TemplateLoader.php:281` |
+| `apd_author_can_review_own_listing` | Static | `src/Review/ReviewForm.php:343` |
+| `apd_before_validate_field` | Static | `src/Fields/FieldValidator.php:150` |
+| `apd_block_args` | Static | `src/Blocks/AbstractBlock.php:169` |
+| `apd_block_{$this->name}_args` | Dynamic | `src/Blocks/AbstractBlock.php:170` |
+| `apd_block_{$this->name}_output` | Dynamic | `src/Blocks/AbstractBlock.php:224` |
+| `apd_blocks_editor_data` | Static | `src/Blocks/BlockManager.php:393` |
+| `apd_bypass_spam_protection` | Static | `src/Frontend/Submission/SubmissionHandler.php:1192`, `includes/functions.php:2451` |
+| `apd_cache_expiration` | Static | `src/Core/Performance.php:577` |
+| `apd_can_show_review_form` | Static | `src/Review/ReviewForm.php:358` |
+| `apd_categories_block_no_results_message` | Static | `src/Blocks/CategoriesBlock.php:378` |
+| `apd_categories_block_query_args` | Static | `src/Blocks/CategoriesBlock.php:226` |
+| `apd_categories_shortcode_classes` | Static | `src/Shortcode/CategoriesShortcode.php:420` |
+| `apd_categories_shortcode_no_results_message` | Static | `src/Shortcode/CategoriesShortcode.php:440` |
+| `apd_categories_shortcode_query_args` | Static | `src/Shortcode/CategoriesShortcode.php:254` |
+| `apd_categories_with_count_args` | Static | `includes/functions.php:218` |
+| `apd_category_listings_query_args` | Static | `includes/functions.php:194` |
+| `apd_contact_admin_email` | Static | `src/Contact/ContactHandler.php:513` |
+| `apd_contact_bypass_spam_protection` | Static | `src/Contact/ContactHandler.php:561` |
+| `apd_contact_email_headers` | Static | `src/Contact/ContactHandler.php:407` |
+| `apd_contact_email_message` | Static | `src/Contact/ContactHandler.php:389` |
+| `apd_contact_email_subject` | Static | `src/Contact/ContactHandler.php:376` |
+| `apd_contact_email_to` | Static | `src/Contact/ContactHandler.php:357` |
+| `apd_contact_form_args` | Static | `src/Contact/ContactForm.php:359` |
+| `apd_contact_form_classes` | Static | `src/Contact/ContactForm.php:295` |
+| `apd_contact_form_html` | Static | `src/Contact/ContactForm.php:390` |
+| `apd_contact_honeypot_field_name` | Static | `src/Contact/ContactHandler.php:627` |
+| `apd_contact_min_time` | Static | `src/Contact/ContactHandler.php:689` |
+| `apd_contact_rate_limit` | Static | `src/Contact/ContactHandler.php:713` |
+| `apd_contact_rate_period` | Static | `src/Contact/ContactHandler.php:723` |
+| `apd_contact_send_admin_copy` | Static | `src/Contact/ContactHandler.php:492` |
+| `apd_contact_spam_check` | Static | `src/Contact/ContactHandler.php:599` |
+| `apd_contact_trusted_proxies` | Static | `src/Contact/ContactHandler.php:819` |
+| `apd_contact_validation_errors` | Static | `src/Contact/ContactHandler.php:329` |
+| `apd_dashboard_args` | Static | `src/Frontend/Dashboard/Dashboard.php:411` |
+| `apd_dashboard_classes` | Static | `src/Frontend/Dashboard/Dashboard.php:642` |
+| `apd_dashboard_html` | Static | `src/Frontend/Dashboard/Dashboard.php:436` |
+| `apd_dashboard_register_url` | Static | `templates/dashboard/login-required.php:29` |
+| `apd_dashboard_show_register` | Static | `templates/dashboard/login-required.php:38` |
+| `apd_dashboard_stat_items` | Static | `templates/dashboard/stats.php:31` |
+| `apd_dashboard_stats` | Static | `src/Frontend/Dashboard/Dashboard.php:280` |
+| `apd_dashboard_tabs` | Static | `src/Frontend/Dashboard/Dashboard.php:219` |
+| `apd_dashboard_url` | Static | `src/Frontend/Dashboard/Dashboard.php:664`, `includes/functions.php:2596` |
+| `apd_default_listing_status` | Static | `includes/functions.php:2044` |
+| `apd_default_listing_type` | Static | `src/Taxonomy/ListingTypeTaxonomy.php:230` |
+| `apd_default_pages` | Static | `src/Core/Activator.php:173` |
+| `apd_demo_category_data` | Static | `src/Admin/DemoData/DemoDataGenerator.php:180`, `src/Admin/DemoData/DataSets/CategoryData.php:197` |
+| `apd_demo_default_counts` | Static | `src/Admin/DemoData/DemoDataPage.php:802` |
+| `apd_demo_listing_data` | Static | `src/Admin/DemoData/DemoDataGenerator.php:397` |
+| `apd_edit_listing_status` | Static | `src/Frontend/Submission/SubmissionHandler.php:846` |
+| `apd_edit_listing_url` | Static | `includes/functions.php:2160` |
+| `apd_edit_not_allowed_args` | Static | `src/Shortcode/SubmissionFormShortcode.php:360` |
+| `apd_email_admin_email` | Static | `src/Email/EmailManager.php:496` |
+| `apd_email_button_color` | Static | `templates/emails/email-wrapper.php:46` |
+| `apd_email_from_email` | Static | `src/Email/EmailManager.php:475` |
+| `apd_email_from_name` | Static | `src/Email/EmailManager.php:454` |
+| `apd_email_header_color` | Static | `templates/emails/email-wrapper.php:30` |
+| `apd_email_header_text_color` | Static | `templates/emails/email-wrapper.php:38` |
+| `apd_email_headers` | Static | `src/Email/EmailManager.php:377` |
+| `apd_email_message` | Static | `src/Email/EmailManager.php:366` |
+| `apd_email_notification_enabled` | Static | `src/Email/EmailManager.php:515` |
+| `apd_email_plain_text_message` | Static | `src/Email/EmailManager.php:999` |
+| `apd_email_replace_placeholders` | Static | `src/Email/EmailManager.php:307` |
+| `apd_email_subject` | Static | `src/Email/EmailManager.php:355` |
+| `apd_email_to` | Static | `src/Email/EmailManager.php:345` |
+| `apd_expiration_cron_batch_size` | Static | `src/Core/Plugin.php:470` |
+| `apd_expiration_cron_lock_ttl` | Static | `src/Core/Plugin.php:455` |
+| `apd_favorite_button_classes` | Static | `src/User/FavoriteToggle.php:373` |
+| `apd_favorite_button_html` | Static | `src/User/FavoriteToggle.php:415` |
+| `apd_favorite_listings_batch_size` | Static | `includes/functions.php:3164` |
+| `apd_favorite_listings_query_args` | Static | `includes/functions.php:3157`, `includes/functions.php:3184` |
+| `apd_favorites_empty_browse_url` | Static | `src/Frontend/Dashboard/FavoritesPage.php:391` |
+| `apd_favorites_enabled` | Static | `src/Shortcode/FavoritesShortcode.php:147` |
+| `apd_favorites_output` | Static | `src/Shortcode/FavoritesShortcode.php:160` |
+| `apd_favorites_page_args` | Static | `src/Frontend/Dashboard/FavoritesPage.php:209` |
+| `apd_favorites_page_query_args` | Static | `src/Frontend/Dashboard/FavoritesPage.php:265` |
+| `apd_favorites_require_login` | Static | `src/User/Favorites.php:420` |
+| `apd_favorites_shortcode_no_results_message` | Static | `src/Shortcode/FavoritesShortcode.php:408` |
+| `apd_favorites_shortcode_pagination_args` | Static | `src/Shortcode/FavoritesShortcode.php:370` |
+| `apd_favorites_shortcode_query_args` | Static | `src/Shortcode/FavoritesShortcode.php:194` |
+| `apd_field_group_wrapper_class` | Static | `src/Fields/FieldRenderer.php:698` |
+| `apd_field_wrapper_class` | Static | `src/Fields/FieldRenderer.php:313` |
+| `apd_filter_options` | Static | `src/Search/Filters/AbstractFilter.php:175` |
+| `apd_filter_wrapper_class` | Static | `src/Search/Filters/AbstractFilter.php:344` |
+| `apd_frontend_script_data` | Static | `src/Core/Assets.php:276` |
+| `apd_get_field` | Static | `src/Fields/FieldRegistry.php:317` |
+| `apd_get_fields` | Static | `src/Fields/FieldRegistry.php:415` |
+| `apd_get_module` | Static | `src/Module/ModuleRegistry.php:317` |
+| `apd_get_modules` | Static | `src/Module/ModuleRegistry.php:379` |
+| `apd_get_template_part` | Static | `src/Core/Template.php:254` |
+| `apd_grid_responsive_columns` | Static | `src/Frontend/Display/GridView.php:238` |
+| `apd_guest_favorites_enabled` | Static | `src/User/Favorites.php:438` |
+| `apd_honeypot_field_name` | Static | `src/Frontend/Submission/SubmissionForm.php:695`, `src/Frontend/Submission/SubmissionHandler.php:1260` (+2 more) |
+| `apd_inquiry_post_data` | Static | `src/Contact/InquiryTracker.php:244` |
+| `apd_inquiry_post_type_args` | Static | `src/Contact/InquiryTracker.php:145` |
+| `apd_is_plugin_admin_screen` | Static | `src/Core/Assets.php:238` |
+| `apd_list_responsive_layout` | Static | `src/Frontend/Display/ListView.php:211` |
+| `apd_listing_can_receive_contact` | Static | `src/Contact/ContactForm.php:425` |
+| `apd_listing_card_classes` | Static | `templates/listing-card-list.php:88`, `templates/listing-card.php:80` |
+| `apd_listing_card_data` | Static | `templates/listing-card-list.php:54`, `templates/listing-card.php:48` |
+| `apd_listing_field_value` | Static | `includes/functions.php:532` |
+| `apd_listing_fields` | Static | `src/Fields/FieldRegistry.php:624` |
+| `apd_listing_inquiries_query_args` | Static | `src/Contact/InquiryTracker.php:336` |
+| `apd_listings_block_no_results_message` | Static | `src/Blocks/ListingsBlock.php:377` |
+| `apd_listings_block_pagination_args` | Static | `src/Blocks/ListingsBlock.php:347` |
+| `apd_listings_block_query_args` | Static | `src/Blocks/ListingsBlock.php:171` |
+| `apd_listings_shortcode_no_results_message` | Static | `src/Shortcode/ListingsShortcode.php:440` |
+| `apd_listings_shortcode_pagination_args` | Static | `src/Shortcode/ListingsShortcode.php:409` |
+| `apd_listings_shortcode_query_args` | Static | `src/Shortcode/ListingsShortcode.php:211` |
+| `apd_locate_template` | Static | `src/Core/Template.php:150` |
+| `apd_login_form_shortcode_args` | Static | `src/Shortcode/LoginFormShortcode.php:239` |
+| `apd_my_listings_actions` | Static | `src/Frontend/Dashboard/MyListings.php:948` |
+| `apd_my_listings_args` | Static | `src/Frontend/Dashboard/MyListings.php:221` |
+| `apd_my_listings_query_args` | Static | `src/Frontend/Dashboard/MyListings.php:311` |
+| `apd_new_listing_post_data` | Static | `src/Frontend/Submission/SubmissionHandler.php:783` |
+| `apd_orderby_options` | Static | `src/Search/SearchQuery.php:531` |
+| `apd_pagination_args` | Static | `src/Core/TemplateLoader.php:457` |
+| `apd_profile_args` | Static | `src/Frontend/Dashboard/Profile.php:207` |
+| `apd_profile_user_data` | Static | `src/Frontend/Dashboard/Profile.php:262` |
+| `apd_rating_precision` | Static | `src/Review/RatingCalculator.php:378` |
+| `apd_rating_star_count` | Static | `src/Review/RatingCalculator.php:360` |
+| `apd_rating_summary_data` | Static | `src/Review/ReviewDisplay.php:247` |
+| `apd_register_default_fields` | Static | `src/Fields/FieldRegistry.php:583` |
+| `apd_register_field_config` | Static | `src/Fields/FieldRegistry.php:246` |
+| `apd_register_form_errors` | Static | `src/Shortcode/RegisterFormShortcode.php:300` |
+| `apd_register_module_config` | Static | `src/Module/ModuleRegistry.php:218` |
+| `apd_related_listings` | Static | `includes/functions.php:1365` |
+| `apd_related_listings_args` | Static | `includes/functions.php:1352` |
+| `apd_render_display_fields` | Static | `src/Fields/FieldRenderer.php:928` |
+| `apd_render_field` | Static | `src/Fields/FieldRenderer.php:366` |
+| `apd_render_field_display` | Static | `src/Fields/FieldRenderer.php:420` |
+| `apd_render_field_group` | Static | `src/Fields/FieldRenderer.php:770` |
+| `apd_render_filter` | Static | `src/Search/FilterRenderer.php:305` |
+| `apd_rest_favorite_listing_data` | Static | `src/Api/Endpoints/FavoritesEndpoint.php:488` |
+| `apd_rest_inquiry_data` | Static | `src/Api/Endpoints/InquiriesEndpoint.php:641` |
+| `apd_rest_listing_data` | Static | `src/Api/Endpoints/ListingsEndpoint.php:641` |
+| `apd_rest_listings_query_args` | Static | `src/Api/Endpoints/ListingsEndpoint.php:208` |
+| `apd_rest_review_data` | Static | `src/Api/Endpoints/ReviewsEndpoint.php:820` |
+| `apd_rest_taxonomy_query_args` | Static | `src/Api/Endpoints/TaxonomiesEndpoint.php:242` |
+| `apd_rest_term_data` | Static | `src/Api/Endpoints/TaxonomiesEndpoint.php:344` |
+| `apd_review_data` | Static | `src/Review/ReviewManager.php:259` |
+| `apd_review_default_status` | Static | `src/Review/ReviewManager.php:892` |
+| `apd_review_form_classes` | Static | `src/Review/ReviewForm.php:388` |
+| `apd_review_form_data` | Static | `src/Review/ReviewForm.php:246` |
+| `apd_review_form_data_collected` | Static | `src/Review/ReviewHandler.php:590` |
+| `apd_review_guidelines_text` | Static | `src/Review/ReviewForm.php:414` |
+| `apd_review_min_content_length` | Static | `src/Review/ReviewManager.php:742` |
+| `apd_review_success_message` | Static | `src/Review/ReviewHandler.php:311` |
+| `apd_reviews_list_data` | Static | `src/Review/ReviewDisplay.php:304` |
+| `apd_reviews_pagination_data` | Static | `src/Review/ReviewDisplay.php:390` |
+| `apd_reviews_per_page` | Static | `src/Review/ReviewDisplay.php:461` |
+| `apd_reviews_require_login` | Static | `src/Review/ReviewManager.php:724` |
+| `apd_reviews_section_data` | Static | `src/Review/ReviewDisplay.php:199` |
+| `apd_sanitize_settings` | Static | `src/Admin/Settings.php:1836` |
+| `apd_sanitized_fields` | Static | `src/Fields/FieldValidator.php:350` |
+| `apd_search_form_block_args` | Static | `src/Blocks/SearchFormBlock.php:144` |
+| `apd_search_form_classes` | Static | `src/Search/FilterRenderer.php:157` |
+| `apd_search_form_shortcode_args` | Static | `src/Shortcode/SearchFormShortcode.php:149` |
+| `apd_search_query_args` | Static | `src/Search/SearchQuery.php:418` |
+| `apd_searchable_meta_keys` | Static | `src/Search/SearchQuery.php:384` |
+| `apd_set_listing_field_value` | Static | `includes/functions.php:572` |
+| `apd_settings_defaults` | Static | `src/Admin/Settings.php:1588` |
+| `apd_settings_tabs` | Static | `src/Admin/Settings.php:189` |
+| `apd_shortcode_{$this->tag}_atts` | Dynamic | `src/Shortcode/AbstractShortcode.php:132` |
+| `apd_shortcode_{$this->tag}_output` | Dynamic | `src/Shortcode/AbstractShortcode.php:156` |
+| `apd_should_display_field` | Static | `src/Fields/FieldRenderer.php:958` |
+| `apd_should_load_frontend_assets` | Static | `src/Core/Assets.php:153` |
+| `apd_show_empty_star_rating` | Static | `src/Review/RatingCalculator.php:517` |
+| `apd_single_listing_data` | Static | `templates/single-listing.php:59` |
+| `apd_single_review_data` | Static | `src/Review/ReviewDisplay.php:350` |
+| `apd_skip_admin_view_count` | Static | `src/Core/TemplateLoader.php:956` |
+| `apd_submission_admin_notification` | Static | `src/Frontend/Submission/SubmissionHandler.php:1053` |
+| `apd_submission_default_status` | Static | `src/Frontend/Submission/SubmissionHandler.php:864` |
+| `apd_submission_error_redirect` | Static | `src/Frontend/Submission/SubmissionHandler.php:1161` |
+| `apd_submission_field_groups` | Static | `src/Frontend/Submission/SubmissionForm.php:243` |
+| `apd_submission_fields` | Static | `src/Frontend/Submission/SubmissionForm.php:222` |
+| `apd_submission_form_args` | Static | `src/Frontend/Submission/SubmissionForm.php:579` |
+| `apd_submission_form_classes` | Static | `src/Frontend/Submission/SubmissionForm.php:639` |
+| `apd_submission_form_data` | Static | `src/Frontend/Submission/SubmissionHandler.php:452` |
+| `apd_submission_form_html` | Static | `src/Frontend/Submission/SubmissionForm.php:604` |
+| `apd_submission_form_shortcode_config` | Static | `src/Shortcode/SubmissionFormShortcode.php:223` |
+| `apd_submission_min_time` | Static | `src/Frontend/Submission/SubmissionHandler.php:1327`, `includes/functions.php:2476` (+1 more) |
+| `apd_submission_page_url` | Static | `src/Frontend/Dashboard/Dashboard.php:706`, `includes/functions.php:2130` (+1 more) |
+| `apd_submission_rate_limit` | Static | `src/Frontend/Submission/SubmissionHandler.php:1351`, `includes/functions.php:2280` |
+| `apd_submission_rate_period` | Static | `src/Frontend/Submission/SubmissionHandler.php:1361`, `includes/functions.php:2300` |
+| `apd_submission_spam_check` | Static | `src/Frontend/Submission/SubmissionHandler.php:1230`, `includes/functions.php:2506` |
+| `apd_submission_success_args` | Static | `includes/functions.php:2254` |
+| `apd_submission_success_redirect` | Static | `src/Frontend/Submission/SubmissionHandler.php:1127` |
+| `apd_submission_trusted_proxies` | Static | `src/Frontend/Submission/SubmissionHandler.php:1460` |
+| `apd_track_inquiry` | Static | `src/Contact/InquiryTracker.php:167` |
+| `apd_user_can_delete_listing` | Static | `src/Frontend/Dashboard/MyListings.php:715` |
+| `apd_user_can_edit_listing` | Static | `src/Frontend/Submission/SubmissionHandler.php:551`, `includes/functions.php:2100` |
+| `apd_user_can_edit_review` | Static | `src/Review/ReviewHandler.php:630` |
+| `apd_user_can_submit_listing` | Static | `src/Frontend/Submission/SubmissionHandler.php:374` |
+| `apd_user_can_view_inquiry` | Static | `src/Contact/InquiryTracker.php:700` |
+| `apd_user_inquiries_query_args` | Static | `src/Contact/InquiryTracker.php:410` |
+| `apd_user_social_links` | Static | `src/Frontend/Dashboard/Profile.php:661` |
+| `apd_validate_field` | Static | `src/Fields/FieldValidator.php:168` |
+| `apd_validate_profile` | Static | `src/Frontend/Dashboard/Profile.php:461` |
+| `apd_view_container_attributes` | Static | `src/Frontend/Display/AbstractView.php:244` |
+| `apd_view_container_classes` | Static | `src/Frontend/Display/AbstractView.php:217` |
+| `apd_view_listing_args` | Static | `src/Frontend/Display/AbstractView.php:345` |
+| `apd_view_listings_query_args` | Static | `src/Frontend/Display/AbstractView.php:458` |
 
 ---
 
@@ -2493,38 +639,25 @@ add_action( 'apd_init', function() {
 ### Registering Filters
 
 ```php
-add_filter( 'apd_search_filters', function( $filters ) {
-    $filters['price_range'] = [
-        'type'           => 'range',
-        'label'          => 'Price Range',
-        'field'          => 'price',
-        'min'            => 0,
-        'max'            => 1000000,
-        'step'           => 1000,
-        'query_callback' => function( $query_args, $value ) {
-            if ( ! empty( $value['min'] ) ) {
-                $query_args['meta_query'][] = [
-                    'key'     => '_apd_price',
-                    'value'   => $value['min'],
-                    'compare' => '>=',
-                    'type'    => 'NUMERIC',
-                ];
-            }
-            if ( ! empty( $value['max'] ) ) {
-                $query_args['meta_query'][] = [
-                    'key'     => '_apd_price',
-                    'value'   => $value['max'],
-                    'compare' => '<=',
-                    'type'    => 'NUMERIC',
-                ];
-            }
-            return $query_args;
-        },
-    ];
+use APD\Search\Filters\RangeFilter;
 
-    return $filters;
-});
+add_action( 'apd_register_filters', function( $registry ) {
+    $registry->register(
+        'price_range',
+        new RangeFilter(
+            [
+                'label'    => 'Price Range',
+                'field'    => 'price',
+                'meta_key' => '_apd_price',
+                'min'      => 0,
+                'max'      => 1000000,
+                'step'     => 1000,
+            ]
+        )
+    );
+}, 10, 1 );
 ```
+
 
 ### Filter Types
 
