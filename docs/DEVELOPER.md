@@ -68,6 +68,40 @@ all-purpose-directory/
 
 ## Action Hooks
 
+### Core Lifecycle (Curated)
+
+```php
+/**
+ * Fires after the plugin is activated.
+ */
+do_action( 'apd_activated' );
+
+/**
+ * Fires after the plugin is deactivated.
+ */
+do_action( 'apd_deactivated' );
+
+/**
+ * Fires after the plugin initializes.
+ * Use for registering custom field types, filters, views.
+ */
+do_action( 'apd_init' );
+
+/**
+ * Fires when all plugin components are loaded.
+ * Safe to use all plugin functions.
+ */
+do_action( 'apd_loaded' );
+
+/**
+ * Fires after text domain is loaded.
+ * Use for translation-related setup.
+ */
+do_action( 'apd_textdomain_loaded' );
+```
+
+### Full Action Hook Inventory (Source of Truth)
+
 The table below is the hook inventory currently present in the codebase. `Dynamic` entries are literal runtime hook patterns from the source and should be treated as exact strings when matching plugin integrations against this API version.
 
 | Hook | Type | Source |
