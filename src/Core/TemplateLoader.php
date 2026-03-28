@@ -224,7 +224,7 @@ final class TemplateLoader {
 	 */
 	public function get_view_url( string $view ): string {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$raw = wp_unslash( $_GET );
+		$raw    = wp_unslash( $_GET );
 		$params = array_map( 'sanitize_text_field', array_filter( $raw, 'is_string' ) );
 
 		$params['apd_view'] = $view;
