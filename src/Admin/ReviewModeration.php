@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace APD\Admin;
 
+use APD\Core\Url;
 use APD\Review\ReviewManager;
 
 // Prevent direct file access.
@@ -1095,13 +1096,15 @@ final class ReviewModeration {
 		$message = $this->get_action_message( $action );
 
 		$redirect_url = add_query_arg(
-			[
-				'post_type' => 'apd_listing',
-				'page'      => self::PAGE_SLUG,
-				'status'    => $status,
-				'message'   => $success ? $message : '',
-				'count'     => $success ? 1 : 0,
-			],
+			Url::encode_deep(
+				[
+					'post_type' => 'apd_listing',
+					'page'      => self::PAGE_SLUG,
+					'status'    => $status,
+					'message'   => $success ? $message : '',
+					'count'     => $success ? 1 : 0,
+				]
+			),
 			admin_url( 'edit.php' )
 		);
 
@@ -1161,13 +1164,15 @@ final class ReviewModeration {
 		$status  = isset( $_POST['current_status'] ) ? sanitize_key( $_POST['current_status'] ) : 'all';
 
 		$redirect_url = add_query_arg(
-			[
-				'post_type' => 'apd_listing',
-				'page'      => self::PAGE_SLUG,
-				'status'    => $status,
-				'message'   => $success_count > 0 ? $message : '',
-				'count'     => $success_count,
-			],
+			Url::encode_deep(
+				[
+					'post_type' => 'apd_listing',
+					'page'      => self::PAGE_SLUG,
+					'status'    => $status,
+					'message'   => $success_count > 0 ? $message : '',
+					'count'     => $success_count,
+				]
+			),
 			admin_url( 'edit.php' )
 		);
 

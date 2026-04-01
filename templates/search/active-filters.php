@@ -54,7 +54,7 @@ $base_url = get_post_type_archive_link( 'apd_listing' );
 				unset( $params[ $filter->getUrlParamEnd() ] );
 			}
 
-			$remove_url = empty( $params ) ? $base_url : add_query_arg( $params, $base_url );
+				$remove_url = empty( $params ) ? $base_url : add_query_arg( \APD\Core\Url::encode_deep( $params ), $base_url );
 			?>
 			<li class="apd-active-filters__item">
 				<span class="apd-active-filters__name">

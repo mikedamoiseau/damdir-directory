@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace APD\Frontend\Dashboard;
 
+use APD\Core\Url;
+
 // Prevent direct file access.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -685,7 +687,7 @@ class Dashboard {
 			return $base_url;
 		}
 
-		return add_query_arg( self::TAB_PARAM, $tab, $base_url );
+		return add_query_arg( self::TAB_PARAM, Url::encode_deep( $tab ), $base_url );
 	}
 
 	/**

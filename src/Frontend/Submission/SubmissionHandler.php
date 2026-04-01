@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace APD\Frontend\Submission;
 
+use APD\Core\Url;
 use APD\Fields\FieldRegistry;
 use APD\Fields\FieldValidator;
 use WP_Error;
@@ -1110,9 +1111,9 @@ Review the listing: %4$s',
 
 		if ( empty( $redirect_url ) ) {
 			// Final fallback: current page with success param.
-			$redirect_url = add_query_arg( $query_args, wp_get_referer() ?: home_url() );
+			$redirect_url = add_query_arg( Url::encode_deep( $query_args ), wp_get_referer() ?: home_url() );
 		} else {
-			$redirect_url = add_query_arg( $query_args, $redirect_url );
+			$redirect_url = add_query_arg( Url::encode_deep( $query_args ), $redirect_url );
 		}
 
 		/**

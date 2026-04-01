@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace APD\Listing;
 
+use APD\Core\Url;
+
 // Prevent direct file access.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -174,15 +176,17 @@ final class AdminColumns {
 		foreach ( $terms as $term ) {
 			$term_links[] = sprintf(
 				'<a href="%s">%s</a>',
-				esc_url(
-					add_query_arg(
-						[
-							'post_type'    => PostType::POST_TYPE,
-							'apd_category' => $term->slug,
-						],
-						admin_url( 'edit.php' )
-					)
-				),
+					esc_url(
+						add_query_arg(
+							Url::encode_deep(
+								[
+									'post_type'    => PostType::POST_TYPE,
+									'apd_category' => $term->slug,
+								]
+							),
+							admin_url( 'edit.php' )
+						)
+					),
 				esc_html( $term->name )
 			);
 		}
@@ -219,15 +223,17 @@ final class AdminColumns {
 
 		printf(
 			'<a href="%s">%s</a>',
-			esc_url(
-				add_query_arg(
-					[
-						'post_type' => PostType::POST_TYPE,
-						\APD\Taxonomy\ListingTypeTaxonomy::TAXONOMY => $term->slug,
-					],
-					admin_url( 'edit.php' )
-				)
-			),
+				esc_url(
+					add_query_arg(
+						Url::encode_deep(
+							[
+								'post_type' => PostType::POST_TYPE,
+								\APD\Taxonomy\ListingTypeTaxonomy::TAXONOMY => $term->slug,
+							]
+						),
+						admin_url( 'edit.php' )
+					)
+				),
 			esc_html( $term->name )
 		);
 	}

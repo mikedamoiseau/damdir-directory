@@ -2159,7 +2159,14 @@ function apd_get_edit_listing_url( int $listing_id, string $submission_url = '' 
 	 */
 	return apply_filters(
 		'apd_edit_listing_url',
-		add_query_arg( 'edit_listing', $listing_id, $submission_url ),
+			add_query_arg(
+				\APD\Core\Url::encode_deep(
+					[
+						'edit_listing' => $listing_id,
+					]
+				),
+				$submission_url
+			),
 		$listing_id
 	);
 }
@@ -2632,7 +2639,7 @@ function apd_get_dashboard_tab_url( string $tab ): string {
 		return $base_url;
 	}
 
-	return add_query_arg( \APD\Frontend\Dashboard\Dashboard::TAB_PARAM, $tab, $base_url );
+	return add_query_arg( \APD\Frontend\Dashboard\Dashboard::TAB_PARAM, \APD\Core\Url::encode_deep( $tab ), $base_url );
 }
 
 /**
@@ -4772,6 +4779,33 @@ function apd_substr( string $string, int $start, ?int $length = null ): string {
 	}
 
 	return substr( $string, $start, $length );
+}
+
+/**
+ * Recursively URL-encode query argument values.
+ *
+ * Mirrors the behavior needed before passing arrays to add_query_arg() without
+ * depending on WordPress's urlencode_deep() in isolated unit tests.
+ *
+ * @since 1.0.0
+ *
+ * @param mixed $value Query arg value or nested array of values.
+ * @return mixed Encoded value tree.
+ */
+function apd_urlencode_deep( $value ) {
+	if ( is_array( $value ) ) {
+		foreach ( $value as $key => $item ) {
+			$value[ $key ] = apd_urlencode_deep( $item );
+		}
+
+		return $value;
+	}
+
+	if ( is_scalar( $value ) || $value === null ) {
+		return rawurlencode( (string) $value );
+	}
+
+	return $value;
 }
 
 // ============================================================================

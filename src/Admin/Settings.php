@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace APD\Admin;
 
+use APD\Core\Url;
+
 // Prevent direct file access.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -1389,7 +1391,14 @@ final class Settings {
 		<nav class="nav-tab-wrapper apd-settings-tabs" aria-label="<?php esc_attr_e( 'Settings tabs', 'damdir-directory' ); ?>">
 			<?php foreach ( $this->tabs as $tab_id => $tab ) : ?>
 				<?php
-				$tab_url   = add_query_arg( 'tab', $tab_id, $base_url );
+					$tab_url   = add_query_arg(
+						Url::encode_deep(
+							[
+								'tab' => $tab_id,
+							]
+						),
+						$base_url
+					);
 				$is_active = $current_tab === $tab_id;
 				$classes   = 'nav-tab';
 				if ( $is_active ) {
@@ -1848,7 +1857,14 @@ final class Settings {
 		$url = admin_url( self::PARENT_MENU . '&page=' . self::PAGE_SLUG );
 
 		if ( ! empty( $tab ) && $this->has_tab( $tab ) ) {
-			$url = add_query_arg( 'tab', $tab, $url );
+			$url = add_query_arg(
+				Url::encode_deep(
+					[
+						'tab' => $tab,
+					]
+				),
+				$url
+			);
 		}
 
 		return $url;

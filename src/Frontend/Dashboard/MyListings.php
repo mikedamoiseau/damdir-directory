@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace APD\Frontend\Dashboard;
 
+use APD\Core\Url;
 use APD\Listing\PostType;
 
 // Prevent direct file access.
@@ -743,11 +744,13 @@ class MyListings {
 	 */
 	public function get_action_url( int $listing_id, string $action ): string {
 		return add_query_arg(
-			[
-				'apd_action' => $action,
-				'listing_id' => $listing_id,
-				'_apd_nonce' => wp_create_nonce( self::NONCE_ACTION ),
-			]
+			Url::encode_deep(
+				[
+					'apd_action' => $action,
+					'listing_id' => $listing_id,
+					'_apd_nonce' => wp_create_nonce( self::NONCE_ACTION ),
+				]
+			)
 		);
 	}
 

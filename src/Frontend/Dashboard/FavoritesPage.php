@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace APD\Frontend\Dashboard;
 
+use APD\Core\Url;
 use APD\Listing\PostType;
 
 // Prevent direct file access.
@@ -364,10 +365,12 @@ class FavoritesPage {
 	 */
 	public function get_view_mode_url( string $view_mode ): string {
 		return add_query_arg(
-			[
-				'view'     => $view_mode,
-				'fav_page' => 1, // Reset to page 1 when changing view.
-			]
+			Url::encode_deep(
+				[
+					'view'     => $view_mode,
+					'fav_page' => 1, // Reset to page 1 when changing view.
+				]
+			)
 		);
 	}
 

@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace APD\Search;
 
 use APD\Contracts\FilterInterface;
+use APD\Core\Url;
 use APD\Core\Template;
 use APD\Search\Filters\RangeFilter;
 use APD\Search\Filters\DateRangeFilter;
@@ -499,7 +500,7 @@ final class FilterRenderer {
 			return $base_url;
 		}
 
-		return esc_url( add_query_arg( $params, $base_url ) );
+		return add_query_arg( Url::encode_deep( $params ), $base_url );
 	}
 
 	/**
