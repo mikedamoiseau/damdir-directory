@@ -1388,9 +1388,9 @@ final class Settings {
 		$base_url = admin_url( self::PARENT_MENU . '&page=' . self::PAGE_SLUG );
 
 		?>
-		<nav class="nav-tab-wrapper apd-settings-tabs" aria-label="<?php esc_attr_e( 'Settings tabs', 'damdir-directory' ); ?>">
-			<?php foreach ( $this->tabs as $tab_id => $tab ) : ?>
-				<?php
+			<nav class="nav-tab-wrapper apd-settings-tabs" aria-label="<?php esc_attr_e( 'Settings tabs', 'damdir-directory' ); ?>">
+				<?php foreach ( $this->tabs as $tab_id => $tab ) : ?>
+					<?php
 					$tab_url   = add_query_arg(
 						Url::encode_deep(
 							[
@@ -1399,12 +1399,12 @@ final class Settings {
 						),
 						$base_url
 					);
-				$is_active = $current_tab === $tab_id;
-				$classes   = 'nav-tab';
-				if ( $is_active ) {
-					$classes .= ' nav-tab-active';
-				}
-				?>
+					$is_active = $current_tab === $tab_id;
+					$classes   = 'nav-tab';
+					if ( $is_active ) {
+							$classes .= ' nav-tab-active';
+					}
+					?>
 				<a href="<?php echo esc_url( $tab_url ); ?>"
 					class="<?php echo esc_attr( $classes ); ?>"
 					<?php echo $is_active ? 'aria-current="page"' : ''; ?>>

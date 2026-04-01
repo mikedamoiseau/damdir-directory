@@ -2159,14 +2159,14 @@ function apd_get_edit_listing_url( int $listing_id, string $submission_url = '' 
 	 */
 	return apply_filters(
 		'apd_edit_listing_url',
-			add_query_arg(
-				\APD\Core\Url::encode_deep(
-					[
-						'edit_listing' => $listing_id,
-					]
-				),
-				$submission_url
+		add_query_arg(
+			\APD\Core\Url::encode_deep(
+				[
+					'edit_listing' => $listing_id,
+				]
 			),
+			$submission_url
+		),
 		$listing_id
 	);
 }
