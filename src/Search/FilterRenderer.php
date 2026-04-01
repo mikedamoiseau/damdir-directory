@@ -499,7 +499,7 @@ final class FilterRenderer {
 			return $base_url;
 		}
 
-		return add_query_arg( $params, $base_url );
+		return esc_url( add_query_arg( $params, $base_url ) );
 	}
 
 	/**
